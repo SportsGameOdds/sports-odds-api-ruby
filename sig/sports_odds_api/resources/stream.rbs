@@ -1,0 +1,14 @@
+module SportsOddsAPI
+  module Resources
+    class Stream
+      def events: (
+        ?event_id: String,
+        ?feed: String,
+        ?league_id: String,
+        ?request_options: SportsOddsAPI::request_opts
+      ) -> SportsOddsAPI::Models::StreamEventsResponse
+
+      def initialize: (client: SportsOddsAPI::Client) -> void
+    end
+  end
+end

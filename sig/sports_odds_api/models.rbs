@@ -1,0 +1,33 @@
+module SportsOddsAPI
+  class AccountGetUsageParams = SportsOddsAPI::Models::AccountGetUsageParams
+
+  class AccountUsage = SportsOddsAPI::Models::AccountUsage
+
+  class Event = SportsOddsAPI::Models::Event
+
+  class EventGetParams = SportsOddsAPI::Models::EventGetParams
+
+  class League = SportsOddsAPI::Models::League
+
+  class LeagueGetParams = SportsOddsAPI::Models::LeagueGetParams
+
+  class Player = SportsOddsAPI::Models::Player
+
+  class PlayerGetParams = SportsOddsAPI::Models::PlayerGetParams
+
+  class RateLimitInterval = SportsOddsAPI::Models::RateLimitInterval
+
+  class Sport = SportsOddsAPI::Models::Sport
+
+  class SportGetParams = SportsOddsAPI::Models::SportGetParams
+
+  class Stat = SportsOddsAPI::Models::Stat
+
+  class StatGetParams = SportsOddsAPI::Models::StatGetParams
+
+  class StreamEventsParams = SportsOddsAPI::Models::StreamEventsParams
+
+  class Team = SportsOddsAPI::Models::Team
+
+  class TeamGetParams = SportsOddsAPI::Models::TeamGetParams
+end

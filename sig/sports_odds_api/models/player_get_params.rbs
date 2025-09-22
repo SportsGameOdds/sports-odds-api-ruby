@@ -1,0 +1,56 @@
+module SportsOddsAPI
+  module Models
+    type player_get_params =
+      {
+        cursor: String,
+        event_id: String,
+        limit: Float,
+        player_id: String,
+        team_id: String
+      }
+      & SportsOddsAPI::Internal::Type::request_parameters
+
+    class PlayerGetParams < SportsOddsAPI::Internal::Type::BaseModel
+      extend SportsOddsAPI::Internal::Type::RequestParameters::Converter
+      include SportsOddsAPI::Internal::Type::RequestParameters
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader event_id: String?
+
+      def event_id=: (String) -> String
+
+      attr_reader limit: Float?
+
+      def limit=: (Float) -> Float
+
+      attr_reader player_id: String?
+
+      def player_id=: (String) -> String
+
+      attr_reader team_id: String?
+
+      def team_id=: (String) -> String
+
+      def initialize: (
+        ?cursor: String,
+        ?event_id: String,
+        ?limit: Float,
+        ?player_id: String,
+        ?team_id: String,
+        ?request_options: SportsOddsAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        cursor: String,
+        event_id: String,
+        limit: Float,
+        player_id: String,
+        team_id: String,
+        request_options: SportsOddsAPI::RequestOptions
+      }
+    end
+  end
+end

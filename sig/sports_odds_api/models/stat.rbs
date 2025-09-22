@@ -1,0 +1,166 @@
+module SportsOddsAPI
+  module Models
+    type stat =
+      {
+        description: String,
+        displays: SportsOddsAPI::Stat::Displays,
+        is_score_stat: bool,
+        stat_id: String,
+        supported_levels: SportsOddsAPI::Stat::SupportedLevels,
+        supported_sports: ::Hash[Symbol, top],
+        units: SportsOddsAPI::Stat::Units
+      }
+
+    class Stat < SportsOddsAPI::Internal::Type::BaseModel
+      attr_reader description: String?
+
+      def description=: (String) -> String
+
+      attr_reader displays: SportsOddsAPI::Stat::Displays?
+
+      def displays=: (
+        SportsOddsAPI::Stat::Displays
+      ) -> SportsOddsAPI::Stat::Displays
+
+      attr_reader is_score_stat: bool?
+
+      def is_score_stat=: (bool) -> bool
+
+      attr_reader stat_id: String?
+
+      def stat_id=: (String) -> String
+
+      attr_reader supported_levels: SportsOddsAPI::Stat::SupportedLevels?
+
+      def supported_levels=: (
+        SportsOddsAPI::Stat::SupportedLevels
+      ) -> SportsOddsAPI::Stat::SupportedLevels
+
+      attr_reader supported_sports: ::Hash[Symbol, top]?
+
+      def supported_sports=: (::Hash[Symbol, top]) -> ::Hash[Symbol, top]
+
+      attr_reader units: SportsOddsAPI::Stat::Units?
+
+      def units=: (SportsOddsAPI::Stat::Units) -> SportsOddsAPI::Stat::Units
+
+      def initialize: (
+        ?description: String,
+        ?displays: SportsOddsAPI::Stat::Displays,
+        ?is_score_stat: bool,
+        ?stat_id: String,
+        ?supported_levels: SportsOddsAPI::Stat::SupportedLevels,
+        ?supported_sports: ::Hash[Symbol, top],
+        ?units: SportsOddsAPI::Stat::Units
+      ) -> void
+
+      def to_hash: -> {
+        description: String,
+        displays: SportsOddsAPI::Stat::Displays,
+        is_score_stat: bool,
+        stat_id: String,
+        supported_levels: SportsOddsAPI::Stat::SupportedLevels,
+        supported_sports: ::Hash[Symbol, top],
+        units: SportsOddsAPI::Stat::Units
+      }
+
+      type displays = { long: String, short: String }
+
+      class Displays < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader long: String?
+
+        def long=: (String) -> String
+
+        attr_reader short: String?
+
+        def short=: (String) -> String
+
+        def initialize: (?long: String, ?short: String) -> void
+
+        def to_hash: -> { long: String, short: String }
+      end
+
+      type supported_levels = { all: bool, player: bool, team: bool }
+
+      class SupportedLevels < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader all: bool?
+
+        def all=: (bool) -> bool
+
+        attr_reader player: bool?
+
+        def player=: (bool) -> bool
+
+        attr_reader team: bool?
+
+        def team=: (bool) -> bool
+
+        def initialize: (?all: bool, ?player: bool, ?team: bool) -> void
+
+        def to_hash: -> { all: bool, player: bool, team: bool }
+      end
+
+      type units =
+        {
+          long: SportsOddsAPI::Stat::Units::Long,
+          short: SportsOddsAPI::Stat::Units::Short
+        }
+
+      class Units < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader long: SportsOddsAPI::Stat::Units::Long?
+
+        def long=: (
+          SportsOddsAPI::Stat::Units::Long
+        ) -> SportsOddsAPI::Stat::Units::Long
+
+        attr_reader short: SportsOddsAPI::Stat::Units::Short?
+
+        def short=: (
+          SportsOddsAPI::Stat::Units::Short
+        ) -> SportsOddsAPI::Stat::Units::Short
+
+        def initialize: (
+          ?long: SportsOddsAPI::Stat::Units::Long,
+          ?short: SportsOddsAPI::Stat::Units::Short
+        ) -> void
+
+        def to_hash: -> {
+          long: SportsOddsAPI::Stat::Units::Long,
+          short: SportsOddsAPI::Stat::Units::Short
+        }
+
+        type long = { plural: String, singular: String }
+
+        class Long < SportsOddsAPI::Internal::Type::BaseModel
+          attr_reader plural: String?
+
+          def plural=: (String) -> String
+
+          attr_reader singular: String?
+
+          def singular=: (String) -> String
+
+          def initialize: (?plural: String, ?singular: String) -> void
+
+          def to_hash: -> { plural: String, singular: String }
+        end
+
+        type short = { plural: String, singular: String }
+
+        class Short < SportsOddsAPI::Internal::Type::BaseModel
+          attr_reader plural: String?
+
+          def plural=: (String) -> String
+
+          attr_reader singular: String?
+
+          def singular=: (String) -> String
+
+          def initialize: (?plural: String, ?singular: String) -> void
+
+          def to_hash: -> { plural: String, singular: String }
+        end
+      end
+    end
+  end
+end

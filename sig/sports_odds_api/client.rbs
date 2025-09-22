@@ -1,0 +1,45 @@
+module SportsOddsAPI
+  class Client < SportsOddsAPI::Internal::Transport::BaseClient
+    DEFAULT_MAX_RETRIES: 2
+
+    DEFAULT_TIMEOUT_IN_SECONDS: Float
+
+    DEFAULT_INITIAL_RETRY_DELAY: Float
+
+    DEFAULT_MAX_RETRY_DELAY: Float
+
+    attr_reader api_key_header: String?
+
+    attr_reader api_key_param: String?
+
+    attr_reader events: SportsOddsAPI::Resources::Events
+
+    attr_reader teams: SportsOddsAPI::Resources::Teams
+
+    attr_reader players: SportsOddsAPI::Resources::Players
+
+    attr_reader leagues: SportsOddsAPI::Resources::Leagues
+
+    attr_reader sports: SportsOddsAPI::Resources::Sports
+
+    attr_reader stats: SportsOddsAPI::Resources::Stats
+
+    attr_reader account: SportsOddsAPI::Resources::Account
+
+    attr_reader stream: SportsOddsAPI::Resources::Stream
+
+    private def auth_headers: -> ::Hash[String, String]
+
+    private def auth_query: -> ::Hash[String, String]
+
+    def initialize: (
+      ?api_key_header: String?,
+      ?api_key_param: String?,
+      ?base_url: String?,
+      ?max_retries: Integer,
+      ?timeout: Float,
+      ?initial_retry_delay: Float,
+      ?max_retry_delay: Float
+    ) -> void
+  end
+end

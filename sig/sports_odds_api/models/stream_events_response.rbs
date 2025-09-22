@@ -1,0 +1,151 @@
+module SportsOddsAPI
+  module Models
+    type stream_events_response =
+      {
+        channel: String,
+        data: ::Array[SportsOddsAPI::Event],
+        pusher_key: String,
+        pusher_options: SportsOddsAPI::Models::StreamEventsResponse::PusherOptions,
+        success: bool,
+        user: String
+      }
+
+    class StreamEventsResponse < SportsOddsAPI::Internal::Type::BaseModel
+      attr_reader channel: String?
+
+      def channel=: (String) -> String
+
+      attr_reader data: ::Array[SportsOddsAPI::Event]?
+
+      def data=: (
+        ::Array[SportsOddsAPI::Event]
+      ) -> ::Array[SportsOddsAPI::Event]
+
+      attr_reader pusher_key: String?
+
+      def pusher_key=: (String) -> String
+
+      attr_reader pusher_options: SportsOddsAPI::Models::StreamEventsResponse::PusherOptions?
+
+      def pusher_options=: (
+        SportsOddsAPI::Models::StreamEventsResponse::PusherOptions
+      ) -> SportsOddsAPI::Models::StreamEventsResponse::PusherOptions
+
+      attr_reader success: bool?
+
+      def success=: (bool) -> bool
+
+      attr_reader user: String?
+
+      def user=: (String) -> String
+
+      def initialize: (
+        ?channel: String,
+        ?data: ::Array[SportsOddsAPI::Event],
+        ?pusher_key: String,
+        ?pusher_options: SportsOddsAPI::Models::StreamEventsResponse::PusherOptions,
+        ?success: bool,
+        ?user: String
+      ) -> void
+
+      def to_hash: -> {
+        channel: String,
+        data: ::Array[SportsOddsAPI::Event],
+        pusher_key: String,
+        pusher_options: SportsOddsAPI::Models::StreamEventsResponse::PusherOptions,
+        success: bool,
+        user: String
+      }
+
+      type pusher_options =
+        {
+          channel_authorization: SportsOddsAPI::Models::StreamEventsResponse::PusherOptions::ChannelAuthorization,
+          cluster: String,
+          http_host: String,
+          http_port: Integer,
+          https_port: Integer,
+          ws_host: String,
+          ws_port: Integer,
+          wss_port: Integer
+        }
+
+      class PusherOptions < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader channel_authorization: SportsOddsAPI::Models::StreamEventsResponse::PusherOptions::ChannelAuthorization?
+
+        def channel_authorization=: (
+          SportsOddsAPI::Models::StreamEventsResponse::PusherOptions::ChannelAuthorization
+        ) -> SportsOddsAPI::Models::StreamEventsResponse::PusherOptions::ChannelAuthorization
+
+        attr_reader cluster: String?
+
+        def cluster=: (String) -> String
+
+        attr_reader http_host: String?
+
+        def http_host=: (String) -> String
+
+        attr_reader http_port: Integer?
+
+        def http_port=: (Integer) -> Integer
+
+        attr_reader https_port: Integer?
+
+        def https_port=: (Integer) -> Integer
+
+        attr_reader ws_host: String?
+
+        def ws_host=: (String) -> String
+
+        attr_reader ws_port: Integer?
+
+        def ws_port=: (Integer) -> Integer
+
+        attr_reader wss_port: Integer?
+
+        def wss_port=: (Integer) -> Integer
+
+        def initialize: (
+          ?channel_authorization: SportsOddsAPI::Models::StreamEventsResponse::PusherOptions::ChannelAuthorization,
+          ?cluster: String,
+          ?http_host: String,
+          ?http_port: Integer,
+          ?https_port: Integer,
+          ?ws_host: String,
+          ?ws_port: Integer,
+          ?wss_port: Integer
+        ) -> void
+
+        def to_hash: -> {
+          channel_authorization: SportsOddsAPI::Models::StreamEventsResponse::PusherOptions::ChannelAuthorization,
+          cluster: String,
+          http_host: String,
+          http_port: Integer,
+          https_port: Integer,
+          ws_host: String,
+          ws_port: Integer,
+          wss_port: Integer
+        }
+
+        type channel_authorization =
+          { endpoint: String, headers: ::Hash[Symbol, String] }
+
+        class ChannelAuthorization < SportsOddsAPI::Internal::Type::BaseModel
+          attr_reader endpoint: String?
+
+          def endpoint=: (String) -> String
+
+          attr_reader headers: ::Hash[Symbol, String]?
+
+          def headers=: (::Hash[Symbol, String]) -> ::Hash[Symbol, String]
+
+          def initialize: (
+            ?endpoint: String,
+            ?headers: ::Hash[Symbol, String]
+          ) -> void
+
+          def to_hash: -> { endpoint: String, headers: ::Hash[Symbol, String] }
+        end
+      end
+    end
+  end
+end

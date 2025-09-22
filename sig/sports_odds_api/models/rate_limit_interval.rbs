@@ -1,0 +1,67 @@
+module SportsOddsAPI
+  module Models
+    type rate_limit_interval =
+      {
+        current_entities: Integer,
+        current_requests: Integer,
+        max_entities: SportsOddsAPI::Models::RateLimitInterval::max_entities,
+        max_requests: SportsOddsAPI::Models::RateLimitInterval::max_requests
+      }
+
+    class RateLimitInterval < SportsOddsAPI::Internal::Type::BaseModel
+      attr_reader current_entities: Integer?
+
+      def current_entities=: (Integer) -> Integer
+
+      attr_reader current_requests: Integer?
+
+      def current_requests=: (Integer) -> Integer
+
+      attr_reader max_entities: SportsOddsAPI::Models::RateLimitInterval::max_entities?
+
+      def max_entities=: (
+        SportsOddsAPI::Models::RateLimitInterval::max_entities
+      ) -> SportsOddsAPI::Models::RateLimitInterval::max_entities
+
+      attr_reader max_requests: SportsOddsAPI::Models::RateLimitInterval::max_requests?
+
+      def max_requests=: (
+        SportsOddsAPI::Models::RateLimitInterval::max_requests
+      ) -> SportsOddsAPI::Models::RateLimitInterval::max_requests
+
+      def initialize: (
+        ?current_entities: Integer,
+        ?current_requests: Integer,
+        ?max_entities: SportsOddsAPI::Models::RateLimitInterval::max_entities,
+        ?max_requests: SportsOddsAPI::Models::RateLimitInterval::max_requests
+      ) -> void
+
+      def to_hash: -> {
+        current_entities: Integer,
+        current_requests: Integer,
+        max_entities: SportsOddsAPI::Models::RateLimitInterval::max_entities,
+        max_requests: SportsOddsAPI::Models::RateLimitInterval::max_requests
+      }
+
+      type max_entities = :unlimited | Integer
+
+      module MaxEntities
+        extend SportsOddsAPI::Internal::Type::Union
+
+        def self?.variants: -> ::Array[SportsOddsAPI::Models::RateLimitInterval::max_entities]
+
+        UNLIMITED: :unlimited
+      end
+
+      type max_requests = :unlimited | Integer
+
+      module MaxRequests
+        extend SportsOddsAPI::Internal::Type::Union
+
+        def self?.variants: -> ::Array[SportsOddsAPI::Models::RateLimitInterval::max_requests]
+
+        UNLIMITED: :unlimited
+      end
+    end
+  end
+end

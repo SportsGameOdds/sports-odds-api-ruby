@@ -1,0 +1,162 @@
+module SportsOddsAPI
+  module Models
+    type player =
+      {
+        aliases: ::Array[String],
+        jersey_number: Float,
+        league_id: String,
+        lookups: SportsOddsAPI::Player::Lookups,
+        names: SportsOddsAPI::Player::Names,
+        player_id: String,
+        player_teams: ::Hash[Symbol, SportsOddsAPI::Player::PlayerTeam],
+        position: String,
+        sport_id: String,
+        team_id: String
+      }
+
+    class Player < SportsOddsAPI::Internal::Type::BaseModel
+      attr_reader aliases: ::Array[String]?
+
+      def aliases=: (::Array[String]) -> ::Array[String]
+
+      attr_reader jersey_number: Float?
+
+      def jersey_number=: (Float) -> Float
+
+      attr_reader league_id: String?
+
+      def league_id=: (String) -> String
+
+      attr_reader lookups: SportsOddsAPI::Player::Lookups?
+
+      def lookups=: (
+        SportsOddsAPI::Player::Lookups
+      ) -> SportsOddsAPI::Player::Lookups
+
+      attr_reader names: SportsOddsAPI::Player::Names?
+
+      def names=: (SportsOddsAPI::Player::Names) -> SportsOddsAPI::Player::Names
+
+      attr_reader player_id: String?
+
+      def player_id=: (String) -> String
+
+      attr_reader player_teams: ::Hash[Symbol, SportsOddsAPI::Player::PlayerTeam]?
+
+      def player_teams=: (
+        ::Hash[Symbol, SportsOddsAPI::Player::PlayerTeam]
+      ) -> ::Hash[Symbol, SportsOddsAPI::Player::PlayerTeam]
+
+      attr_reader position: String?
+
+      def position=: (String) -> String
+
+      attr_reader sport_id: String?
+
+      def sport_id=: (String) -> String
+
+      attr_reader team_id: String?
+
+      def team_id=: (String) -> String
+
+      def initialize: (
+        ?aliases: ::Array[String],
+        ?jersey_number: Float,
+        ?league_id: String,
+        ?lookups: SportsOddsAPI::Player::Lookups,
+        ?names: SportsOddsAPI::Player::Names,
+        ?player_id: String,
+        ?player_teams: ::Hash[Symbol, SportsOddsAPI::Player::PlayerTeam],
+        ?position: String,
+        ?sport_id: String,
+        ?team_id: String
+      ) -> void
+
+      def to_hash: -> {
+        aliases: ::Array[String],
+        jersey_number: Float,
+        league_id: String,
+        lookups: SportsOddsAPI::Player::Lookups,
+        names: SportsOddsAPI::Player::Names,
+        player_id: String,
+        player_teams: ::Hash[Symbol, SportsOddsAPI::Player::PlayerTeam],
+        position: String,
+        sport_id: String,
+        team_id: String
+      }
+
+      type lookups =
+        {
+          any_name: ::Array[String],
+          full_name: ::Array[String],
+          initials: ::Array[String]
+        }
+
+      class Lookups < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader any_name: ::Array[String]?
+
+        def any_name=: (::Array[String]) -> ::Array[String]
+
+        attr_reader full_name: ::Array[String]?
+
+        def full_name=: (::Array[String]) -> ::Array[String]
+
+        attr_reader initials: ::Array[String]?
+
+        def initials=: (::Array[String]) -> ::Array[String]
+
+        def initialize: (
+          ?any_name: ::Array[String],
+          ?full_name: ::Array[String],
+          ?initials: ::Array[String]
+        ) -> void
+
+        def to_hash: -> {
+          any_name: ::Array[String],
+          full_name: ::Array[String],
+          initials: ::Array[String]
+        }
+      end
+
+      type names = { display_: String, first_name: String, last_name: String }
+
+      class Names < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader display_: String?
+
+        def display_=: (String) -> String
+
+        attr_reader first_name: String?
+
+        def first_name=: (String) -> String
+
+        attr_reader last_name: String?
+
+        def last_name=: (String) -> String
+
+        def initialize: (
+          ?display_: String,
+          ?first_name: String,
+          ?last_name: String
+        ) -> void
+
+        def to_hash: -> {
+          display_: String,
+          first_name: String,
+          last_name: String
+        }
+      end
+
+      type player_team = { team_id: String }
+
+      class PlayerTeam < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader team_id: String?
+
+        def team_id=: (String) -> String
+
+        def initialize: (?team_id: String) -> void
+
+        def to_hash: -> { team_id: String }
+      end
+    end
+  end
+end

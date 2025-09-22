@@ -1,0 +1,116 @@
+module SportsOddsAPI
+  module Models
+    type account_usage =
+      {
+        customer_id: String,
+        email: String,
+        is_active: bool,
+        key_id: String,
+        rate_limits: SportsOddsAPI::AccountUsage::RateLimits,
+        tier: String
+      }
+
+    class AccountUsage < SportsOddsAPI::Internal::Type::BaseModel
+      attr_reader customer_id: String?
+
+      def customer_id=: (String) -> String
+
+      attr_reader email: String?
+
+      def email=: (String) -> String
+
+      attr_reader is_active: bool?
+
+      def is_active=: (bool) -> bool
+
+      attr_reader key_id: String?
+
+      def key_id=: (String) -> String
+
+      attr_reader rate_limits: SportsOddsAPI::AccountUsage::RateLimits?
+
+      def rate_limits=: (
+        SportsOddsAPI::AccountUsage::RateLimits
+      ) -> SportsOddsAPI::AccountUsage::RateLimits
+
+      attr_reader tier: String?
+
+      def tier=: (String) -> String
+
+      def initialize: (
+        ?customer_id: String,
+        ?email: String,
+        ?is_active: bool,
+        ?key_id: String,
+        ?rate_limits: SportsOddsAPI::AccountUsage::RateLimits,
+        ?tier: String
+      ) -> void
+
+      def to_hash: -> {
+        customer_id: String,
+        email: String,
+        is_active: bool,
+        key_id: String,
+        rate_limits: SportsOddsAPI::AccountUsage::RateLimits,
+        tier: String
+      }
+
+      type rate_limits =
+        {
+          per_day: SportsOddsAPI::RateLimitInterval,
+          per_hour: SportsOddsAPI::RateLimitInterval,
+          per_minute: SportsOddsAPI::RateLimitInterval,
+          per_month: SportsOddsAPI::RateLimitInterval,
+          per_second: SportsOddsAPI::RateLimitInterval
+        }
+
+      class RateLimits < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader per_day: SportsOddsAPI::RateLimitInterval?
+
+        def per_day=: (
+          SportsOddsAPI::RateLimitInterval
+        ) -> SportsOddsAPI::RateLimitInterval
+
+        attr_reader per_hour: SportsOddsAPI::RateLimitInterval?
+
+        def per_hour=: (
+          SportsOddsAPI::RateLimitInterval
+        ) -> SportsOddsAPI::RateLimitInterval
+
+        attr_reader per_minute: SportsOddsAPI::RateLimitInterval?
+
+        def per_minute=: (
+          SportsOddsAPI::RateLimitInterval
+        ) -> SportsOddsAPI::RateLimitInterval
+
+        attr_reader per_month: SportsOddsAPI::RateLimitInterval?
+
+        def per_month=: (
+          SportsOddsAPI::RateLimitInterval
+        ) -> SportsOddsAPI::RateLimitInterval
+
+        attr_reader per_second: SportsOddsAPI::RateLimitInterval?
+
+        def per_second=: (
+          SportsOddsAPI::RateLimitInterval
+        ) -> SportsOddsAPI::RateLimitInterval
+
+        def initialize: (
+          ?per_day: SportsOddsAPI::RateLimitInterval,
+          ?per_hour: SportsOddsAPI::RateLimitInterval,
+          ?per_minute: SportsOddsAPI::RateLimitInterval,
+          ?per_month: SportsOddsAPI::RateLimitInterval,
+          ?per_second: SportsOddsAPI::RateLimitInterval
+        ) -> void
+
+        def to_hash: -> {
+          per_day: SportsOddsAPI::RateLimitInterval,
+          per_hour: SportsOddsAPI::RateLimitInterval,
+          per_minute: SportsOddsAPI::RateLimitInterval,
+          per_month: SportsOddsAPI::RateLimitInterval,
+          per_second: SportsOddsAPI::RateLimitInterval
+        }
+      end
+    end
+  end
+end

@@ -1,0 +1,26 @@
+module SportsOddsAPI
+  module Internal
+    module Type
+      class Boolean
+        extend SportsOddsAPI::Internal::Type::Converter
+        extend SportsOddsAPI::Internal::Util::SorbetRuntimeSupport
+
+        def self.===: (top other) -> bool
+
+        def self.==: (top other) -> bool
+
+        def self.coerce: (
+          bool | top value,
+          state: SportsOddsAPI::Internal::Type::Converter::coerce_state
+        ) -> (bool | top)
+
+        def self.dump: (
+          bool | top value,
+          state: SportsOddsAPI::Internal::Type::Converter::dump_state
+        ) -> (bool | top)
+
+        def self.to_sorbet_type: -> top
+      end
+    end
+  end
+end

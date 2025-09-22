@@ -1,0 +1,32 @@
+module SportsOddsAPI
+  module Models
+    type league_get_params =
+      { league_id: String, sport_id: String }
+      & SportsOddsAPI::Internal::Type::request_parameters
+
+    class LeagueGetParams < SportsOddsAPI::Internal::Type::BaseModel
+      extend SportsOddsAPI::Internal::Type::RequestParameters::Converter
+      include SportsOddsAPI::Internal::Type::RequestParameters
+
+      attr_reader league_id: String?
+
+      def league_id=: (String) -> String
+
+      attr_reader sport_id: String?
+
+      def sport_id=: (String) -> String
+
+      def initialize: (
+        ?league_id: String,
+        ?sport_id: String,
+        ?request_options: SportsOddsAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        league_id: String,
+        sport_id: String,
+        request_options: SportsOddsAPI::RequestOptions
+      }
+    end
+  end
+end

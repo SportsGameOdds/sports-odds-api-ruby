@@ -1,0 +1,32 @@
+module SportsOddsAPI
+  module Resources
+    class Events
+      def get: (
+        ?bookmaker_id: String,
+        ?cancelled: bool,
+        ?cursor: String,
+        ?ended: bool,
+        ?event_id: String,
+        ?finalized: bool,
+        ?include_alt_lines: bool,
+        ?include_opposing_odds: bool,
+        ?league_id: String,
+        ?limit: Float,
+        ?live: bool,
+        ?odd_id: String,
+        ?odds_available: bool,
+        ?odds_present: bool,
+        ?player_id: String,
+        ?sport_id: String,
+        ?started: bool,
+        ?starts_after: Time,
+        ?starts_before: Time,
+        ?team_id: String,
+        ?type: String,
+        ?request_options: SportsOddsAPI::request_opts
+      ) -> SportsOddsAPI::Internal::NextCursorPage[SportsOddsAPI::Event]
+
+      def initialize: (client: SportsOddsAPI::Client) -> void
+    end
+  end
+end

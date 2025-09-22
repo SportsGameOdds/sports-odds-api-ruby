@@ -1,0 +1,10 @@
+module SportsOddsAPI
+  module Internal
+    extend SportsOddsAPI::Internal::Util::SorbetRuntimeSupport
+
+    type file_input =
+      Pathname | StringIO | IO | String | SportsOddsAPI::FilePart
+
+    OMIT: Object
+  end
+end
