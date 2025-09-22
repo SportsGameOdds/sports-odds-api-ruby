@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email = "api@sportsgameodds.com"
   s.homepage = "https://gemdocs.org/gems/sports-odds-api"
   s.metadata["homepage_uri"] = s.homepage
-  s.metadata["source_code_uri"] = "https://github.com/stainless-sdks/sports-odds-api-ruby"
+  s.metadata["source_code_uri"] = "https://github.com/SportsGameOdds/sports-odds-api-ruby"
   s.metadata["rubygems_mfa_required"] = false.to_s
   s.required_ruby_version = ">= 3.2.0"
 
