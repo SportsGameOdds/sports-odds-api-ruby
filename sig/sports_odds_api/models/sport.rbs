@@ -1,0 +1,241 @@
+module SportsOddsAPI
+  module Models
+    type sport =
+      {
+        background_image: String,
+        base_periods: ::Array[String],
+        clock_type: String,
+        default_popularity_score: Float,
+        enabled: bool,
+        event_word: SportsOddsAPI::Sport::EventWord,
+        extra_periods: ::Array[String],
+        has_meaningful_home_away: bool,
+        image_icon: String,
+        name: String,
+        point_word: SportsOddsAPI::Sport::PointWord,
+        short_name: String,
+        sport_id: String,
+        square_image: String
+      }
+
+    class Sport < SportsOddsAPI::Internal::Type::BaseModel
+      attr_reader background_image: String?
+
+      def background_image=: (String) -> String
+
+      attr_reader base_periods: ::Array[String]?
+
+      def base_periods=: (::Array[String]) -> ::Array[String]
+
+      attr_reader clock_type: String?
+
+      def clock_type=: (String) -> String
+
+      attr_reader default_popularity_score: Float?
+
+      def default_popularity_score=: (Float) -> Float
+
+      attr_reader enabled: bool?
+
+      def enabled=: (bool) -> bool
+
+      attr_reader event_word: SportsOddsAPI::Sport::EventWord?
+
+      def event_word=: (
+        SportsOddsAPI::Sport::EventWord
+      ) -> SportsOddsAPI::Sport::EventWord
+
+      attr_reader extra_periods: ::Array[String]?
+
+      def extra_periods=: (::Array[String]) -> ::Array[String]
+
+      attr_reader has_meaningful_home_away: bool?
+
+      def has_meaningful_home_away=: (bool) -> bool
+
+      attr_reader image_icon: String?
+
+      def image_icon=: (String) -> String
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader point_word: SportsOddsAPI::Sport::PointWord?
+
+      def point_word=: (
+        SportsOddsAPI::Sport::PointWord
+      ) -> SportsOddsAPI::Sport::PointWord
+
+      attr_reader short_name: String?
+
+      def short_name=: (String) -> String
+
+      attr_reader sport_id: String?
+
+      def sport_id=: (String) -> String
+
+      attr_reader square_image: String?
+
+      def square_image=: (String) -> String
+
+      def initialize: (
+        ?background_image: String,
+        ?base_periods: ::Array[String],
+        ?clock_type: String,
+        ?default_popularity_score: Float,
+        ?enabled: bool,
+        ?event_word: SportsOddsAPI::Sport::EventWord,
+        ?extra_periods: ::Array[String],
+        ?has_meaningful_home_away: bool,
+        ?image_icon: String,
+        ?name: String,
+        ?point_word: SportsOddsAPI::Sport::PointWord,
+        ?short_name: String,
+        ?sport_id: String,
+        ?square_image: String
+      ) -> void
+
+      def to_hash: -> {
+        background_image: String,
+        base_periods: ::Array[String],
+        clock_type: String,
+        default_popularity_score: Float,
+        enabled: bool,
+        event_word: SportsOddsAPI::Sport::EventWord,
+        extra_periods: ::Array[String],
+        has_meaningful_home_away: bool,
+        image_icon: String,
+        name: String,
+        point_word: SportsOddsAPI::Sport::PointWord,
+        short_name: String,
+        sport_id: String,
+        square_image: String
+      }
+
+      type event_word =
+        {
+          long: SportsOddsAPI::Sport::EventWord::Long,
+          short: SportsOddsAPI::Sport::EventWord::Short
+        }
+
+      class EventWord < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader long: SportsOddsAPI::Sport::EventWord::Long?
+
+        def long=: (
+          SportsOddsAPI::Sport::EventWord::Long
+        ) -> SportsOddsAPI::Sport::EventWord::Long
+
+        attr_reader short: SportsOddsAPI::Sport::EventWord::Short?
+
+        def short=: (
+          SportsOddsAPI::Sport::EventWord::Short
+        ) -> SportsOddsAPI::Sport::EventWord::Short
+
+        def initialize: (
+          ?long: SportsOddsAPI::Sport::EventWord::Long,
+          ?short: SportsOddsAPI::Sport::EventWord::Short
+        ) -> void
+
+        def to_hash: -> {
+          long: SportsOddsAPI::Sport::EventWord::Long,
+          short: SportsOddsAPI::Sport::EventWord::Short
+        }
+
+        type long = { plural: String, singular: String }
+
+        class Long < SportsOddsAPI::Internal::Type::BaseModel
+          attr_reader plural: String?
+
+          def plural=: (String) -> String
+
+          attr_reader singular: String?
+
+          def singular=: (String) -> String
+
+          def initialize: (?plural: String, ?singular: String) -> void
+
+          def to_hash: -> { plural: String, singular: String }
+        end
+
+        type short = { plural: String, singular: String }
+
+        class Short < SportsOddsAPI::Internal::Type::BaseModel
+          attr_reader plural: String?
+
+          def plural=: (String) -> String
+
+          attr_reader singular: String?
+
+          def singular=: (String) -> String
+
+          def initialize: (?plural: String, ?singular: String) -> void
+
+          def to_hash: -> { plural: String, singular: String }
+        end
+      end
+
+      type point_word =
+        {
+          long: SportsOddsAPI::Sport::PointWord::Long,
+          short: SportsOddsAPI::Sport::PointWord::Short
+        }
+
+      class PointWord < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader long: SportsOddsAPI::Sport::PointWord::Long?
+
+        def long=: (
+          SportsOddsAPI::Sport::PointWord::Long
+        ) -> SportsOddsAPI::Sport::PointWord::Long
+
+        attr_reader short: SportsOddsAPI::Sport::PointWord::Short?
+
+        def short=: (
+          SportsOddsAPI::Sport::PointWord::Short
+        ) -> SportsOddsAPI::Sport::PointWord::Short
+
+        def initialize: (
+          ?long: SportsOddsAPI::Sport::PointWord::Long,
+          ?short: SportsOddsAPI::Sport::PointWord::Short
+        ) -> void
+
+        def to_hash: -> {
+          long: SportsOddsAPI::Sport::PointWord::Long,
+          short: SportsOddsAPI::Sport::PointWord::Short
+        }
+
+        type long = { plural: String, singular: String }
+
+        class Long < SportsOddsAPI::Internal::Type::BaseModel
+          attr_reader plural: String?
+
+          def plural=: (String) -> String
+
+          attr_reader singular: String?
+
+          def singular=: (String) -> String
+
+          def initialize: (?plural: String, ?singular: String) -> void
+
+          def to_hash: -> { plural: String, singular: String }
+        end
+
+        type short = { plural: String, singular: String }
+
+        class Short < SportsOddsAPI::Internal::Type::BaseModel
+          attr_reader plural: String?
+
+          def plural=: (String) -> String
+
+          attr_reader singular: String?
+
+          def singular=: (String) -> String
+
+          def initialize: (?plural: String, ?singular: String) -> void
+
+          def to_hash: -> { plural: String, singular: String }
+        end
+      end
+    end
+  end
+end

@@ -1,0 +1,168 @@
+module SportsOddsAPI
+  module Models
+    type event_get_params =
+      {
+        bookmaker_id: String,
+        cancelled: bool,
+        cursor: String,
+        ended: bool,
+        event_id: String,
+        finalized: bool,
+        include_alt_lines: bool,
+        include_opposing_odds: bool,
+        league_id: String,
+        limit: Float,
+        live: bool,
+        odd_id: String,
+        odds_available: bool,
+        odds_present: bool,
+        player_id: String,
+        sport_id: String,
+        started: bool,
+        starts_after: Time,
+        starts_before: Time,
+        team_id: String,
+        type: String
+      }
+      & SportsOddsAPI::Internal::Type::request_parameters
+
+    class EventGetParams < SportsOddsAPI::Internal::Type::BaseModel
+      extend SportsOddsAPI::Internal::Type::RequestParameters::Converter
+      include SportsOddsAPI::Internal::Type::RequestParameters
+
+      attr_reader bookmaker_id: String?
+
+      def bookmaker_id=: (String) -> String
+
+      attr_reader cancelled: bool?
+
+      def cancelled=: (bool) -> bool
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader ended: bool?
+
+      def ended=: (bool) -> bool
+
+      attr_reader event_id: String?
+
+      def event_id=: (String) -> String
+
+      attr_reader finalized: bool?
+
+      def finalized=: (bool) -> bool
+
+      attr_reader include_alt_lines: bool?
+
+      def include_alt_lines=: (bool) -> bool
+
+      attr_reader include_opposing_odds: bool?
+
+      def include_opposing_odds=: (bool) -> bool
+
+      attr_reader league_id: String?
+
+      def league_id=: (String) -> String
+
+      attr_reader limit: Float?
+
+      def limit=: (Float) -> Float
+
+      attr_reader live: bool?
+
+      def live=: (bool) -> bool
+
+      attr_reader odd_id: String?
+
+      def odd_id=: (String) -> String
+
+      attr_reader odds_available: bool?
+
+      def odds_available=: (bool) -> bool
+
+      attr_reader odds_present: bool?
+
+      def odds_present=: (bool) -> bool
+
+      attr_reader player_id: String?
+
+      def player_id=: (String) -> String
+
+      attr_reader sport_id: String?
+
+      def sport_id=: (String) -> String
+
+      attr_reader started: bool?
+
+      def started=: (bool) -> bool
+
+      attr_reader starts_after: Time?
+
+      def starts_after=: (Time) -> Time
+
+      attr_reader starts_before: Time?
+
+      def starts_before=: (Time) -> Time
+
+      attr_reader team_id: String?
+
+      def team_id=: (String) -> String
+
+      attr_reader type: String?
+
+      def type=: (String) -> String
+
+      def initialize: (
+        ?bookmaker_id: String,
+        ?cancelled: bool,
+        ?cursor: String,
+        ?ended: bool,
+        ?event_id: String,
+        ?finalized: bool,
+        ?include_alt_lines: bool,
+        ?include_opposing_odds: bool,
+        ?league_id: String,
+        ?limit: Float,
+        ?live: bool,
+        ?odd_id: String,
+        ?odds_available: bool,
+        ?odds_present: bool,
+        ?player_id: String,
+        ?sport_id: String,
+        ?started: bool,
+        ?starts_after: Time,
+        ?starts_before: Time,
+        ?team_id: String,
+        ?type: String,
+        ?request_options: SportsOddsAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        bookmaker_id: String,
+        cancelled: bool,
+        cursor: String,
+        ended: bool,
+        event_id: String,
+        finalized: bool,
+        include_alt_lines: bool,
+        include_opposing_odds: bool,
+        league_id: String,
+        limit: Float,
+        live: bool,
+        odd_id: String,
+        odds_available: bool,
+        odds_present: bool,
+        player_id: String,
+        sport_id: String,
+        started: bool,
+        starts_after: Time,
+        starts_before: Time,
+        team_id: String,
+        type: String,
+        request_options: SportsOddsAPI::RequestOptions
+      }
+    end
+  end
+end

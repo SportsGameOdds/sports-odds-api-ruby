@@ -1,0 +1,15 @@
+module SportsOddsAPI
+  module Models
+    type sport_get_params =
+      {  } & SportsOddsAPI::Internal::Type::request_parameters
+
+    class SportGetParams < SportsOddsAPI::Internal::Type::BaseModel
+      extend SportsOddsAPI::Internal::Type::RequestParameters::Converter
+      include SportsOddsAPI::Internal::Type::RequestParameters
+
+      def initialize: (?request_options: SportsOddsAPI::request_opts) -> void
+
+      def to_hash: -> { request_options: SportsOddsAPI::RequestOptions }
+    end
+  end
+end

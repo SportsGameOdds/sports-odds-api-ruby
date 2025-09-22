@@ -1,0 +1,860 @@
+module SportsOddsAPI
+  module Models
+    type event =
+      {
+        activity: SportsOddsAPI::Event::Activity,
+        event_id: String,
+        info: SportsOddsAPI::Event::Info,
+        league_id: String,
+        manual: bool,
+        odds: ::Hash[Symbol, SportsOddsAPI::Event::Odd],
+        players: ::Hash[Symbol, SportsOddsAPI::Event::Player],
+        results: ::Hash[Symbol, ::Hash[Symbol, ::Hash[Symbol, Float]]],
+        sport_id: String,
+        status: SportsOddsAPI::Event::Status,
+        teams: SportsOddsAPI::Event::Teams,
+        type: String
+      }
+
+    class Event < SportsOddsAPI::Internal::Type::BaseModel
+      attr_reader activity: SportsOddsAPI::Event::Activity?
+
+      def activity=: (
+        SportsOddsAPI::Event::Activity
+      ) -> SportsOddsAPI::Event::Activity
+
+      attr_reader event_id: String?
+
+      def event_id=: (String) -> String
+
+      attr_reader info: SportsOddsAPI::Event::Info?
+
+      def info=: (SportsOddsAPI::Event::Info) -> SportsOddsAPI::Event::Info
+
+      attr_reader league_id: String?
+
+      def league_id=: (String) -> String
+
+      attr_reader manual: bool?
+
+      def manual=: (bool) -> bool
+
+      attr_reader odds: ::Hash[Symbol, SportsOddsAPI::Event::Odd]?
+
+      def odds=: (
+        ::Hash[Symbol, SportsOddsAPI::Event::Odd]
+      ) -> ::Hash[Symbol, SportsOddsAPI::Event::Odd]
+
+      attr_reader players: ::Hash[Symbol, SportsOddsAPI::Event::Player]?
+
+      def players=: (
+        ::Hash[Symbol, SportsOddsAPI::Event::Player]
+      ) -> ::Hash[Symbol, SportsOddsAPI::Event::Player]
+
+      attr_reader results: ::Hash[Symbol, ::Hash[Symbol, ::Hash[Symbol, Float]]]?
+
+      def results=: (
+        ::Hash[Symbol, ::Hash[Symbol, ::Hash[Symbol, Float]]]
+      ) -> ::Hash[Symbol, ::Hash[Symbol, ::Hash[Symbol, Float]]]
+
+      attr_reader sport_id: String?
+
+      def sport_id=: (String) -> String
+
+      attr_reader status: SportsOddsAPI::Event::Status?
+
+      def status=: (
+        SportsOddsAPI::Event::Status
+      ) -> SportsOddsAPI::Event::Status
+
+      attr_reader teams: SportsOddsAPI::Event::Teams?
+
+      def teams=: (SportsOddsAPI::Event::Teams) -> SportsOddsAPI::Event::Teams
+
+      attr_reader type: String?
+
+      def type=: (String) -> String
+
+      def initialize: (
+        ?activity: SportsOddsAPI::Event::Activity,
+        ?event_id: String,
+        ?info: SportsOddsAPI::Event::Info,
+        ?league_id: String,
+        ?manual: bool,
+        ?odds: ::Hash[Symbol, SportsOddsAPI::Event::Odd],
+        ?players: ::Hash[Symbol, SportsOddsAPI::Event::Player],
+        ?results: ::Hash[Symbol, ::Hash[Symbol, ::Hash[Symbol, Float]]],
+        ?sport_id: String,
+        ?status: SportsOddsAPI::Event::Status,
+        ?teams: SportsOddsAPI::Event::Teams,
+        ?type: String
+      ) -> void
+
+      def to_hash: -> {
+        activity: SportsOddsAPI::Event::Activity,
+        event_id: String,
+        info: SportsOddsAPI::Event::Info,
+        league_id: String,
+        manual: bool,
+        odds: ::Hash[Symbol, SportsOddsAPI::Event::Odd],
+        players: ::Hash[Symbol, SportsOddsAPI::Event::Player],
+        results: ::Hash[Symbol, ::Hash[Symbol, ::Hash[Symbol, Float]]],
+        sport_id: String,
+        status: SportsOddsAPI::Event::Status,
+        teams: SportsOddsAPI::Event::Teams,
+        type: String
+      }
+
+      type activity = { count: Float, score: Float }
+
+      class Activity < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader count: Float?
+
+        def count=: (Float) -> Float
+
+        attr_reader score: Float?
+
+        def score=: (Float) -> Float
+
+        def initialize: (?count: Float, ?score: Float) -> void
+
+        def to_hash: -> { count: Float, score: Float }
+      end
+
+      type info = { season_week: String }
+
+      class Info < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader season_week: String?
+
+        def season_week=: (String) -> String
+
+        def initialize: (?season_week: String) -> void
+
+        def to_hash: -> { season_week: String }
+      end
+
+      type odd =
+        {
+          bet_type_id: String,
+          book_odds: String,
+          book_odds_available: bool,
+          book_over_under: String,
+          book_spread: String,
+          by_bookmaker: ::Hash[Symbol, SportsOddsAPI::Event::Odd::ByBookmaker],
+          cancelled: bool,
+          ended: bool,
+          fair_odds: String,
+          fair_odds_available: bool,
+          fair_over_under: String,
+          fair_spread: String,
+          market_name: String,
+          odd_id: String,
+          opposing_odd_id: String,
+          period_id: String,
+          player_id: String,
+          score: Float,
+          scoring_supported: bool,
+          side_id: String,
+          started: bool,
+          stat_entity_id: String,
+          stat_id: String
+        }
+
+      class Odd < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader bet_type_id: String?
+
+        def bet_type_id=: (String) -> String
+
+        attr_reader book_odds: String?
+
+        def book_odds=: (String) -> String
+
+        attr_reader book_odds_available: bool?
+
+        def book_odds_available=: (bool) -> bool
+
+        attr_reader book_over_under: String?
+
+        def book_over_under=: (String) -> String
+
+        attr_reader book_spread: String?
+
+        def book_spread=: (String) -> String
+
+        attr_reader by_bookmaker: ::Hash[Symbol, SportsOddsAPI::Event::Odd::ByBookmaker]?
+
+        def by_bookmaker=: (
+          ::Hash[Symbol, SportsOddsAPI::Event::Odd::ByBookmaker]
+        ) -> ::Hash[Symbol, SportsOddsAPI::Event::Odd::ByBookmaker]
+
+        attr_reader cancelled: bool?
+
+        def cancelled=: (bool) -> bool
+
+        attr_reader ended: bool?
+
+        def ended=: (bool) -> bool
+
+        attr_reader fair_odds: String?
+
+        def fair_odds=: (String) -> String
+
+        attr_reader fair_odds_available: bool?
+
+        def fair_odds_available=: (bool) -> bool
+
+        attr_reader fair_over_under: String?
+
+        def fair_over_under=: (String) -> String
+
+        attr_reader fair_spread: String?
+
+        def fair_spread=: (String) -> String
+
+        attr_reader market_name: String?
+
+        def market_name=: (String) -> String
+
+        attr_reader odd_id: String?
+
+        def odd_id=: (String) -> String
+
+        attr_reader opposing_odd_id: String?
+
+        def opposing_odd_id=: (String) -> String
+
+        attr_reader period_id: String?
+
+        def period_id=: (String) -> String
+
+        attr_reader player_id: String?
+
+        def player_id=: (String) -> String
+
+        attr_reader score: Float?
+
+        def score=: (Float) -> Float
+
+        attr_reader scoring_supported: bool?
+
+        def scoring_supported=: (bool) -> bool
+
+        attr_reader side_id: String?
+
+        def side_id=: (String) -> String
+
+        attr_reader started: bool?
+
+        def started=: (bool) -> bool
+
+        attr_reader stat_entity_id: String?
+
+        def stat_entity_id=: (String) -> String
+
+        attr_reader stat_id: String?
+
+        def stat_id=: (String) -> String
+
+        def initialize: (
+          ?bet_type_id: String,
+          ?book_odds: String,
+          ?book_odds_available: bool,
+          ?book_over_under: String,
+          ?book_spread: String,
+          ?by_bookmaker: ::Hash[Symbol, SportsOddsAPI::Event::Odd::ByBookmaker],
+          ?cancelled: bool,
+          ?ended: bool,
+          ?fair_odds: String,
+          ?fair_odds_available: bool,
+          ?fair_over_under: String,
+          ?fair_spread: String,
+          ?market_name: String,
+          ?odd_id: String,
+          ?opposing_odd_id: String,
+          ?period_id: String,
+          ?player_id: String,
+          ?score: Float,
+          ?scoring_supported: bool,
+          ?side_id: String,
+          ?started: bool,
+          ?stat_entity_id: String,
+          ?stat_id: String
+        ) -> void
+
+        def to_hash: -> {
+          bet_type_id: String,
+          book_odds: String,
+          book_odds_available: bool,
+          book_over_under: String,
+          book_spread: String,
+          by_bookmaker: ::Hash[Symbol, SportsOddsAPI::Event::Odd::ByBookmaker],
+          cancelled: bool,
+          ended: bool,
+          fair_odds: String,
+          fair_odds_available: bool,
+          fair_over_under: String,
+          fair_spread: String,
+          market_name: String,
+          odd_id: String,
+          opposing_odd_id: String,
+          period_id: String,
+          player_id: String,
+          score: Float,
+          scoring_supported: bool,
+          side_id: String,
+          started: bool,
+          stat_entity_id: String,
+          stat_id: String
+        }
+
+        type by_bookmaker =
+          {
+            available: bool,
+            bookmaker_id: String,
+            is_main_line: bool,
+            last_updated_at: Time,
+            odds: String,
+            over_under: String,
+            spread: String
+          }
+
+        class ByBookmaker < SportsOddsAPI::Internal::Type::BaseModel
+          attr_reader available: bool?
+
+          def available=: (bool) -> bool
+
+          attr_reader bookmaker_id: String?
+
+          def bookmaker_id=: (String) -> String
+
+          attr_reader is_main_line: bool?
+
+          def is_main_line=: (bool) -> bool
+
+          attr_reader last_updated_at: Time?
+
+          def last_updated_at=: (Time) -> Time
+
+          attr_reader odds: String?
+
+          def odds=: (String) -> String
+
+          attr_reader over_under: String?
+
+          def over_under=: (String) -> String
+
+          attr_reader spread: String?
+
+          def spread=: (String) -> String
+
+          def initialize: (
+            ?available: bool,
+            ?bookmaker_id: String,
+            ?is_main_line: bool,
+            ?last_updated_at: Time,
+            ?odds: String,
+            ?over_under: String,
+            ?spread: String
+          ) -> void
+
+          def to_hash: -> {
+            available: bool,
+            bookmaker_id: String,
+            is_main_line: bool,
+            last_updated_at: Time,
+            odds: String,
+            over_under: String,
+            spread: String
+          }
+        end
+      end
+
+      type player =
+        {
+          alias_: String,
+          first_name: String,
+          last_name: String,
+          name: String,
+          photo: String,
+          player_id: String,
+          team_id: String
+        }
+
+      class Player < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader alias_: String?
+
+        def alias_=: (String) -> String
+
+        attr_reader first_name: String?
+
+        def first_name=: (String) -> String
+
+        attr_reader last_name: String?
+
+        def last_name=: (String) -> String
+
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        attr_reader photo: String?
+
+        def photo=: (String) -> String
+
+        attr_reader player_id: String?
+
+        def player_id=: (String) -> String
+
+        attr_reader team_id: String?
+
+        def team_id=: (String) -> String
+
+        def initialize: (
+          ?alias_: String,
+          ?first_name: String,
+          ?last_name: String,
+          ?name: String,
+          ?photo: String,
+          ?player_id: String,
+          ?team_id: String
+        ) -> void
+
+        def to_hash: -> {
+          alias_: String,
+          first_name: String,
+          last_name: String,
+          name: String,
+          photo: String,
+          player_id: String,
+          team_id: String
+        }
+      end
+
+      type status =
+        {
+          cancelled: bool,
+          completed: bool,
+          current_period_id: String,
+          delayed: bool,
+          display_long: String,
+          display_short: String,
+          ended: bool,
+          finalized: bool,
+          hard_start: bool,
+          live: bool,
+          odds_available: bool,
+          odds_present: bool,
+          periods: SportsOddsAPI::Event::Status::Periods,
+          previous_period_id: String,
+          re_grade: bool,
+          started: bool,
+          starts_at: Time
+        }
+
+      class Status < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader cancelled: bool?
+
+        def cancelled=: (bool) -> bool
+
+        attr_reader completed: bool?
+
+        def completed=: (bool) -> bool
+
+        attr_reader current_period_id: String?
+
+        def current_period_id=: (String) -> String
+
+        attr_reader delayed: bool?
+
+        def delayed=: (bool) -> bool
+
+        attr_reader display_long: String?
+
+        def display_long=: (String) -> String
+
+        attr_reader display_short: String?
+
+        def display_short=: (String) -> String
+
+        attr_reader ended: bool?
+
+        def ended=: (bool) -> bool
+
+        attr_reader finalized: bool?
+
+        def finalized=: (bool) -> bool
+
+        attr_reader hard_start: bool?
+
+        def hard_start=: (bool) -> bool
+
+        attr_reader live: bool?
+
+        def live=: (bool) -> bool
+
+        attr_reader odds_available: bool?
+
+        def odds_available=: (bool) -> bool
+
+        attr_reader odds_present: bool?
+
+        def odds_present=: (bool) -> bool
+
+        attr_reader periods: SportsOddsAPI::Event::Status::Periods?
+
+        def periods=: (
+          SportsOddsAPI::Event::Status::Periods
+        ) -> SportsOddsAPI::Event::Status::Periods
+
+        attr_reader previous_period_id: String?
+
+        def previous_period_id=: (String) -> String
+
+        attr_reader re_grade: bool?
+
+        def re_grade=: (bool) -> bool
+
+        attr_reader started: bool?
+
+        def started=: (bool) -> bool
+
+        attr_reader starts_at: Time?
+
+        def starts_at=: (Time) -> Time
+
+        def initialize: (
+          ?cancelled: bool,
+          ?completed: bool,
+          ?current_period_id: String,
+          ?delayed: bool,
+          ?display_long: String,
+          ?display_short: String,
+          ?ended: bool,
+          ?finalized: bool,
+          ?hard_start: bool,
+          ?live: bool,
+          ?odds_available: bool,
+          ?odds_present: bool,
+          ?periods: SportsOddsAPI::Event::Status::Periods,
+          ?previous_period_id: String,
+          ?re_grade: bool,
+          ?started: bool,
+          ?starts_at: Time
+        ) -> void
+
+        def to_hash: -> {
+          cancelled: bool,
+          completed: bool,
+          current_period_id: String,
+          delayed: bool,
+          display_long: String,
+          display_short: String,
+          ended: bool,
+          finalized: bool,
+          hard_start: bool,
+          live: bool,
+          odds_available: bool,
+          odds_present: bool,
+          periods: SportsOddsAPI::Event::Status::Periods,
+          previous_period_id: String,
+          re_grade: bool,
+          started: bool,
+          starts_at: Time
+        }
+
+        type periods = { ended: ::Array[String], started: ::Array[String] }
+
+        class Periods < SportsOddsAPI::Internal::Type::BaseModel
+          attr_reader ended: ::Array[String]?
+
+          def ended=: (::Array[String]) -> ::Array[String]
+
+          attr_reader started: ::Array[String]?
+
+          def started=: (::Array[String]) -> ::Array[String]
+
+          def initialize: (
+            ?ended: ::Array[String],
+            ?started: ::Array[String]
+          ) -> void
+
+          def to_hash: -> { ended: ::Array[String], started: ::Array[String] }
+        end
+      end
+
+      type teams =
+        {
+          away: SportsOddsAPI::Event::Teams::Away,
+          home: SportsOddsAPI::Event::Teams::Home
+        }
+
+      class Teams < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader away: SportsOddsAPI::Event::Teams::Away?
+
+        def away=: (
+          SportsOddsAPI::Event::Teams::Away
+        ) -> SportsOddsAPI::Event::Teams::Away
+
+        attr_reader home: SportsOddsAPI::Event::Teams::Home?
+
+        def home=: (
+          SportsOddsAPI::Event::Teams::Home
+        ) -> SportsOddsAPI::Event::Teams::Home
+
+        def initialize: (
+          ?away: SportsOddsAPI::Event::Teams::Away,
+          ?home: SportsOddsAPI::Event::Teams::Home
+        ) -> void
+
+        def to_hash: -> {
+          away: SportsOddsAPI::Event::Teams::Away,
+          home: SportsOddsAPI::Event::Teams::Home
+        }
+
+        type away =
+          {
+            colors: SportsOddsAPI::Event::Teams::Away::Colors,
+            logo: String,
+            names: SportsOddsAPI::Event::Teams::Away::Names,
+            score: Float,
+            stat_entity_id: String,
+            team_id: String
+          }
+
+        class Away < SportsOddsAPI::Internal::Type::BaseModel
+          attr_reader colors: SportsOddsAPI::Event::Teams::Away::Colors?
+
+          def colors=: (
+            SportsOddsAPI::Event::Teams::Away::Colors
+          ) -> SportsOddsAPI::Event::Teams::Away::Colors
+
+          attr_reader logo: String?
+
+          def logo=: (String) -> String
+
+          attr_reader names: SportsOddsAPI::Event::Teams::Away::Names?
+
+          def names=: (
+            SportsOddsAPI::Event::Teams::Away::Names
+          ) -> SportsOddsAPI::Event::Teams::Away::Names
+
+          attr_reader score: Float?
+
+          def score=: (Float) -> Float
+
+          attr_reader stat_entity_id: String?
+
+          def stat_entity_id=: (String) -> String
+
+          attr_reader team_id: String?
+
+          def team_id=: (String) -> String
+
+          def initialize: (
+            ?colors: SportsOddsAPI::Event::Teams::Away::Colors,
+            ?logo: String,
+            ?names: SportsOddsAPI::Event::Teams::Away::Names,
+            ?score: Float,
+            ?stat_entity_id: String,
+            ?team_id: String
+          ) -> void
+
+          def to_hash: -> {
+            colors: SportsOddsAPI::Event::Teams::Away::Colors,
+            logo: String,
+            names: SportsOddsAPI::Event::Teams::Away::Names,
+            score: Float,
+            stat_entity_id: String,
+            team_id: String
+          }
+
+          type colors =
+            {
+              primary: String,
+              primary_contrast: String,
+              secondary: String,
+              secondary_contrast: String
+            }
+
+          class Colors < SportsOddsAPI::Internal::Type::BaseModel
+            attr_reader primary: String?
+
+            def primary=: (String) -> String
+
+            attr_reader primary_contrast: String?
+
+            def primary_contrast=: (String) -> String
+
+            attr_reader secondary: String?
+
+            def secondary=: (String) -> String
+
+            attr_reader secondary_contrast: String?
+
+            def secondary_contrast=: (String) -> String
+
+            def initialize: (
+              ?primary: String,
+              ?primary_contrast: String,
+              ?secondary: String,
+              ?secondary_contrast: String
+            ) -> void
+
+            def to_hash: -> {
+              primary: String,
+              primary_contrast: String,
+              secondary: String,
+              secondary_contrast: String
+            }
+          end
+
+          type names = { long: String, medium: String, short: String }
+
+          class Names < SportsOddsAPI::Internal::Type::BaseModel
+            attr_reader long: String?
+
+            def long=: (String) -> String
+
+            attr_reader medium: String?
+
+            def medium=: (String) -> String
+
+            attr_reader short: String?
+
+            def short=: (String) -> String
+
+            def initialize: (
+              ?long: String,
+              ?medium: String,
+              ?short: String
+            ) -> void
+
+            def to_hash: -> { long: String, medium: String, short: String }
+          end
+        end
+
+        type home =
+          {
+            colors: SportsOddsAPI::Event::Teams::Home::Colors,
+            logo: String,
+            names: SportsOddsAPI::Event::Teams::Home::Names,
+            score: Float,
+            stat_entity_id: String,
+            team_id: String
+          }
+
+        class Home < SportsOddsAPI::Internal::Type::BaseModel
+          attr_reader colors: SportsOddsAPI::Event::Teams::Home::Colors?
+
+          def colors=: (
+            SportsOddsAPI::Event::Teams::Home::Colors
+          ) -> SportsOddsAPI::Event::Teams::Home::Colors
+
+          attr_reader logo: String?
+
+          def logo=: (String) -> String
+
+          attr_reader names: SportsOddsAPI::Event::Teams::Home::Names?
+
+          def names=: (
+            SportsOddsAPI::Event::Teams::Home::Names
+          ) -> SportsOddsAPI::Event::Teams::Home::Names
+
+          attr_reader score: Float?
+
+          def score=: (Float) -> Float
+
+          attr_reader stat_entity_id: String?
+
+          def stat_entity_id=: (String) -> String
+
+          attr_reader team_id: String?
+
+          def team_id=: (String) -> String
+
+          def initialize: (
+            ?colors: SportsOddsAPI::Event::Teams::Home::Colors,
+            ?logo: String,
+            ?names: SportsOddsAPI::Event::Teams::Home::Names,
+            ?score: Float,
+            ?stat_entity_id: String,
+            ?team_id: String
+          ) -> void
+
+          def to_hash: -> {
+            colors: SportsOddsAPI::Event::Teams::Home::Colors,
+            logo: String,
+            names: SportsOddsAPI::Event::Teams::Home::Names,
+            score: Float,
+            stat_entity_id: String,
+            team_id: String
+          }
+
+          type colors =
+            {
+              primary: String,
+              primary_contrast: String,
+              secondary: String,
+              secondary_contrast: String
+            }
+
+          class Colors < SportsOddsAPI::Internal::Type::BaseModel
+            attr_reader primary: String?
+
+            def primary=: (String) -> String
+
+            attr_reader primary_contrast: String?
+
+            def primary_contrast=: (String) -> String
+
+            attr_reader secondary: String?
+
+            def secondary=: (String) -> String
+
+            attr_reader secondary_contrast: String?
+
+            def secondary_contrast=: (String) -> String
+
+            def initialize: (
+              ?primary: String,
+              ?primary_contrast: String,
+              ?secondary: String,
+              ?secondary_contrast: String
+            ) -> void
+
+            def to_hash: -> {
+              primary: String,
+              primary_contrast: String,
+              secondary: String,
+              secondary_contrast: String
+            }
+          end
+
+          type names = { long: String, medium: String, short: String }
+
+          class Names < SportsOddsAPI::Internal::Type::BaseModel
+            attr_reader long: String?
+
+            def long=: (String) -> String
+
+            attr_reader medium: String?
+
+            def medium=: (String) -> String
+
+            attr_reader short: String?
+
+            def short=: (String) -> String
+
+            def initialize: (
+              ?long: String,
+              ?medium: String,
+              ?short: String
+            ) -> void
+
+            def to_hash: -> { long: String, medium: String, short: String }
+          end
+        end
+      end
+    end
+  end
+end

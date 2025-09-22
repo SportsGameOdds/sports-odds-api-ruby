@@ -1,0 +1,11 @@
+module SportsOddsAPI
+  module Resources
+    class Account
+      def get_usage: (
+        ?request_options: SportsOddsAPI::request_opts
+      ) -> SportsOddsAPI::AccountUsage
+
+      def initialize: (client: SportsOddsAPI::Client) -> void
+    end
+  end
+end

@@ -1,0 +1,13 @@
+module SportsOddsAPI
+  module Resources
+    class Leagues
+      def get: (
+        ?league_id: String,
+        ?sport_id: String,
+        ?request_options: SportsOddsAPI::request_opts
+      ) -> SportsOddsAPI::Models::league_get_response
+
+      def initialize: (client: SportsOddsAPI::Client) -> void
+    end
+  end
+end

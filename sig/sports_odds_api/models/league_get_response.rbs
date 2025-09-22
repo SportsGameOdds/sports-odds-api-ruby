@@ -1,0 +1,7 @@
+module SportsOddsAPI
+  module Models
+    type league_get_response = ::Array[SportsOddsAPI::League]
+
+    LeagueGetResponse: SportsOddsAPI::Internal::Type::Converter
+  end
+end

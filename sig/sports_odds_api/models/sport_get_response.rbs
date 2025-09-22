@@ -1,0 +1,7 @@
+module SportsOddsAPI
+  module Models
+    type sport_get_response = ::Array[SportsOddsAPI::Sport]
+
+    SportGetResponse: SportsOddsAPI::Internal::Type::Converter
+  end
+end

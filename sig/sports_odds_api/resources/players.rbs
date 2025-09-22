@@ -1,0 +1,16 @@
+module SportsOddsAPI
+  module Resources
+    class Players
+      def get: (
+        ?cursor: String,
+        ?event_id: String,
+        ?limit: Float,
+        ?player_id: String,
+        ?team_id: String,
+        ?request_options: SportsOddsAPI::request_opts
+      ) -> SportsOddsAPI::Internal::NextCursorPage[SportsOddsAPI::Player]
+
+      def initialize: (client: SportsOddsAPI::Client) -> void
+    end
+  end
+end

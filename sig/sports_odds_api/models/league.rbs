@@ -1,0 +1,50 @@
+module SportsOddsAPI
+  module Models
+    type league =
+      {
+        enabled: bool,
+        league_id: String,
+        name: String,
+        short_name: String,
+        sport_id: String
+      }
+
+    class League < SportsOddsAPI::Internal::Type::BaseModel
+      attr_reader enabled: bool?
+
+      def enabled=: (bool) -> bool
+
+      attr_reader league_id: String?
+
+      def league_id=: (String) -> String
+
+      attr_reader name: String?
+
+      def name=: (String) -> String
+
+      attr_reader short_name: String?
+
+      def short_name=: (String) -> String
+
+      attr_reader sport_id: String?
+
+      def sport_id=: (String) -> String
+
+      def initialize: (
+        ?enabled: bool,
+        ?league_id: String,
+        ?name: String,
+        ?short_name: String,
+        ?sport_id: String
+      ) -> void
+
+      def to_hash: -> {
+        enabled: bool,
+        league_id: String,
+        name: String,
+        short_name: String,
+        sport_id: String
+      }
+    end
+  end
+end

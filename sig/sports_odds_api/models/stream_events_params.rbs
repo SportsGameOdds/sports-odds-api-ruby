@@ -1,0 +1,38 @@
+module SportsOddsAPI
+  module Models
+    type stream_events_params =
+      { event_id: String, feed: String, league_id: String }
+      & SportsOddsAPI::Internal::Type::request_parameters
+
+    class StreamEventsParams < SportsOddsAPI::Internal::Type::BaseModel
+      extend SportsOddsAPI::Internal::Type::RequestParameters::Converter
+      include SportsOddsAPI::Internal::Type::RequestParameters
+
+      attr_reader event_id: String?
+
+      def event_id=: (String) -> String
+
+      attr_reader feed: String?
+
+      def feed=: (String) -> String
+
+      attr_reader league_id: String?
+
+      def league_id=: (String) -> String
+
+      def initialize: (
+        ?event_id: String,
+        ?feed: String,
+        ?league_id: String,
+        ?request_options: SportsOddsAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        event_id: String,
+        feed: String,
+        league_id: String,
+        request_options: SportsOddsAPI::RequestOptions
+      }
+    end
+  end
+end
