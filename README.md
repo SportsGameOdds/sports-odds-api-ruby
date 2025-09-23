@@ -1,230 +1,186 @@
-# Sports Game Odds Ruby API library
+# Sports Odds API - Live Sports Data & Sportsbook Betting Odds - Powered by SportsGameOdds Ruby Library
 
-The Sports Game Odds Ruby library provides convenient access to the Sports Game Odds REST API from any Ruby 3.2.0+ application. It ships with comprehensive types & docstrings in Yard, RBS, and RBI – [see below](https://github.com/stainless-sdks/sports-odds-api-ruby#Sorbet) for usage with Sorbet. The standard library's `net/http` is used as the HTTP transport, with connection pooling via the `connection_pool` gem.
+Get live betting odds, spreads, and totals for NFL, NBA, MLB, and 50 additional sports and leagues. Production-ready Ruby SDK with connection pooling, 99.9% uptime, and sub-minute updates during live games. Perfect for developers building sportsbook platforms, odds comparison tools, positive EV models, and anything else that requires fast, accurate sports data.
 
-It is generated with [Stainless](https://www.stainless.com/).
+[![Gem Version](https://img.shields.io/gem/v/sports-odds-api.svg?label=rubygems%20(stable))](https://rubygems.org/gems/sports-odds-api)
 
-## Documentation
+This library provides convenient access to the Sports Game Odds REST API from any Ruby 3.2.0+ application.
 
-Documentation for releases of this gem can be found [on RubyDoc](https://gemdocs.org/gems/sports-odds-api).
+The REST API documentation can be found on [sportsgameodds.com](https://sportsgameodds.com/docs/). The full API of this library can be found in [api.md](api.md).
 
-The REST API documentation can be found on [sportsgameodds.com](https://sportsgameodds.com/docs/).
+## Features
+
+**For developers building the next generation of sports stats and/or betting applications:**
+
+- 📈 **3k+ odds markets** including moneylines, spreads, over/unders, team props, player props & more
+- 🏈 **50+ leagues covered** including NFL, NBA, MLB, NHL, NCAAF, NCAAB, EPL, UCL, UFC, PGA, ATP & more
+- 📊 **80+ sportsbooks** with unified odds formats, alt lines & deeplinks
+- 📺 **Live scores & stats** coverage on all games, teams, and players
+- ⚡ **Sub-100ms response times** and sub-minute updates for fast data
+- 💎 **Comprehensive Ruby type support** with Yard, RBS, and RBI definitions
+- 💰 **Developer-friendly pricing** with a generous free tier
+- ⏱️ **5-minute setup** with copy-paste examples
 
 ## Installation
 
-To use this gem, install via Bundler by adding the following to your application's `Gemfile`:
+Add to your application's `Gemfile`:
 
 ```ruby
-gem "sports-odds-api", "~> 0.0.1"
+gem "sports-odds-api", "~> 1.0.0"
 ```
 
+Or install manually:
+
+```sh
+gem install sports-odds-api
+```
+
+## Obtain an API Key
+
+Get a free API key from [sportsgameodds.com](https://sportsgameodds.com/pricing).
+
+Unlike enterprise-only solutions, the Sports Game Odds API offers a developer-friendly experience, transparent pricing, comprehensive documentation, and a generous free tier.
+
 ## Usage
+
+The full API of this library can be found in [api.md](api.md).
 
 ```ruby
 require "bundler/setup"
 require "sports_odds_api"
 
-sports_game_odds = SportsOddsAPI::Client.new(
+client = SportsOddsAPI::Client.new(
   api_key_param: ENV["SPORTS_ODDS_API_KEY_HEADER"] # This is the default and can be omitted
 )
 
-page = sports_game_odds.events.get
+page = client.events.get
+event = page.data[0]
 
-puts(page.activity)
+puts(event.activity)
 ```
 
-### Pagination
+# Real-Time Event Streaming API
+
+This API endpoint is only available to **AllStar** and **custom plan** subscribers. It is not included with basic subscription tiers. [Contact support](mailto:api@sportsgameodds.com) to get access.
+
+This streaming API is currently in **beta**. API call patterns, response formats, and functionality may change. Fully managed streaming via SDK may be available in future releases.
+
+Our Streaming API provides real-time updates for Event objects through WebSocket connections. Instead of polling our REST endpoints, you can maintain a persistent connection to receive instant notifications when events change. This is ideal for applications that need immediate updates with minimal delay.
+
+We use [Pusher Protocol](https://pusher.com/docs/channels/library_auth_reference/pusher-websockets-protocol/) for WebSocket communication. While you can connect using any WebSocket library, we recommend using the [pusher-client-ruby](https://github.com/pusher/pusher-client-ruby) gem.
+
+## How It Works
+
+The streaming process involves two steps:
+
+1. **Get Connection Details**: Make a request using `client.stream.events()` to receive:
+    - WebSocket authentication credentials
+    - WebSocket URL/channel info
+    - Initial snapshot of current data
+
+2. **Connect and Stream**: Use the provided details to connect via Pusher and receive real-time `eventID` notifications for changed events.
+
+Your API key will have limits on concurrent streams.
+
+## Available Feeds
+
+Subscribe to different feeds using the `feed` query parameter:
+
+| Feed              | Description                                                                 | Required Parameters |
+| ----------------- | --------------------------------------------------------------------------- | ------------------- |
+| `events:live`     | All events currently in progress (started but not finished)                | None                |
+| `events:upcoming` | Upcoming events with available odds for a specific league                  | `leagueID`          |
+| `events:byid`     | Updates for a single specific event                                         | `eventID`           |
+
+The number of supported feeds will increase over time. Please reach out if you have a use case which can't be covered by these feeds.
+
+## Quick Start Example
+
+Here's the minimal code to connect to live events:
+
+```ruby
+require "sports_odds_api"
+require "pusher-client"
+
+STREAM_FEED = "events:live" # ex: events:upcoming, events:byid, events:live
+API_KEY = "YOUR API KEY"
+
+client = SportsOddsAPI::Client.new(api_key_param: API_KEY)
+
+# Initialize a data structure where we'll save the event data
+events = {}
+
+# Call this endpoint to get initial data and connection parameters
+stream_info = client.stream.events(feed: STREAM_FEED)
+
+# Seed initial data
+stream_info.data.each { |event| events[event.eventID] = event }
+
+# Connect to WebSocket server
+pusher = PusherClient::Socket.new(stream_info.pusherKey, stream_info.pusherOptions)
+channel = pusher.subscribe(stream_info.channel)
+
+channel.bind("data") do |changed_events|
+  event_ids = changed_events.map { |ev| ev["eventID"] }.join(",")
+
+  client.events.get(eventIDs: event_ids).each do |event|
+    events[event.eventID] = event
+  end
+end
+
+trap("SIGINT") { pusher.disconnect }
+pusher.connect
+```
+
+## Pagination
 
 List methods in the Sports Game Odds API are paginated.
 
-This library provides auto-paginating iterators with each list response, so you do not have to request successive pages manually:
+This library provides auto-paginating iterators with each list response:
 
 ```ruby
-page = sports_game_odds.events.get(limit: 30)
+page = client.events.get(limit: 30)
 
-# Fetch single item from page.
-event = page.data[0]
-puts(event.activity)
-
-# Automatically fetches more pages as needed.
 page.auto_paging_each do |event|
   puts(event.activity)
 end
 ```
 
-Alternatively, you can use the `#next_page?` and `#next_page` methods for more granular control working with pages.
+Or, you can use `#next_page?` and `#next_page` for manual pagination.
 
-```ruby
-if page.next_page?
-  new_page = page.next_page
-  puts(new_page.data[0].activity)
-end
-```
+## Handling Errors
 
-### Handling errors
-
-When the library is unable to connect to the API, or if the API returns a non-success status code (i.e., 4xx or 5xx response), a subclass of `SportsOddsAPI::Errors::APIError` will be thrown:
+When the library is unable to connect to the API, or if the API returns a non-success status code (4xx or 5xx), a subclass of `SportsOddsAPI::Errors::APIError` will be thrown.
 
 ```ruby
 begin
-  event = sports_game_odds.events.get
-rescue SportsOddsAPI::Errors::APIConnectionError => e
-  puts("The server could not be reached")
-  puts(e.cause)  # an underlying Exception, likely raised within `net/http`
-rescue SportsOddsAPI::Errors::RateLimitError => e
-  puts("A 429 status code was received; we should back off a bit.")
-rescue SportsOddsAPI::Errors::APIStatusError => e
-  puts("Another non-200-range status code was received")
-  puts(e.status)
+  page = client.events.get
+rescue SportsOddsAPI::Errors::APIError => e
+  puts(e.message)
 end
 ```
 
-Error codes are as follows:
+Error codes map to specific exception classes, such as `AuthenticationError`, `RateLimitError`, `NotFoundError`, etc.
 
-| Cause            | Error Type                 |
-| ---------------- | -------------------------- |
-| HTTP 400         | `BadRequestError`          |
-| HTTP 401         | `AuthenticationError`      |
-| HTTP 403         | `PermissionDeniedError`    |
-| HTTP 404         | `NotFoundError`            |
-| HTTP 409         | `ConflictError`            |
-| HTTP 422         | `UnprocessableEntityError` |
-| HTTP 429         | `RateLimitError`           |
-| HTTP >= 500      | `InternalServerError`      |
-| Other HTTP error | `APIStatusError`           |
-| Timeout          | `APITimeoutError`          |
-| Network error    | `APIConnectionError`       |
+## Retries
 
-### Retries
+Certain errors are retried automatically with exponential backoff. Configure retries globally or per-request with the `max_retries` option.
 
-Certain errors will be automatically retried 2 times by default, with a short exponential backoff.
+## Timeouts
 
-Connection errors (for example, due to a network connectivity problem), 408 Request Timeout, 409 Conflict, 429 Rate Limit, >=500 Internal errors, and timeouts will all be retried by default.
+Requests time out after 60 seconds by default. Configure with `timeout` globally or per-request.
 
-You can use the `max_retries` option to configure or disable this:
+## Advanced Usage
 
-```ruby
-# Configure the default for all requests:
-sports_game_odds = SportsOddsAPI::Client.new(
-  max_retries: 0 # default is 2
-)
-
-# Or, configure per-request:
-sports_game_odds.events.get(request_options: {max_retries: 5})
-```
-
-### Timeouts
-
-By default, requests will time out after 60 seconds. You can use the timeout option to configure or disable this:
-
-```ruby
-# Configure the default for all requests:
-sports_game_odds = SportsOddsAPI::Client.new(
-  timeout: nil # default is 60
-)
-
-# Or, configure per-request:
-sports_game_odds.events.get(request_options: {timeout: 5})
-```
-
-On timeout, `SportsOddsAPI::Errors::APITimeoutError` is raised.
-
-Note that requests that time out are retried by default.
-
-## Advanced concepts
-
-### BaseModel
-
-All parameter and response objects inherit from `SportsOddsAPI::Internal::Type::BaseModel`, which provides several conveniences, including:
-
-1. All fields, including unknown ones, are accessible with `obj[:prop]` syntax, and can be destructured with `obj => {prop: prop}` or pattern-matching syntax.
-
-2. Structural equivalence for equality; if two API calls return the same values, comparing the responses with == will return true.
-
-3. Both instances and the classes themselves can be pretty-printed.
-
-4. Helpers such as `#to_h`, `#deep_to_h`, `#to_json`, and `#to_yaml`.
-
-### Making custom or undocumented requests
-
-#### Undocumented properties
-
-You can send undocumented parameters to any endpoint, and read undocumented response properties, like so:
-
-Note: the `extra_` parameters of the same name overrides the documented parameters.
-
-```ruby
-page =
-  sports_game_odds.events.get(
-    request_options: {
-      extra_query: {my_query_parameter: value},
-      extra_body: {my_body_parameter: value},
-      extra_headers: {"my-header": value}
-    }
-  )
-
-puts(page[:my_undocumented_property])
-```
-
-#### Undocumented request params
-
-If you want to explicitly send an extra param, you can do so with the `extra_query`, `extra_body`, and `extra_headers` under the `request_options:` parameter when making a request, as seen in the examples above.
-
-#### Undocumented endpoints
-
-To make requests to undocumented endpoints while retaining the benefit of auth, retries, and so on, you can make requests using `client.request`, like so:
-
-```ruby
-response = client.request(
-  method: :post,
-  path: '/undocumented/endpoint',
-  query: {"dog": "woof"},
-  headers: {"useful-header": "interesting-value"},
-  body: {"hello": "world"}
-)
-```
-
-### Concurrency & connection pooling
-
-The `SportsOddsAPI::Client` instances are threadsafe, but are only are fork-safe when there are no in-flight HTTP requests.
-
-Each instance of `SportsOddsAPI::Client` has its own HTTP connection pool with a default size of 99. As such, we recommend instantiating the client once per application in most settings.
-
-When all available connections from the pool are checked out, requests wait for a new connection to become available, with queue time counting towards the request timeout.
-
-Unless otherwise specified, other classes in the SDK do not have locks protecting their underlying data structure.
-
-## Sorbet
-
-This library provides comprehensive [RBI](https://sorbet.org/docs/rbi) definitions, and has no dependency on sorbet-runtime.
-
-You can provide typesafe request parameters like so:
-
-```ruby
-sports_game_odds.events.get
-```
-
-Or, equivalently:
-
-```ruby
-# Hashes work, but are not typesafe:
-sports_game_odds.events.get
-
-# You can also splat a full Params class:
-params = SportsOddsAPI::EventGetParams.new
-sports_game_odds.events.get(**params)
-```
-
-## Versioning
-
-This package follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions. As the library is in initial development and has a major version of `0`, APIs may change at any time.
-
-This package considers improvements to the (non-runtime) `*.rbi` and `*.rbs` type definitions to be non-breaking changes.
+- Access undocumented params via `extra_query`, `extra_body`, and `extra_headers`
+- Use `client.request` for undocumented endpoints
+- Threadsafe client with connection pooling
+- Sorbet integration via RBI & RBS definitions
 
 ## Requirements
 
-Ruby 3.2.0 or higher.
+- Ruby 3.2.0+
 
 ## Contributing
 
-See [the contributing documentation](https://github.com/stainless-sdks/sports-odds-api-ruby/tree/main/CONTRIBUTING.md).
+See [the contributing documentation](https://github.com/SportsGameOdds/sports-odds-api-ruby/tree/main/CONTRIBUTING.md).
