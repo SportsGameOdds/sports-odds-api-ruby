@@ -55,7 +55,7 @@ page.data.each do |event|
 
   # Group odds by betTypeID
   # Note: event.odds is a hash/object keyed by oddID, not an array
-  event.odds.each do |odd_id, odd|
+  event.odds.each_value do |odd|
     bet_type_id = odd.bet_type_id
     odds_map[event_id][bet_type_id] ||= []
     odds_map[event_id][bet_type_id] << odd

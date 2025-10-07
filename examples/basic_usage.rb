@@ -52,9 +52,9 @@ puts "\n=== Error Handling Example ==="
 begin
   client.events.get(eventIDs: "invalid-id")
 rescue SportsOddsAPI::Errors::NotFoundError => e
-  puts "Caught NotFoundError: #{e.message}"
+  puts("Caught NotFoundError: #{e.message}")
 rescue SportsOddsAPI::Errors::APIError => e
-  puts "Caught APIError: #{e.class.name}"
+  puts("Caught APIError: #{e.class.name}")
 end
 
 puts "\nExamples completed successfully!"
