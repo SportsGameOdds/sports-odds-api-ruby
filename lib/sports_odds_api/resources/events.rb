@@ -8,7 +8,7 @@ module SportsOddsAPI
       #
       # Get a list of Events
       #
-      # @overload get(bookmaker_id: nil, cancelled: nil, cursor: nil, ended: nil, event_id: nil, finalized: nil, include_alt_lines: nil, include_opposing_odds: nil, league_id: nil, limit: nil, live: nil, odd_id: nil, odds_available: nil, odds_present: nil, player_id: nil, sport_id: nil, started: nil, starts_after: nil, starts_before: nil, team_id: nil, type: nil, request_options: {})
+      # @overload get(bookmaker_id: nil, cancelled: nil, cursor: nil, ended: nil, event_id: nil, event_ids: nil, finalized: nil, include_alt_lines: nil, include_opposing_odds: nil, league_id: nil, limit: nil, live: nil, odd_id: nil, odds_available: nil, odds_present: nil, player_id: nil, sport_id: nil, started: nil, starts_after: nil, starts_before: nil, team_id: nil, type: nil, request_options: {})
       #
       # @param bookmaker_id [String] A bookmakerID or comma-separated list of bookmakerIDs to include odds for
       #
@@ -18,7 +18,9 @@ module SportsOddsAPI
       #
       # @param ended [Boolean] Only include Events which have have ended (true), only Events which have not end
       #
-      # @param event_id [String] An eventID or comma-separated list of eventIDs to get Event data for
+      # @param event_id [String] An eventID to get Event data for
+      #
+      # @param event_ids [String] A comma separated list of eventIDs to get Event data for
       #
       # @param finalized [Boolean] Only include finalized Events (true), exclude unfinalized Events (false) or all
       #
@@ -65,6 +67,7 @@ module SportsOddsAPI
           query: parsed.transform_keys(
             bookmaker_id: "bookmakerID",
             event_id: "eventID",
+            event_ids: "eventIDs",
             include_alt_lines: "includeAltLines",
             include_opposing_odds: "includeOpposingOdds",
             league_id: "leagueID",
