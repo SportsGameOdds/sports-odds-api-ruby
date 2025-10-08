@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.0 (2025-10-08)
+
+Full Changelog: [v1.0.1...v1.1.0](https://github.com/SportsGameOdds/sports-odds-api-ruby/compare/v1.0.1...v1.1.0)
+
+### Features
+
+* test ([27c3d5b](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/27c3d5bcd939182a6e1bf55be066c160f7fbb327))
+
 ## 1.0.1 (2025-10-01)
 
 Full Changelog: [v1.0.0...v1.0.1](https://github.com/SportsGameOdds/sports-odds-api-ruby/compare/v1.0.0...v1.0.1)
