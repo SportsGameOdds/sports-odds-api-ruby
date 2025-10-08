@@ -56,7 +56,6 @@ module SportsOddsAPI
       end
       attr_writer :players
 
-      # Nested results in the format `<periodID>.<statEntityID>.<statID> → number`.
       sig do
         returns(
           T.nilable(T::Hash[Symbol, T::Hash[Symbol, T::Hash[Symbol, Float]]])
@@ -119,7 +118,6 @@ module SportsOddsAPI
         manual: nil,
         odds: nil,
         players: nil,
-        # Nested results in the format `<periodID>.<statEntityID>.<statID> → number`.
         results: nil,
         sport_id: nil,
         status: nil,

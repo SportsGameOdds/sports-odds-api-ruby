@@ -7,6 +7,7 @@ module SportsOddsAPI
         cursor: String,
         ended: bool,
         event_id: String,
+        event_ids: String,
         finalized: bool,
         include_alt_lines: bool,
         include_opposing_odds: bool,
@@ -49,6 +50,10 @@ module SportsOddsAPI
       attr_reader event_id: String?
 
       def event_id=: (String) -> String
+
+      attr_reader event_ids: String?
+
+      def event_ids=: (String) -> String
 
       attr_reader finalized: bool?
 
@@ -120,6 +125,7 @@ module SportsOddsAPI
         ?cursor: String,
         ?ended: bool,
         ?event_id: String,
+        ?event_ids: String,
         ?finalized: bool,
         ?include_alt_lines: bool,
         ?include_opposing_odds: bool,
@@ -145,6 +151,7 @@ module SportsOddsAPI
         cursor: String,
         ended: bool,
         event_id: String,
+        event_ids: String,
         finalized: bool,
         include_alt_lines: bool,
         include_opposing_odds: bool,

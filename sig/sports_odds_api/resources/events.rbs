@@ -7,6 +7,7 @@ module SportsOddsAPI
         ?cursor: String,
         ?ended: bool,
         ?event_id: String,
+        ?event_ids: String,
         ?finalized: bool,
         ?include_alt_lines: bool,
         ?include_opposing_odds: bool,

@@ -35,10 +35,16 @@ module SportsOddsAPI
       optional :ended, SportsOddsAPI::Internal::Type::Boolean
 
       # @!attribute event_id
-      #   An eventID or comma-separated list of eventIDs to get Event data for
+      #   An eventID to get Event data for
       #
       #   @return [String, nil]
       optional :event_id, String
+
+      # @!attribute event_ids
+      #   A comma separated list of eventIDs to get Event data for
+      #
+      #   @return [String, nil]
+      optional :event_ids, String
 
       # @!attribute finalized
       #   Only include finalized Events (true), exclude unfinalized Events (false) or all
@@ -143,7 +149,7 @@ module SportsOddsAPI
       #   @return [String, nil]
       optional :type, String
 
-      # @!method initialize(bookmaker_id: nil, cancelled: nil, cursor: nil, ended: nil, event_id: nil, finalized: nil, include_alt_lines: nil, include_opposing_odds: nil, league_id: nil, limit: nil, live: nil, odd_id: nil, odds_available: nil, odds_present: nil, player_id: nil, sport_id: nil, started: nil, starts_after: nil, starts_before: nil, team_id: nil, type: nil, request_options: {})
+      # @!method initialize(bookmaker_id: nil, cancelled: nil, cursor: nil, ended: nil, event_id: nil, event_ids: nil, finalized: nil, include_alt_lines: nil, include_opposing_odds: nil, league_id: nil, limit: nil, live: nil, odd_id: nil, odds_available: nil, odds_present: nil, player_id: nil, sport_id: nil, started: nil, starts_after: nil, starts_before: nil, team_id: nil, type: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {SportsOddsAPI::Models::EventGetParams} for more details.
       #
@@ -155,7 +161,9 @@ module SportsOddsAPI
       #
       #   @param ended [Boolean] Only include Events which have have ended (true), only Events which have not end
       #
-      #   @param event_id [String] An eventID or comma-separated list of eventIDs to get Event data for
+      #   @param event_id [String] An eventID to get Event data for
+      #
+      #   @param event_ids [String] A comma separated list of eventIDs to get Event data for
       #
       #   @param finalized [Boolean] Only include finalized Events (true), exclude unfinalized Events (false) or all
       #
