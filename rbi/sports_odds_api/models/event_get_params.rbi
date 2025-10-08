@@ -42,12 +42,19 @@ module SportsOddsAPI
       sig { params(ended: T::Boolean).void }
       attr_writer :ended
 
-      # An eventID or comma-separated list of eventIDs to get Event data for
+      # An eventID to get Event data for
       sig { returns(T.nilable(String)) }
       attr_reader :event_id
 
       sig { params(event_id: String).void }
       attr_writer :event_id
+
+      # A comma separated list of eventIDs to get Event data for
+      sig { returns(T.nilable(String)) }
+      attr_reader :event_ids
+
+      sig { params(event_ids: String).void }
+      attr_writer :event_ids
 
       # Only include finalized Events (true), exclude unfinalized Events (false) or all
       # Events (omit)
@@ -175,6 +182,7 @@ module SportsOddsAPI
           cursor: String,
           ended: T::Boolean,
           event_id: String,
+          event_ids: String,
           finalized: T::Boolean,
           include_alt_lines: T::Boolean,
           include_opposing_odds: T::Boolean,
@@ -206,8 +214,10 @@ module SportsOddsAPI
         # Only include Events which have have ended (true), only Events which have not
         # ended (false) or all Events (omit)
         ended: nil,
-        # An eventID or comma-separated list of eventIDs to get Event data for
+        # An eventID to get Event data for
         event_id: nil,
+        # A comma separated list of eventIDs to get Event data for
+        event_ids: nil,
         # Only include finalized Events (true), exclude unfinalized Events (false) or all
         # Events (omit)
         finalized: nil,
@@ -259,6 +269,7 @@ module SportsOddsAPI
             cursor: String,
             ended: T::Boolean,
             event_id: String,
+            event_ids: String,
             finalized: T::Boolean,
             include_alt_lines: T::Boolean,
             include_opposing_odds: T::Boolean,

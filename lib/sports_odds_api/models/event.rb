@@ -40,7 +40,6 @@ module SportsOddsAPI
       optional :players, -> { SportsOddsAPI::Internal::Type::HashOf[SportsOddsAPI::Event::Player] }
 
       # @!attribute results
-      #   Nested results in the format `<periodID>.<statEntityID>.<statID> → number`.
       #
       #   @return [Hash{Symbol=>Hash{Symbol=>Hash{Symbol=>Float}}}, nil]
       optional :results,
@@ -68,27 +67,16 @@ module SportsOddsAPI
 
       # @!method initialize(activity: nil, event_id: nil, info: nil, league_id: nil, manual: nil, odds: nil, players: nil, results: nil, sport_id: nil, status: nil, teams: nil, type: nil)
       #   @param activity [SportsOddsAPI::Models::Event::Activity]
-      #
       #   @param event_id [String]
-      #
       #   @param info [SportsOddsAPI::Models::Event::Info]
-      #
       #   @param league_id [String]
-      #
       #   @param manual [Boolean]
-      #
       #   @param odds [Hash{Symbol=>SportsOddsAPI::Models::Event::Odd}]
-      #
       #   @param players [Hash{Symbol=>SportsOddsAPI::Models::Event::Player}]
-      #
-      #   @param results [Hash{Symbol=>Hash{Symbol=>Hash{Symbol=>Float}}}] Nested results in the format `<periodID>.<statEntityID>.<statID> → number`.
-      #
+      #   @param results [Hash{Symbol=>Hash{Symbol=>Hash{Symbol=>Float}}}]
       #   @param sport_id [String]
-      #
       #   @param status [SportsOddsAPI::Models::Event::Status]
-      #
       #   @param teams [SportsOddsAPI::Models::Event::Teams]
-      #
       #   @param type [String]
 
       # @see SportsOddsAPI::Models::Event#activity
