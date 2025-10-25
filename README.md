@@ -26,7 +26,7 @@ The REST API documentation can be found on [sportsgameodds.com](https://sportsga
 Add to your application's `Gemfile`:
 
 ```ruby
-gem "sports-odds-api", "~> 1.1.0"
+gem "sports-odds-api", "~> 1.2.0"
 ```
 
 Or install manually:

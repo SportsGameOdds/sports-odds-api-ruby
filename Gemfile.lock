@@ -11,7 +11,7 @@ GIT
 PATH
   remote: .
   specs:
-    sports-odds-api (1.1.0)
+    sports-odds-api (1.2.0)
       connection_pool
 
 GEM
