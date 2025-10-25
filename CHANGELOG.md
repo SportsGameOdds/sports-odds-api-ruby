@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.2.0 (2025-10-25)
+
+Full Changelog: [v1.1.0...v1.2.0](https://github.com/SportsGameOdds/sports-odds-api-ruby/compare/v1.1.0...v1.2.0)
+
+### Features
+
+* handle thread interrupts in the core HTTP client ([c604c4c](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/c604c4ceccf001d7ea7b4c2d6147a3da778dbf7d))
+
+
+### Bug Fixes
+
+* absolutely qualified uris should always override the default ([93d7577](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/93d75779f4d6b7a83501a7effb19394103206bec))
+* should not reuse buffers for `IO.copy_stream` interop ([fa798db](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/fa798db8d0892a30cd4cff502dd64b89d64b6558))
+
+
+### Chores
+
+* ignore linter error for tests having large collections ([de89b4c](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/de89b4cc4a3ab2942f4e89690f0b6ab206fdf039))
+
 ## 1.1.0 (2025-10-08)
 
 Full Changelog: [v1.0.1...v1.1.0](https://github.com/SportsGameOdds/sports-odds-api-ruby/compare/v1.0.1...v1.1.0)
