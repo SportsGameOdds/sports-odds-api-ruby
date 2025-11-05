@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.2.1 (2025-11-05)
+
+Full Changelog: [v1.2.0...v1.2.1](https://github.com/SportsGameOdds/sports-odds-api-ruby/compare/v1.2.0...v1.2.1)
+
+### Bug Fixes
+
+* better thread safety via early initializing SSL store during HTTP client creation ([a1a17e9](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/a1a17e9b55716af2f249678eefe9e5c87bcd86a6))
+
+
+### Chores
+
+* bump dependency version and update sorbet types ([04396d9](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/04396d9a1b72850230d84581fc3339e6cecdcd22))
+
 ## 1.2.0 (2025-10-25)
 
 Full Changelog: [v1.1.0...v1.2.0](https://github.com/SportsGameOdds/sports-odds-api-ruby/compare/v1.1.0...v1.2.0)
