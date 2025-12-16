@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.2 (2025-11-26)
+
+Full Changelog: [v1.2.1...v1.2.2](https://github.com/SportsGameOdds/sports-odds-api-ruby/compare/v1.2.1...v1.2.2)
+
+### Chores
+
+* explicitly require "base64" gem ([45d5be1](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/45d5be1f47fad8277c9480f60bb410f9f114ef0a))
+
 ## 1.2.1 (2025-11-05)
 
 Full Changelog: [v1.2.0...v1.2.1](https://github.com/SportsGameOdds/sports-odds-api-ruby/compare/v1.2.0...v1.2.1)
