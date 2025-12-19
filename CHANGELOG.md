@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.2.3 (2025-12-19)
+
+Full Changelog: [v1.2.2...v1.2.3](https://github.com/SportsGameOdds/sports-odds-api-ruby/compare/v1.2.2...v1.2.3)
+
+### Bug Fixes
+
+* calling `break` out of streams should be instantaneous ([537aad0](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/537aad0b2ceb50068372914cba30d0379fc7ec3d))
+* issue where json.parse errors when receiving HTTP 204 with nobody ([bb722ce](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/bb722cee2d0fbadc59bb38ab7fb8c3276ac60654))
+
 ## 1.2.2 (2025-11-26)
 
 Full Changelog: [v1.2.1...v1.2.2](https://github.com/SportsGameOdds/sports-odds-api-ruby/compare/v1.2.1...v1.2.2)
