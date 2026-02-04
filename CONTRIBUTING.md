@@ -43,13 +43,13 @@ If you’d like to use the repository from source, you can either install from g
 To install via git in your `Gemfile`:
 
 ```ruby
-gem "sports-odds-api", git: "https://www.github.com/SportsGameOdds/sports-odds-api-ruby"
+gem "sports-odds-api", git: "https://github.com/SportsGameOdds/sports-odds-api-ruby"
 ```
 
 Alternatively, reference local copy of the repo:
 
 ```bash
-$ git clone -- 'https://www.github.com/SportsGameOdds/sports-odds-api-ruby' '<path-to-repo>'
+$ git clone -- 'https://github.com/SportsGameOdds/sports-odds-api-ruby' '<path-to-repo>'
 ```
 
 ```ruby
