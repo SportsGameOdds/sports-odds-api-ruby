@@ -485,7 +485,7 @@ module SportsOddsAPI
       end
 
       # @type [Regexp]
-      JSON_CONTENT = %r{^application/(?:vnd(?:\.[^.]+)*\+)?json(?!l)}
+      JSON_CONTENT = %r{^application/(?:[a-zA-Z0-9.-]+\+)?json(?!l)}
       # @type [Regexp]
       JSONL_CONTENT = %r{^application/(:?x-(?:n|l)djson)|(:?(?:x-)?jsonl)}
 
@@ -657,7 +657,8 @@ module SportsOddsAPI
         def decode_content(headers, stream:, suppress_error: false)
           case (content_type = headers["content-type"])
           in SportsOddsAPI::Internal::Util::JSON_CONTENT
-            json = stream.to_a.join
+            return nil if (json = stream.to_a.join).empty?
+
             begin
               JSON.parse(json, symbolize_names: true)
             rescue JSON::ParserError => e
@@ -667,7 +668,11 @@ module SportsOddsAPI
           in SportsOddsAPI::Internal::Util::JSONL_CONTENT
             lines = decode_lines(stream)
             chain_fused(lines) do |y|
-              lines.each { y << JSON.parse(_1, symbolize_names: true) }
+              lines.each do
+                next if _1.empty?
+
+                y << JSON.parse(_1, symbolize_names: true)
+              end
             end
           in %r{^text/event-stream}
             lines = decode_lines(stream)
