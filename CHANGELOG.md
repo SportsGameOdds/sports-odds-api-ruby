@@ -1,5 +1,30 @@
 # Changelog
 
+## 1.2.3 (2026-07-08)
+
+Full Changelog: [v1.2.2...v1.2.3](https://github.com/SportsGameOdds/sports-odds-api-ruby/compare/v1.2.2...v1.2.3)
+
+### Bug Fixes
+
+* calling `break` out of streams should be instantaneous ([537aad0](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/537aad0b2ceb50068372914cba30d0379fc7ec3d))
+* **client:** always add content-length to post body, even when empty ([99718bd](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/99718bd9cebc1fee4c5efb390607345cdb27f281))
+* **client:** loosen json header parsing ([0307d97](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/0307d97a3844180cc3227902b52baeb37d319a86))
+* **docs:** fix mcp installation instructions for remote servers ([e60c40c](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/e60c40ccdca70f2e59548db754db3cb8e72e8cf9))
+* issue where json.parse errors when receiving HTTP 204 with nobody ([bb722ce](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/bb722cee2d0fbadc59bb38ab7fb8c3276ac60654))
+
+
+### Chores
+
+* **docs:** remove www prefix ([a4bf528](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/a4bf528f53d3fc10396f2f39e4ab122ccc393178))
+* **internal:** codegen related update ([2aebae3](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/2aebae36d92c62daa0156477d60a1a0624f9ab77))
+* **internal:** update `actions/checkout` version ([ab57614](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/ab57614a39b81bf558804846d9bad83e50cb8834))
+* move `cgi` into dependencies for ruby 4 ([0ea92c6](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/0ea92c68f0c0eb91e49103b03ce11531f5f1e99d))
+
+
+### Documentation
+
+* prominently feature MCP server setup in root SDK readmes ([ff8bb53](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/ff8bb53a4a14cf7c78b33070e17d483cd60e5cfa))
+
 ## 1.2.2 (2025-11-26)
 
 Full Changelog: [v1.2.1...v1.2.2](https://github.com/SportsGameOdds/sports-odds-api-ruby/compare/v1.2.1...v1.2.2)
