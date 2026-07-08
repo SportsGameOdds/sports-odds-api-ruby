@@ -2,6 +2,7 @@
 
 module SportsOddsAPI
   module Resources
+    # Get Team-related data
     class Teams
       # Get a list of Teams by ID or league
       sig do

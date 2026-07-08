@@ -23,27 +23,35 @@ module SportsOddsAPI
     # @return [String, nil]
     attr_reader :api_key_param
 
+    # Get info about Events (includes odds, results, teams, and other metadata)
     # @return [SportsOddsAPI::Resources::Events]
     attr_reader :events
 
+    # Get Team-related data
     # @return [SportsOddsAPI::Resources::Teams]
     attr_reader :teams
 
+    # Get Player-related data
     # @return [SportsOddsAPI::Resources::Players]
     attr_reader :players
 
+    # Get League-related data
     # @return [SportsOddsAPI::Resources::Leagues]
     attr_reader :leagues
 
+    # Get Sport-related data
     # @return [SportsOddsAPI::Resources::Sports]
     attr_reader :sports
 
+    # Get data on specific Stats
     # @return [SportsOddsAPI::Resources::Stats]
     attr_reader :stats
 
+    # Get data related to your Account & API key
     # @return [SportsOddsAPI::Resources::Account]
     attr_reader :account
 
+    # Get info about Events (includes odds, results, teams, and other metadata)
     # @return [SportsOddsAPI::Resources::Stream]
     attr_reader :stream
 
@@ -88,6 +96,19 @@ module SportsOddsAPI
     )
       base_url ||= "https://api.sportsgameodds.com/v2"
 
+      headers = {}
+      custom_headers_env = ENV["SPORTS_GAME_ODDS_CUSTOM_HEADERS"]
+      unless custom_headers_env.nil?
+        parsed = {}
+        custom_headers_env.split("\n").each do |line|
+          colon = line.index(":")
+          unless colon.nil?
+            parsed[line[0...colon].strip] = line[(colon + 1)..].strip
+          end
+        end
+        headers = parsed.merge(headers)
+      end
+
       @api_key_header = api_key_header&.to_s
       @api_key_param = api_key_param&.to_s
 
@@ -96,7 +117,8 @@ module SportsOddsAPI
         timeout: timeout,
         max_retries: max_retries,
         initial_retry_delay: initial_retry_delay,
-        max_retry_delay: max_retry_delay
+        max_retry_delay: max_retry_delay,
+        headers: headers
       )
 
       @events = SportsOddsAPI::Resources::Events.new(client: self)

@@ -2,6 +2,7 @@
 
 module SportsOddsAPI
   module Resources
+    # Get info about Events (includes odds, results, teams, and other metadata)
     class Stream
       # Setup streamed (WebSocket) connection
       sig do

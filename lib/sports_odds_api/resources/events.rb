@@ -2,6 +2,7 @@
 
 module SportsOddsAPI
   module Resources
+    # Get info about Events (includes odds, results, teams, and other metadata)
     class Events
       # Some parameter documentations has been truncated, see
       # {SportsOddsAPI::Models::EventGetParams} for more details.
@@ -61,10 +62,11 @@ module SportsOddsAPI
       # @see SportsOddsAPI::Models::EventGetParams
       def get(params = {})
         parsed, options = SportsOddsAPI::EventGetParams.dump_request(params)
+        query = SportsOddsAPI::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "events/",
-          query: parsed.transform_keys(
+          query: query.transform_keys(
             bookmaker_id: "bookmakerID",
             event_id: "eventID",
             event_ids: "eventIDs",

@@ -2,6 +2,7 @@
 
 module SportsOddsAPI
   module Resources
+    # Get Player-related data
     class Players
       # Some parameter documentations has been truncated, see
       # {SportsOddsAPI::Models::PlayerGetParams} for more details.
@@ -27,10 +28,11 @@ module SportsOddsAPI
       # @see SportsOddsAPI::Models::PlayerGetParams
       def get(params = {})
         parsed, options = SportsOddsAPI::PlayerGetParams.dump_request(params)
+        query = SportsOddsAPI::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "players/",
-          query: parsed.transform_keys(event_id: "eventID", player_id: "playerID", team_id: "teamID"),
+          query: query.transform_keys(event_id: "eventID", player_id: "playerID", team_id: "teamID"),
           page: SportsOddsAPI::Internal::NextCursorPage,
           model: SportsOddsAPI::Player,
           options: options

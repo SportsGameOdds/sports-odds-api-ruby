@@ -2,6 +2,7 @@
 
 module SportsOddsAPI
   module Resources
+    # Get Player-related data
     class Players
       # Get a list of Players for a specific Team or Event
       sig do

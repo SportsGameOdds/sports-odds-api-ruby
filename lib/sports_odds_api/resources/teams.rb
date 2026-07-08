@@ -2,6 +2,7 @@
 
 module SportsOddsAPI
   module Resources
+    # Get Team-related data
     class Teams
       # Some parameter documentations has been truncated, see
       # {SportsOddsAPI::Models::TeamGetParams} for more details.
@@ -27,10 +28,11 @@ module SportsOddsAPI
       # @see SportsOddsAPI::Models::TeamGetParams
       def get(params = {})
         parsed, options = SportsOddsAPI::TeamGetParams.dump_request(params)
+        query = SportsOddsAPI::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "teams/",
-          query: parsed.transform_keys(league_id: "leagueID", sport_id: "sportID", team_id: "teamID"),
+          query: query.transform_keys(league_id: "leagueID", sport_id: "sportID", team_id: "teamID"),
           page: SportsOddsAPI::Internal::NextCursorPage,
           model: SportsOddsAPI::Team,
           options: options

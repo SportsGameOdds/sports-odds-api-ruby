@@ -2,6 +2,7 @@
 
 module SportsOddsAPI
   module Resources
+    # Get data on specific Stats
     class Stats
       # Get a list of StatIDs
       sig do

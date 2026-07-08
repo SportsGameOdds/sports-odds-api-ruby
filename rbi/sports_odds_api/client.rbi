@@ -18,27 +18,35 @@ module SportsOddsAPI
     sig { returns(T.nilable(String)) }
     attr_reader :api_key_param
 
+    # Get info about Events (includes odds, results, teams, and other metadata)
     sig { returns(SportsOddsAPI::Resources::Events) }
     attr_reader :events
 
+    # Get Team-related data
     sig { returns(SportsOddsAPI::Resources::Teams) }
     attr_reader :teams
 
+    # Get Player-related data
     sig { returns(SportsOddsAPI::Resources::Players) }
     attr_reader :players
 
+    # Get League-related data
     sig { returns(SportsOddsAPI::Resources::Leagues) }
     attr_reader :leagues
 
+    # Get Sport-related data
     sig { returns(SportsOddsAPI::Resources::Sports) }
     attr_reader :sports
 
+    # Get data on specific Stats
     sig { returns(SportsOddsAPI::Resources::Stats) }
     attr_reader :stats
 
+    # Get data related to your Account & API key
     sig { returns(SportsOddsAPI::Resources::Account) }
     attr_reader :account
 
+    # Get info about Events (includes odds, results, teams, and other metadata)
     sig { returns(SportsOddsAPI::Resources::Stream) }
     attr_reader :stream
 

@@ -2,6 +2,7 @@
 
 module SportsOddsAPI
   module Resources
+    # Get info about Events (includes odds, results, teams, and other metadata)
     class Events
       # Get a list of Events
       sig do
