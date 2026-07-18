@@ -2,6 +2,7 @@
 
 module SportsOddsAPI
   module Resources
+    # Get Sport-related data
     class Sports
       # Get a list of sports
       #

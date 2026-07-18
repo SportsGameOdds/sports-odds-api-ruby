@@ -2,6 +2,7 @@
 
 module SportsOddsAPI
   module Resources
+    # Get Team-related data
     class Teams
       # Some parameter documentations has been truncated, see
       # {SportsOddsAPI::Models::TeamGetParams} for more details.
@@ -10,7 +11,7 @@ module SportsOddsAPI
       #
       # @overload get(cursor: nil, league_id: nil, limit: nil, sport_id: nil, team_id: nil, request_options: {})
       #
-      # @param cursor [String] The cursor for the request. Used to get the next group of Teams. This should be
+      # @param cursor [String] The cursor for the request. Used to get the next group of Teams. This is an opaq
       #
       # @param league_id [String] A single leagueID or comma-separated list of leagueIDs to get Teams for
       #
@@ -27,10 +28,11 @@ module SportsOddsAPI
       # @see SportsOddsAPI::Models::TeamGetParams
       def get(params = {})
         parsed, options = SportsOddsAPI::TeamGetParams.dump_request(params)
+        query = SportsOddsAPI::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "teams/",
-          query: parsed.transform_keys(league_id: "leagueID", sport_id: "sportID", team_id: "teamID"),
+          query: query.transform_keys(league_id: "leagueID", sport_id: "sportID", team_id: "teamID"),
           page: SportsOddsAPI::Internal::NextCursorPage,
           model: SportsOddsAPI::Team,
           options: options

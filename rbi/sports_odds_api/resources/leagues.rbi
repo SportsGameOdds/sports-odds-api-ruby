@@ -2,6 +2,7 @@
 
 module SportsOddsAPI
   module Resources
+    # Get League-related data
     class Leagues
       # Get a list of Leagues
       sig do

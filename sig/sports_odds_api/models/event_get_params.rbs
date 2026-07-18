@@ -8,8 +8,10 @@ module SportsOddsAPI
         ended: bool,
         event_id: String,
         event_ids: String,
+        expand_results: bool,
         finalized: bool,
         include_alt_lines: bool,
+        include_open_close_odds: bool,
         include_opposing_odds: bool,
         league_id: String,
         limit: Float,
@@ -55,6 +57,10 @@ module SportsOddsAPI
 
       def event_ids=: (String) -> String
 
+      attr_reader expand_results: bool?
+
+      def expand_results=: (bool) -> bool
+
       attr_reader finalized: bool?
 
       def finalized=: (bool) -> bool
@@ -62,6 +68,10 @@ module SportsOddsAPI
       attr_reader include_alt_lines: bool?
 
       def include_alt_lines=: (bool) -> bool
+
+      attr_reader include_open_close_odds: bool?
+
+      def include_open_close_odds=: (bool) -> bool
 
       attr_reader include_opposing_odds: bool?
 
@@ -126,8 +136,10 @@ module SportsOddsAPI
         ?ended: bool,
         ?event_id: String,
         ?event_ids: String,
+        ?expand_results: bool,
         ?finalized: bool,
         ?include_alt_lines: bool,
+        ?include_open_close_odds: bool,
         ?include_opposing_odds: bool,
         ?league_id: String,
         ?limit: Float,
@@ -152,8 +164,10 @@ module SportsOddsAPI
         ended: bool,
         event_id: String,
         event_ids: String,
+        expand_results: bool,
         finalized: bool,
         include_alt_lines: bool,
+        include_open_close_odds: bool,
         include_opposing_odds: bool,
         league_id: String,
         limit: Float,

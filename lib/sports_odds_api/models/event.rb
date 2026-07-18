@@ -40,6 +40,7 @@ module SportsOddsAPI
       optional :players, -> { SportsOddsAPI::Internal::Type::HashOf[SportsOddsAPI::Event::Player] }
 
       # @!attribute results
+      #   Nested results in the format `{periodID}.{statEntityID}.{statID} → number`.
       #
       #   @return [Hash{Symbol=>Hash{Symbol=>Hash{Symbol=>Float}}}, nil]
       optional :results,
@@ -67,16 +68,27 @@ module SportsOddsAPI
 
       # @!method initialize(activity: nil, event_id: nil, info: nil, league_id: nil, manual: nil, odds: nil, players: nil, results: nil, sport_id: nil, status: nil, teams: nil, type: nil)
       #   @param activity [SportsOddsAPI::Models::Event::Activity]
+      #
       #   @param event_id [String]
+      #
       #   @param info [SportsOddsAPI::Models::Event::Info]
+      #
       #   @param league_id [String]
+      #
       #   @param manual [Boolean]
+      #
       #   @param odds [Hash{Symbol=>SportsOddsAPI::Models::Event::Odd}]
+      #
       #   @param players [Hash{Symbol=>SportsOddsAPI::Models::Event::Player}]
-      #   @param results [Hash{Symbol=>Hash{Symbol=>Hash{Symbol=>Float}}}]
+      #
+      #   @param results [Hash{Symbol=>Hash{Symbol=>Hash{Symbol=>Float}}}] Nested results in the format `{periodID}.{statEntityID}.{statID} → number`.
+      #
       #   @param sport_id [String]
+      #
       #   @param status [SportsOddsAPI::Models::Event::Status]
+      #
       #   @param teams [SportsOddsAPI::Models::Event::Teams]
+      #
       #   @param type [String]
 
       # @see SportsOddsAPI::Models::Event#activity
@@ -98,13 +110,130 @@ module SportsOddsAPI
 
       # @see SportsOddsAPI::Models::Event#info
       class Info < SportsOddsAPI::Internal::Type::BaseModel
+        # @!attribute broadcasts
+        #
+        #   @return [Array<SportsOddsAPI::Models::Event::Info::Broadcast>, nil]
+        optional :broadcasts, -> { SportsOddsAPI::Internal::Type::ArrayOf[SportsOddsAPI::Event::Info::Broadcast] }
+
+        # @!attribute referee
+        #
+        #   @return [SportsOddsAPI::Models::Event::Info::Referee, nil]
+        optional :referee, -> { SportsOddsAPI::Event::Info::Referee }
+
         # @!attribute season_week
         #
         #   @return [String, nil]
         optional :season_week, String, api_name: :seasonWeek
 
-        # @!method initialize(season_week: nil)
+        # @!attribute venue
+        #
+        #   @return [SportsOddsAPI::Models::Event::Info::Venue, nil]
+        optional :venue, -> { SportsOddsAPI::Event::Info::Venue }
+
+        # @!method initialize(broadcasts: nil, referee: nil, season_week: nil, venue: nil)
+        #   @param broadcasts [Array<SportsOddsAPI::Models::Event::Info::Broadcast>]
+        #   @param referee [SportsOddsAPI::Models::Event::Info::Referee]
         #   @param season_week [String]
+        #   @param venue [SportsOddsAPI::Models::Event::Info::Venue]
+
+        class Broadcast < SportsOddsAPI::Internal::Type::BaseModel
+          # @!attribute broadcaster_id
+          #
+          #   @return [String, nil]
+          optional :broadcaster_id, String, api_name: :broadcasterID
+
+          # @!attribute name
+          #
+          #   @return [String, nil]
+          optional :name, String
+
+          # @!attribute type
+          #
+          #   @return [Symbol, SportsOddsAPI::Models::Event::Info::Broadcast::Type, nil]
+          optional :type, enum: -> { SportsOddsAPI::Event::Info::Broadcast::Type }
+
+          # @!method initialize(broadcaster_id: nil, name: nil, type: nil)
+          #   @param broadcaster_id [String]
+          #   @param name [String]
+          #   @param type [Symbol, SportsOddsAPI::Models::Event::Info::Broadcast::Type]
+
+          # @see SportsOddsAPI::Models::Event::Info::Broadcast#type
+          module Type
+            extend SportsOddsAPI::Internal::Type::Enum
+
+            TV = :tv
+            WEBSTREAM = :webstream
+            SUBSCRIPTION = :subscription
+            SPORTSBOOK = :sportsbook
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+        end
+
+        # @see SportsOddsAPI::Models::Event::Info#referee
+        class Referee < SportsOddsAPI::Internal::Type::BaseModel
+          # @!attribute name
+          #
+          #   @return [String, nil]
+          optional :name, String
+
+          # @!method initialize(name: nil)
+          #   @param name [String]
+        end
+
+        # @see SportsOddsAPI::Models::Event::Info#venue
+        class Venue < SportsOddsAPI::Internal::Type::BaseModel
+          # @!attribute address
+          #
+          #   @return [String, nil]
+          optional :address, String
+
+          # @!attribute capacity
+          #
+          #   @return [Float, nil]
+          optional :capacity, Float
+
+          # @!attribute city
+          #
+          #   @return [String, nil]
+          optional :city, String
+
+          # @!attribute country_code
+          #
+          #   @return [String, nil]
+          optional :country_code, String, api_name: :countryCode
+
+          # @!attribute country_name
+          #
+          #   @return [String, nil]
+          optional :country_name, String, api_name: :countryName
+
+          # @!attribute name
+          #
+          #   @return [String, nil]
+          optional :name, String
+
+          # @!attribute region_code
+          #
+          #   @return [String, nil]
+          optional :region_code, String, api_name: :regionCode
+
+          # @!attribute region_name
+          #
+          #   @return [String, nil]
+          optional :region_name, String, api_name: :regionName
+
+          # @!method initialize(address: nil, capacity: nil, city: nil, country_code: nil, country_name: nil, name: nil, region_code: nil, region_name: nil)
+          #   @param address [String]
+          #   @param capacity [Float]
+          #   @param city [String]
+          #   @param country_code [String]
+          #   @param country_name [String]
+          #   @param name [String]
+          #   @param region_code [String]
+          #   @param region_name [String]
+        end
       end
 
       class Odd < SportsOddsAPI::Internal::Type::BaseModel
@@ -261,6 +390,21 @@ module SportsOddsAPI
           #   @return [String, nil]
           optional :bookmaker_id, String, api_name: :bookmakerID
 
+          # @!attribute close_odds
+          #
+          #   @return [String, nil]
+          optional :close_odds, String, api_name: :closeOdds
+
+          # @!attribute close_over_under
+          #
+          #   @return [String, nil]
+          optional :close_over_under, String, api_name: :closeOverUnder
+
+          # @!attribute close_spread
+          #
+          #   @return [String, nil]
+          optional :close_spread, String, api_name: :closeSpread
+
           # @!attribute is_main_line
           #
           #   @return [Boolean, nil]
@@ -276,6 +420,21 @@ module SportsOddsAPI
           #   @return [String, nil]
           optional :odds, String
 
+          # @!attribute open_odds
+          #
+          #   @return [String, nil]
+          optional :open_odds, String, api_name: :openOdds
+
+          # @!attribute open_over_under
+          #
+          #   @return [String, nil]
+          optional :open_over_under, String, api_name: :openOverUnder
+
+          # @!attribute open_spread
+          #
+          #   @return [String, nil]
+          optional :open_spread, String, api_name: :openSpread
+
           # @!attribute over_under
           #
           #   @return [String, nil]
@@ -286,12 +445,18 @@ module SportsOddsAPI
           #   @return [String, nil]
           optional :spread, String
 
-          # @!method initialize(available: nil, bookmaker_id: nil, is_main_line: nil, last_updated_at: nil, odds: nil, over_under: nil, spread: nil)
+          # @!method initialize(available: nil, bookmaker_id: nil, close_odds: nil, close_over_under: nil, close_spread: nil, is_main_line: nil, last_updated_at: nil, odds: nil, open_odds: nil, open_over_under: nil, open_spread: nil, over_under: nil, spread: nil)
           #   @param available [Boolean]
           #   @param bookmaker_id [String]
+          #   @param close_odds [String]
+          #   @param close_over_under [String]
+          #   @param close_spread [String]
           #   @param is_main_line [Boolean]
           #   @param last_updated_at [Time]
           #   @param odds [String]
+          #   @param open_odds [String]
+          #   @param open_over_under [String]
+          #   @param open_spread [String]
           #   @param over_under [String]
           #   @param spread [String]
         end
@@ -328,19 +493,47 @@ module SportsOddsAPI
         #   @return [String, nil]
         optional :player_id, String, api_name: :playerID
 
+        # @!attribute status
+        #
+        #   @return [Symbol, SportsOddsAPI::Models::Event::Player::Status, nil]
+        optional :status, enum: -> { SportsOddsAPI::Event::Player::Status }
+
+        # @!attribute status_details
+        #
+        #   @return [String, nil]
+        optional :status_details, String, api_name: :statusDetails
+
         # @!attribute team_id
         #
         #   @return [String, nil]
         optional :team_id, String, api_name: :teamID
 
-        # @!method initialize(alias_: nil, first_name: nil, last_name: nil, name: nil, photo: nil, player_id: nil, team_id: nil)
+        # @!method initialize(alias_: nil, first_name: nil, last_name: nil, name: nil, photo: nil, player_id: nil, status: nil, status_details: nil, team_id: nil)
         #   @param alias_ [String]
         #   @param first_name [String]
         #   @param last_name [String]
         #   @param name [String]
         #   @param photo [String]
         #   @param player_id [String]
+        #   @param status [Symbol, SportsOddsAPI::Models::Event::Player::Status]
+        #   @param status_details [String]
         #   @param team_id [String]
+
+        # @see SportsOddsAPI::Models::Event::Player#status
+        module Status
+          extend SportsOddsAPI::Internal::Type::Enum
+
+          IR = :ir
+          ACTIVE = :active
+          OUT = :out
+          SUSPENDED = :suspended
+          QUESTIONABLE = :questionable
+          DOUBTFUL = :doubtful
+          PROBABLE = :probable
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
 
       # @see SportsOddsAPI::Models::Event#status

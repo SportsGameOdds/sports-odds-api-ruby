@@ -2,6 +2,7 @@
 
 module SportsOddsAPI
   module Resources
+    # Get info about Events (includes odds, results, teams, and other metadata)
     class Stream
       # Setup streamed (WebSocket) connection
       #
@@ -20,10 +21,11 @@ module SportsOddsAPI
       # @see SportsOddsAPI::Models::StreamEventsParams
       def events(params = {})
         parsed, options = SportsOddsAPI::StreamEventsParams.dump_request(params)
+        query = SportsOddsAPI::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "stream/events",
-          query: parsed.transform_keys(event_id: "eventID", league_id: "leagueID"),
+          query: query.transform_keys(event_id: "eventID", league_id: "leagueID"),
           model: SportsOddsAPI::Models::StreamEventsResponse,
           options: options
         )

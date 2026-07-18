@@ -2,6 +2,7 @@
 
 module SportsOddsAPI
   module Resources
+    # Get Player-related data
     class Players
       # Some parameter documentations has been truncated, see
       # {SportsOddsAPI::Models::PlayerGetParams} for more details.
@@ -10,7 +11,7 @@ module SportsOddsAPI
       #
       # @overload get(cursor: nil, event_id: nil, limit: nil, player_id: nil, team_id: nil, request_options: {})
       #
-      # @param cursor [String] The cursor for the request. Used to get the next group of Players. This should b
+      # @param cursor [String] The cursor for the request. Used to get the next group of Players. This is an op
       #
       # @param event_id [String] EventID to get Players data for
       #
@@ -27,10 +28,11 @@ module SportsOddsAPI
       # @see SportsOddsAPI::Models::PlayerGetParams
       def get(params = {})
         parsed, options = SportsOddsAPI::PlayerGetParams.dump_request(params)
+        query = SportsOddsAPI::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "players/",
-          query: parsed.transform_keys(event_id: "eventID", player_id: "playerID", team_id: "teamID"),
+          query: query.transform_keys(event_id: "eventID", player_id: "playerID", team_id: "teamID"),
           page: SportsOddsAPI::Internal::NextCursorPage,
           model: SportsOddsAPI::Player,
           options: options

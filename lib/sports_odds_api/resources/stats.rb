@@ -2,6 +2,7 @@
 
 module SportsOddsAPI
   module Resources
+    # Get data on specific Stats
     class Stats
       # Some parameter documentations has been truncated, see
       # {SportsOddsAPI::Models::StatGetParams} for more details.
@@ -23,10 +24,11 @@ module SportsOddsAPI
       # @see SportsOddsAPI::Models::StatGetParams
       def get(params = {})
         parsed, options = SportsOddsAPI::StatGetParams.dump_request(params)
+        query = SportsOddsAPI::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "stats/",
-          query: parsed.transform_keys(sport_id: "sportID", stat_id: "statID", stat_level: "statLevel"),
+          query: query.transform_keys(sport_id: "sportID", stat_id: "statID", stat_level: "statLevel"),
           unwrap: :data,
           model: SportsOddsAPI::Internal::Type::ArrayOf[SportsOddsAPI::Stat],
           options: options

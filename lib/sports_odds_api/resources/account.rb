@@ -2,6 +2,7 @@
 
 module SportsOddsAPI
   module Resources
+    # Get data related to your Account & API key
     class Account
       # Get rate-limits and usage data about your API key
       #

@@ -54,6 +54,10 @@ module SportsOddsAPI
 
   LeagueGetParams = SportsOddsAPI::Models::LeagueGetParams
 
+  Market = SportsOddsAPI::Models::Market
+
+  MarketGetParams = SportsOddsAPI::Models::MarketGetParams
+
   Player = SportsOddsAPI::Models::Player
 
   PlayerGetParams = SportsOddsAPI::Models::PlayerGetParams

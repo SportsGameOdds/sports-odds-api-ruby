@@ -121,16 +121,178 @@ module SportsOddsAPI
         def to_hash: -> { count: Float, score: Float }
       end
 
-      type info = { season_week: String }
+      type info =
+        {
+          broadcasts: ::Array[SportsOddsAPI::Event::Info::Broadcast],
+          referee: SportsOddsAPI::Event::Info::Referee,
+          season_week: String,
+          venue: SportsOddsAPI::Event::Info::Venue
+        }
 
       class Info < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader broadcasts: ::Array[SportsOddsAPI::Event::Info::Broadcast]?
+
+        def broadcasts=: (
+          ::Array[SportsOddsAPI::Event::Info::Broadcast]
+        ) -> ::Array[SportsOddsAPI::Event::Info::Broadcast]
+
+        attr_reader referee: SportsOddsAPI::Event::Info::Referee?
+
+        def referee=: (
+          SportsOddsAPI::Event::Info::Referee
+        ) -> SportsOddsAPI::Event::Info::Referee
+
         attr_reader season_week: String?
 
         def season_week=: (String) -> String
 
-        def initialize: (?season_week: String) -> void
+        attr_reader venue: SportsOddsAPI::Event::Info::Venue?
 
-        def to_hash: -> { season_week: String }
+        def venue=: (
+          SportsOddsAPI::Event::Info::Venue
+        ) -> SportsOddsAPI::Event::Info::Venue
+
+        def initialize: (
+          ?broadcasts: ::Array[SportsOddsAPI::Event::Info::Broadcast],
+          ?referee: SportsOddsAPI::Event::Info::Referee,
+          ?season_week: String,
+          ?venue: SportsOddsAPI::Event::Info::Venue
+        ) -> void
+
+        def to_hash: -> {
+          broadcasts: ::Array[SportsOddsAPI::Event::Info::Broadcast],
+          referee: SportsOddsAPI::Event::Info::Referee,
+          season_week: String,
+          venue: SportsOddsAPI::Event::Info::Venue
+        }
+
+        type broadcast =
+          {
+            broadcaster_id: String,
+            name: String,
+            type: SportsOddsAPI::Models::Event::Info::Broadcast::type_
+          }
+
+        class Broadcast < SportsOddsAPI::Internal::Type::BaseModel
+          attr_reader broadcaster_id: String?
+
+          def broadcaster_id=: (String) -> String
+
+          attr_reader name: String?
+
+          def name=: (String) -> String
+
+          attr_reader type: SportsOddsAPI::Models::Event::Info::Broadcast::type_?
+
+          def type=: (
+            SportsOddsAPI::Models::Event::Info::Broadcast::type_
+          ) -> SportsOddsAPI::Models::Event::Info::Broadcast::type_
+
+          def initialize: (
+            ?broadcaster_id: String,
+            ?name: String,
+            ?type: SportsOddsAPI::Models::Event::Info::Broadcast::type_
+          ) -> void
+
+          def to_hash: -> {
+            broadcaster_id: String,
+            name: String,
+            type: SportsOddsAPI::Models::Event::Info::Broadcast::type_
+          }
+
+          type type_ = :tv | :webstream | :subscription | :sportsbook
+
+          module Type
+            extend SportsOddsAPI::Internal::Type::Enum
+
+            TV: :tv
+            WEBSTREAM: :webstream
+            SUBSCRIPTION: :subscription
+            SPORTSBOOK: :sportsbook
+
+            def self?.values: -> ::Array[SportsOddsAPI::Models::Event::Info::Broadcast::type_]
+          end
+        end
+
+        type referee = { name: String }
+
+        class Referee < SportsOddsAPI::Internal::Type::BaseModel
+          attr_reader name: String?
+
+          def name=: (String) -> String
+
+          def initialize: (?name: String) -> void
+
+          def to_hash: -> { name: String }
+        end
+
+        type venue =
+          {
+            address: String,
+            capacity: Float,
+            city: String,
+            country_code: String,
+            country_name: String,
+            name: String,
+            region_code: String,
+            region_name: String
+          }
+
+        class Venue < SportsOddsAPI::Internal::Type::BaseModel
+          attr_reader address: String?
+
+          def address=: (String) -> String
+
+          attr_reader capacity: Float?
+
+          def capacity=: (Float) -> Float
+
+          attr_reader city: String?
+
+          def city=: (String) -> String
+
+          attr_reader country_code: String?
+
+          def country_code=: (String) -> String
+
+          attr_reader country_name: String?
+
+          def country_name=: (String) -> String
+
+          attr_reader name: String?
+
+          def name=: (String) -> String
+
+          attr_reader region_code: String?
+
+          def region_code=: (String) -> String
+
+          attr_reader region_name: String?
+
+          def region_name=: (String) -> String
+
+          def initialize: (
+            ?address: String,
+            ?capacity: Float,
+            ?city: String,
+            ?country_code: String,
+            ?country_name: String,
+            ?name: String,
+            ?region_code: String,
+            ?region_name: String
+          ) -> void
+
+          def to_hash: -> {
+            address: String,
+            capacity: Float,
+            city: String,
+            country_code: String,
+            country_name: String,
+            name: String,
+            region_code: String,
+            region_name: String
+          }
+        end
       end
 
       type odd =
@@ -311,9 +473,15 @@ module SportsOddsAPI
           {
             available: bool,
             bookmaker_id: String,
+            close_odds: String,
+            close_over_under: String,
+            close_spread: String,
             is_main_line: bool,
             last_updated_at: Time,
             odds: String,
+            open_odds: String,
+            open_over_under: String,
+            open_spread: String,
             over_under: String,
             spread: String
           }
@@ -327,6 +495,18 @@ module SportsOddsAPI
 
           def bookmaker_id=: (String) -> String
 
+          attr_reader close_odds: String?
+
+          def close_odds=: (String) -> String
+
+          attr_reader close_over_under: String?
+
+          def close_over_under=: (String) -> String
+
+          attr_reader close_spread: String?
+
+          def close_spread=: (String) -> String
+
           attr_reader is_main_line: bool?
 
           def is_main_line=: (bool) -> bool
@@ -339,6 +519,18 @@ module SportsOddsAPI
 
           def odds=: (String) -> String
 
+          attr_reader open_odds: String?
+
+          def open_odds=: (String) -> String
+
+          attr_reader open_over_under: String?
+
+          def open_over_under=: (String) -> String
+
+          attr_reader open_spread: String?
+
+          def open_spread=: (String) -> String
+
           attr_reader over_under: String?
 
           def over_under=: (String) -> String
@@ -350,9 +542,15 @@ module SportsOddsAPI
           def initialize: (
             ?available: bool,
             ?bookmaker_id: String,
+            ?close_odds: String,
+            ?close_over_under: String,
+            ?close_spread: String,
             ?is_main_line: bool,
             ?last_updated_at: Time,
             ?odds: String,
+            ?open_odds: String,
+            ?open_over_under: String,
+            ?open_spread: String,
             ?over_under: String,
             ?spread: String
           ) -> void
@@ -360,9 +558,15 @@ module SportsOddsAPI
           def to_hash: -> {
             available: bool,
             bookmaker_id: String,
+            close_odds: String,
+            close_over_under: String,
+            close_spread: String,
             is_main_line: bool,
             last_updated_at: Time,
             odds: String,
+            open_odds: String,
+            open_over_under: String,
+            open_spread: String,
             over_under: String,
             spread: String
           }
@@ -377,6 +581,8 @@ module SportsOddsAPI
           name: String,
           photo: String,
           player_id: String,
+          status: SportsOddsAPI::Models::Event::Player::status,
+          status_details: String,
           team_id: String
         }
 
@@ -405,6 +611,16 @@ module SportsOddsAPI
 
         def player_id=: (String) -> String
 
+        attr_reader status: SportsOddsAPI::Models::Event::Player::status?
+
+        def status=: (
+          SportsOddsAPI::Models::Event::Player::status
+        ) -> SportsOddsAPI::Models::Event::Player::status
+
+        attr_reader status_details: String?
+
+        def status_details=: (String) -> String
+
         attr_reader team_id: String?
 
         def team_id=: (String) -> String
@@ -416,6 +632,8 @@ module SportsOddsAPI
           ?name: String,
           ?photo: String,
           ?player_id: String,
+          ?status: SportsOddsAPI::Models::Event::Player::status,
+          ?status_details: String,
           ?team_id: String
         ) -> void
 
@@ -426,8 +644,33 @@ module SportsOddsAPI
           name: String,
           photo: String,
           player_id: String,
+          status: SportsOddsAPI::Models::Event::Player::status,
+          status_details: String,
           team_id: String
         }
+
+        type status =
+          :ir
+          | :active
+          | :out
+          | :suspended
+          | :questionable
+          | :doubtful
+          | :probable
+
+        module Status
+          extend SportsOddsAPI::Internal::Type::Enum
+
+          IR: :ir
+          ACTIVE: :active
+          OUT: :out
+          SUSPENDED: :suspended
+          QUESTIONABLE: :questionable
+          DOUBTFUL: :doubtful
+          PROBABLE: :probable
+
+          def self?.values: -> ::Array[SportsOddsAPI::Models::Event::Player::status]
+        end
       end
 
       type status =

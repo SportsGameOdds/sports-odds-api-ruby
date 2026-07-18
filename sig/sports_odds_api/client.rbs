@@ -14,6 +14,8 @@ module SportsOddsAPI
 
     attr_reader events: SportsOddsAPI::Resources::Events
 
+    attr_reader markets: SportsOddsAPI::Resources::Markets
+
     attr_reader teams: SportsOddsAPI::Resources::Teams
 
     attr_reader players: SportsOddsAPI::Resources::Players

@@ -19,14 +19,17 @@ class SportsOddsAPI::Test::Resources::TeamsTest < SportsOddsAPI::Test::ResourceT
 
     assert_pattern do
       row => {
+        coach: SportsOddsAPI::Team::Coach | nil,
         colors: SportsOddsAPI::Team::Colors | nil,
         league_id: String | nil,
         logo: String | nil,
         lookups: SportsOddsAPI::Team::Lookups | nil,
         names: SportsOddsAPI::Team::Names | nil,
+        owner: SportsOddsAPI::Team::Owner | nil,
         sport_id: String | nil,
         standings: SportsOddsAPI::Team::Standings | nil,
-        team_id: String | nil
+        team_id: String | nil,
+        venue: SportsOddsAPI::Team::Venue | nil
       }
     end
   end

@@ -21,8 +21,8 @@ module SportsOddsAPI
       optional :cancelled, SportsOddsAPI::Internal::Type::Boolean
 
       # @!attribute cursor
-      #   The cursor for the request. Used to get the next group of Events. This should be
-      #   the nextCursor from the prior response.
+      #   The cursor for the request. Used to get the next group of Events. This is an
+      #   opaque token — pass the nextCursor value from the prior response unchanged.
       #
       #   @return [String, nil]
       optional :cursor, String
@@ -46,6 +46,13 @@ module SportsOddsAPI
       #   @return [String, nil]
       optional :event_ids, String
 
+      # @!attribute expand_results
+      #   Whether to expand the results object to include all stat values rather than just
+      #   the base set
+      #
+      #   @return [Boolean, nil]
+      optional :expand_results, SportsOddsAPI::Internal::Type::Boolean
+
       # @!attribute finalized
       #   Only include finalized Events (true), exclude unfinalized Events (false) or all
       #   Events (omit)
@@ -58,6 +65,13 @@ module SportsOddsAPI
       #
       #   @return [Boolean, nil]
       optional :include_alt_lines, SportsOddsAPI::Internal::Type::Boolean
+
+      # @!attribute include_open_close_odds
+      #   Whether to include open and close odds values (openOdds, closeOdds, openSpread,
+      #   closeSpread, openOverUnder, closeOverUnder) in the odds byBookmaker data
+      #
+      #   @return [Boolean, nil]
+      optional :include_open_close_odds, SportsOddsAPI::Internal::Type::Boolean
 
       # @!attribute include_opposing_odds
       #   Whether to include opposing odds for each included oddID
@@ -149,7 +163,7 @@ module SportsOddsAPI
       #   @return [String, nil]
       optional :type, String
 
-      # @!method initialize(bookmaker_id: nil, cancelled: nil, cursor: nil, ended: nil, event_id: nil, event_ids: nil, finalized: nil, include_alt_lines: nil, include_opposing_odds: nil, league_id: nil, limit: nil, live: nil, odd_id: nil, odds_available: nil, odds_present: nil, player_id: nil, sport_id: nil, started: nil, starts_after: nil, starts_before: nil, team_id: nil, type: nil, request_options: {})
+      # @!method initialize(bookmaker_id: nil, cancelled: nil, cursor: nil, ended: nil, event_id: nil, event_ids: nil, expand_results: nil, finalized: nil, include_alt_lines: nil, include_open_close_odds: nil, include_opposing_odds: nil, league_id: nil, limit: nil, live: nil, odd_id: nil, odds_available: nil, odds_present: nil, player_id: nil, sport_id: nil, started: nil, starts_after: nil, starts_before: nil, team_id: nil, type: nil, request_options: {})
       #   Some parameter documentations has been truncated, see
       #   {SportsOddsAPI::Models::EventGetParams} for more details.
       #
@@ -157,7 +171,7 @@ module SportsOddsAPI
       #
       #   @param cancelled [Boolean] Only include cancelled Events (true), only non-cancelled Events (false) or all E
       #
-      #   @param cursor [String] The cursor for the request. Used to get the next group of Events. This should be
+      #   @param cursor [String] The cursor for the request. Used to get the next group of Events. This is an opa
       #
       #   @param ended [Boolean] Only include Events which have have ended (true), only Events which have not end
       #
@@ -165,9 +179,13 @@ module SportsOddsAPI
       #
       #   @param event_ids [String] A comma separated list of eventIDs to get Event data for
       #
+      #   @param expand_results [Boolean] Whether to expand the results object to include all stat values rather than just
+      #
       #   @param finalized [Boolean] Only include finalized Events (true), exclude unfinalized Events (false) or all
       #
       #   @param include_alt_lines [Boolean] Whether to include alternate lines in the odds byBookmaker data
+      #
+      #   @param include_open_close_odds [Boolean] Whether to include open and close odds values (openOdds, closeOdds, openSpread,
       #
       #   @param include_opposing_odds [Boolean] Whether to include opposing odds for each included oddID
       #
