@@ -1,0 +1,133 @@
+module SportsOddsAPI
+  module Models
+    type market_get_params =
+      {
+        bet_type_id: String,
+        bookmaker_id: String,
+        cursor: String,
+        is_main_market: bool,
+        is_prop: bool,
+        is_sub_period: bool,
+        is_supported: bool,
+        league_id: String,
+        limit: Float,
+        odd_id: String,
+        period_id: String,
+        prop_type: String,
+        side_id: String,
+        sport_id: String,
+        stat_entity_id: String,
+        stat_id: String
+      }
+      & SportsOddsAPI::Internal::Type::request_parameters
+
+    class MarketGetParams < SportsOddsAPI::Internal::Type::BaseModel
+      extend SportsOddsAPI::Internal::Type::RequestParameters::Converter
+      include SportsOddsAPI::Internal::Type::RequestParameters
+
+      attr_reader bet_type_id: String?
+
+      def bet_type_id=: (String) -> String
+
+      attr_reader bookmaker_id: String?
+
+      def bookmaker_id=: (String) -> String
+
+      attr_reader cursor: String?
+
+      def cursor=: (String) -> String
+
+      attr_reader is_main_market: bool?
+
+      def is_main_market=: (bool) -> bool
+
+      attr_reader is_prop: bool?
+
+      def is_prop=: (bool) -> bool
+
+      attr_reader is_sub_period: bool?
+
+      def is_sub_period=: (bool) -> bool
+
+      attr_reader is_supported: bool?
+
+      def is_supported=: (bool) -> bool
+
+      attr_reader league_id: String?
+
+      def league_id=: (String) -> String
+
+      attr_reader limit: Float?
+
+      def limit=: (Float) -> Float
+
+      attr_reader odd_id: String?
+
+      def odd_id=: (String) -> String
+
+      attr_reader period_id: String?
+
+      def period_id=: (String) -> String
+
+      attr_reader prop_type: String?
+
+      def prop_type=: (String) -> String
+
+      attr_reader side_id: String?
+
+      def side_id=: (String) -> String
+
+      attr_reader sport_id: String?
+
+      def sport_id=: (String) -> String
+
+      attr_reader stat_entity_id: String?
+
+      def stat_entity_id=: (String) -> String
+
+      attr_reader stat_id: String?
+
+      def stat_id=: (String) -> String
+
+      def initialize: (
+        ?bet_type_id: String,
+        ?bookmaker_id: String,
+        ?cursor: String,
+        ?is_main_market: bool,
+        ?is_prop: bool,
+        ?is_sub_period: bool,
+        ?is_supported: bool,
+        ?league_id: String,
+        ?limit: Float,
+        ?odd_id: String,
+        ?period_id: String,
+        ?prop_type: String,
+        ?side_id: String,
+        ?sport_id: String,
+        ?stat_entity_id: String,
+        ?stat_id: String,
+        ?request_options: SportsOddsAPI::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        bet_type_id: String,
+        bookmaker_id: String,
+        cursor: String,
+        is_main_market: bool,
+        is_prop: bool,
+        is_sub_period: bool,
+        is_supported: bool,
+        league_id: String,
+        limit: Float,
+        odd_id: String,
+        period_id: String,
+        prop_type: String,
+        side_id: String,
+        sport_id: String,
+        stat_entity_id: String,
+        stat_id: String,
+        request_options: SportsOddsAPI::RequestOptions
+      }
+    end
+  end
+end

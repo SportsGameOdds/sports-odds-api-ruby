@@ -9,13 +9,13 @@ module SportsOddsAPI
       #
       # Get a list of Events
       #
-      # @overload get(bookmaker_id: nil, cancelled: nil, cursor: nil, ended: nil, event_id: nil, event_ids: nil, finalized: nil, include_alt_lines: nil, include_opposing_odds: nil, league_id: nil, limit: nil, live: nil, odd_id: nil, odds_available: nil, odds_present: nil, player_id: nil, sport_id: nil, started: nil, starts_after: nil, starts_before: nil, team_id: nil, type: nil, request_options: {})
+      # @overload get(bookmaker_id: nil, cancelled: nil, cursor: nil, ended: nil, event_id: nil, event_ids: nil, expand_results: nil, finalized: nil, include_alt_lines: nil, include_open_close_odds: nil, include_opposing_odds: nil, league_id: nil, limit: nil, live: nil, odd_id: nil, odds_available: nil, odds_present: nil, player_id: nil, sport_id: nil, started: nil, starts_after: nil, starts_before: nil, team_id: nil, type: nil, request_options: {})
       #
       # @param bookmaker_id [String] A bookmakerID or comma-separated list of bookmakerIDs to include odds for
       #
       # @param cancelled [Boolean] Only include cancelled Events (true), only non-cancelled Events (false) or all E
       #
-      # @param cursor [String] The cursor for the request. Used to get the next group of Events. This should be
+      # @param cursor [String] The cursor for the request. Used to get the next group of Events. This is an opa
       #
       # @param ended [Boolean] Only include Events which have have ended (true), only Events which have not end
       #
@@ -23,9 +23,13 @@ module SportsOddsAPI
       #
       # @param event_ids [String] A comma separated list of eventIDs to get Event data for
       #
+      # @param expand_results [Boolean] Whether to expand the results object to include all stat values rather than just
+      #
       # @param finalized [Boolean] Only include finalized Events (true), exclude unfinalized Events (false) or all
       #
       # @param include_alt_lines [Boolean] Whether to include alternate lines in the odds byBookmaker data
+      #
+      # @param include_open_close_odds [Boolean] Whether to include open and close odds values (openOdds, closeOdds, openSpread,
       #
       # @param include_opposing_odds [Boolean] Whether to include opposing odds for each included oddID
       #
@@ -70,7 +74,9 @@ module SportsOddsAPI
             bookmaker_id: "bookmakerID",
             event_id: "eventID",
             event_ids: "eventIDs",
+            expand_results: "expandResults",
             include_alt_lines: "includeAltLines",
+            include_open_close_odds: "includeOpenCloseOdds",
             include_opposing_odds: "includeOpposingOdds",
             league_id: "leagueID",
             odd_id: "oddID",

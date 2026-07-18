@@ -8,6 +8,12 @@ module SportsOddsAPI
           T.any(SportsOddsAPI::Team, SportsOddsAPI::Internal::AnyHash)
         end
 
+      sig { returns(T.nilable(SportsOddsAPI::Team::Coach)) }
+      attr_reader :coach
+
+      sig { params(coach: SportsOddsAPI::Team::Coach::OrHash).void }
+      attr_writer :coach
+
       sig { returns(T.nilable(SportsOddsAPI::Team::Colors)) }
       attr_reader :colors
 
@@ -38,6 +44,12 @@ module SportsOddsAPI
       sig { params(names: SportsOddsAPI::Team::Names::OrHash).void }
       attr_writer :names
 
+      sig { returns(T.nilable(SportsOddsAPI::Team::Owner)) }
+      attr_reader :owner
+
+      sig { params(owner: SportsOddsAPI::Team::Owner::OrHash).void }
+      attr_writer :owner
+
       sig { returns(T.nilable(String)) }
       attr_reader :sport_id
 
@@ -56,45 +68,81 @@ module SportsOddsAPI
       sig { params(team_id: String).void }
       attr_writer :team_id
 
+      sig { returns(T.nilable(SportsOddsAPI::Team::Venue)) }
+      attr_reader :venue
+
+      sig { params(venue: SportsOddsAPI::Team::Venue::OrHash).void }
+      attr_writer :venue
+
       sig do
         params(
+          coach: SportsOddsAPI::Team::Coach::OrHash,
           colors: SportsOddsAPI::Team::Colors::OrHash,
           league_id: String,
           logo: String,
           lookups: SportsOddsAPI::Team::Lookups::OrHash,
           names: SportsOddsAPI::Team::Names::OrHash,
+          owner: SportsOddsAPI::Team::Owner::OrHash,
           sport_id: String,
           standings: SportsOddsAPI::Team::Standings::OrHash,
-          team_id: String
+          team_id: String,
+          venue: SportsOddsAPI::Team::Venue::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
+        coach: nil,
         colors: nil,
         league_id: nil,
         logo: nil,
         lookups: nil,
         names: nil,
+        owner: nil,
         sport_id: nil,
         standings: nil,
-        team_id: nil
+        team_id: nil,
+        venue: nil
       )
       end
 
       sig do
         override.returns(
           {
+            coach: SportsOddsAPI::Team::Coach,
             colors: SportsOddsAPI::Team::Colors,
             league_id: String,
             logo: String,
             lookups: SportsOddsAPI::Team::Lookups,
             names: SportsOddsAPI::Team::Names,
+            owner: SportsOddsAPI::Team::Owner,
             sport_id: String,
             standings: SportsOddsAPI::Team::Standings,
-            team_id: String
+            team_id: String,
+            venue: SportsOddsAPI::Team::Venue
           }
         )
       end
       def to_hash
+      end
+
+      class Coach < SportsOddsAPI::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(SportsOddsAPI::Team::Coach, SportsOddsAPI::Internal::AnyHash)
+          end
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :name
+
+        sig { params(name: String).void }
+        attr_writer :name
+
+        sig { params(name: String).returns(T.attached_class) }
+        def self.new(name: nil)
+        end
+
+        sig { override.returns({ name: String }) }
+        def to_hash
+        end
       end
 
       class Colors < SportsOddsAPI::Internal::Type::BaseModel
@@ -220,6 +268,27 @@ module SportsOddsAPI
         end
       end
 
+      class Owner < SportsOddsAPI::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(SportsOddsAPI::Team::Owner, SportsOddsAPI::Internal::AnyHash)
+          end
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :name
+
+        sig { params(name: String).void }
+        attr_writer :name
+
+        sig { params(name: String).returns(T.attached_class) }
+        def self.new(name: nil)
+        end
+
+        sig { override.returns({ name: String }) }
+        def to_hash
+        end
+      end
+
       class Standings < SportsOddsAPI::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
@@ -228,6 +297,12 @@ module SportsOddsAPI
               SportsOddsAPI::Internal::AnyHash
             )
           end
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :last5
+
+        sig { params(last5: String).void }
+        attr_writer :last5
 
         sig { returns(T.nilable(Float)) }
         attr_reader :losses
@@ -254,6 +329,12 @@ module SportsOddsAPI
         attr_writer :record
 
         sig { returns(T.nilable(Float)) }
+        attr_reader :streak
+
+        sig { params(streak: Float).void }
+        attr_writer :streak
+
+        sig { returns(T.nilable(Float)) }
         attr_reader :ties
 
         sig { params(ties: Float).void }
@@ -267,19 +348,23 @@ module SportsOddsAPI
 
         sig do
           params(
+            last5: String,
             losses: Float,
             played: Float,
             position: String,
             record: String,
+            streak: Float,
             ties: Float,
             wins: Float
           ).returns(T.attached_class)
         end
         def self.new(
+          last5: nil,
           losses: nil,
           played: nil,
           position: nil,
           record: nil,
+          streak: nil,
           ties: nil,
           wins: nil
         )
@@ -288,12 +373,110 @@ module SportsOddsAPI
         sig do
           override.returns(
             {
+              last5: String,
               losses: Float,
               played: Float,
               position: String,
               record: String,
+              streak: Float,
               ties: Float,
               wins: Float
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class Venue < SportsOddsAPI::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(SportsOddsAPI::Team::Venue, SportsOddsAPI::Internal::AnyHash)
+          end
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :address
+
+        sig { params(address: String).void }
+        attr_writer :address
+
+        sig { returns(T.nilable(Float)) }
+        attr_reader :capacity
+
+        sig { params(capacity: Float).void }
+        attr_writer :capacity
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :city
+
+        sig { params(city: String).void }
+        attr_writer :city
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :country_code
+
+        sig { params(country_code: String).void }
+        attr_writer :country_code
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :country_name
+
+        sig { params(country_name: String).void }
+        attr_writer :country_name
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :name
+
+        sig { params(name: String).void }
+        attr_writer :name
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :region_code
+
+        sig { params(region_code: String).void }
+        attr_writer :region_code
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :region_name
+
+        sig { params(region_name: String).void }
+        attr_writer :region_name
+
+        sig do
+          params(
+            address: String,
+            capacity: Float,
+            city: String,
+            country_code: String,
+            country_name: String,
+            name: String,
+            region_code: String,
+            region_name: String
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          address: nil,
+          capacity: nil,
+          city: nil,
+          country_code: nil,
+          country_name: nil,
+          name: nil,
+          region_code: nil,
+          region_name: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              address: String,
+              capacity: Float,
+              city: String,
+              country_code: String,
+              country_name: String,
+              name: String,
+              region_code: String,
+              region_name: String
             }
           )
         end

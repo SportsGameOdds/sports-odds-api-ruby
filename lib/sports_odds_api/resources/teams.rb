@@ -11,7 +11,7 @@ module SportsOddsAPI
       #
       # @overload get(cursor: nil, league_id: nil, limit: nil, sport_id: nil, team_id: nil, request_options: {})
       #
-      # @param cursor [String] The cursor for the request. Used to get the next group of Teams. This should be
+      # @param cursor [String] The cursor for the request. Used to get the next group of Teams. This is an opaq
       #
       # @param league_id [String] A single leagueID or comma-separated list of leagueIDs to get Teams for
       #

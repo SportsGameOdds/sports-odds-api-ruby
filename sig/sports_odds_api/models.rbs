@@ -11,6 +11,10 @@ module SportsOddsAPI
 
   class LeagueGetParams = SportsOddsAPI::Models::LeagueGetParams
 
+  class Market = SportsOddsAPI::Models::Market
+
+  class MarketGetParams = SportsOddsAPI::Models::MarketGetParams
+
   class Player = SportsOddsAPI::Models::Player
 
   class PlayerGetParams = SportsOddsAPI::Models::PlayerGetParams

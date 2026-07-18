@@ -11,7 +11,7 @@ module SportsOddsAPI
       #
       # @overload get(cursor: nil, event_id: nil, limit: nil, player_id: nil, team_id: nil, request_options: {})
       #
-      # @param cursor [String] The cursor for the request. Used to get the next group of Players. This should b
+      # @param cursor [String] The cursor for the request. Used to get the next group of Players. This is an op
       #
       # @param event_id [String] EventID to get Players data for
       #

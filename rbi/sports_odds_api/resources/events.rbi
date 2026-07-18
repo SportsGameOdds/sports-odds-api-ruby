@@ -13,8 +13,10 @@ module SportsOddsAPI
           ended: T::Boolean,
           event_id: String,
           event_ids: String,
+          expand_results: T::Boolean,
           finalized: T::Boolean,
           include_alt_lines: T::Boolean,
+          include_open_close_odds: T::Boolean,
           include_opposing_odds: T::Boolean,
           league_id: String,
           limit: Float,
@@ -38,8 +40,8 @@ module SportsOddsAPI
         # Only include cancelled Events (true), only non-cancelled Events (false) or all
         # Events (omit)
         cancelled: nil,
-        # The cursor for the request. Used to get the next group of Events. This should be
-        # the nextCursor from the prior response.
+        # The cursor for the request. Used to get the next group of Events. This is an
+        # opaque token — pass the nextCursor value from the prior response unchanged.
         cursor: nil,
         # Only include Events which have have ended (true), only Events which have not
         # ended (false) or all Events (omit)
@@ -48,11 +50,17 @@ module SportsOddsAPI
         event_id: nil,
         # A comma separated list of eventIDs to get Event data for
         event_ids: nil,
+        # Whether to expand the results object to include all stat values rather than just
+        # the base set
+        expand_results: nil,
         # Only include finalized Events (true), exclude unfinalized Events (false) or all
         # Events (omit)
         finalized: nil,
         # Whether to include alternate lines in the odds byBookmaker data
         include_alt_lines: nil,
+        # Whether to include open and close odds values (openOdds, closeOdds, openSpread,
+        # closeSpread, openOverUnder, closeOverUnder) in the odds byBookmaker data
+        include_open_close_odds: nil,
         # Whether to include opposing odds for each included oddID
         include_opposing_odds: nil,
         # A leagueID or comma-separated list of leagueIDs to get Events for

@@ -1,0 +1,27 @@
+module SportsOddsAPI
+  module Resources
+    class Markets
+      def get: (
+        ?bet_type_id: String,
+        ?bookmaker_id: String,
+        ?cursor: String,
+        ?is_main_market: bool,
+        ?is_prop: bool,
+        ?is_sub_period: bool,
+        ?is_supported: bool,
+        ?league_id: String,
+        ?limit: Float,
+        ?odd_id: String,
+        ?period_id: String,
+        ?prop_type: String,
+        ?side_id: String,
+        ?sport_id: String,
+        ?stat_entity_id: String,
+        ?stat_id: String,
+        ?request_options: SportsOddsAPI::request_opts
+      ) -> SportsOddsAPI::Internal::NextCursorPage[SportsOddsAPI::Market]
+
+      def initialize: (client: SportsOddsAPI::Client) -> void
+    end
+  end
+end

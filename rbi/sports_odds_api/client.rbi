@@ -22,6 +22,10 @@ module SportsOddsAPI
     sig { returns(SportsOddsAPI::Resources::Events) }
     attr_reader :events
 
+    # Get metadata on supported Markets
+    sig { returns(SportsOddsAPI::Resources::Markets) }
+    attr_reader :markets
+
     # Get Team-related data
     sig { returns(SportsOddsAPI::Resources::Teams) }
     attr_reader :teams

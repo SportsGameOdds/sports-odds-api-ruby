@@ -27,6 +27,10 @@ module SportsOddsAPI
     # @return [SportsOddsAPI::Resources::Events]
     attr_reader :events
 
+    # Get metadata on supported Markets
+    # @return [SportsOddsAPI::Resources::Markets]
+    attr_reader :markets
+
     # Get Team-related data
     # @return [SportsOddsAPI::Resources::Teams]
     attr_reader :teams
@@ -122,6 +126,7 @@ module SportsOddsAPI
       )
 
       @events = SportsOddsAPI::Resources::Events.new(client: self)
+      @markets = SportsOddsAPI::Resources::Markets.new(client: self)
       @teams = SportsOddsAPI::Resources::Teams.new(client: self)
       @players = SportsOddsAPI::Resources::Players.new(client: self)
       @leagues = SportsOddsAPI::Resources::Leagues.new(client: self)

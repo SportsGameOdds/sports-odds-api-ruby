@@ -228,6 +228,32 @@ params = SportsOddsAPI::EventGetParams.new
 sports_game_odds.events.get(**params)
 ```
 
+### Enums
+
+Since this library does not depend on `sorbet-runtime`, it cannot provide [`T::Enum`](https://sorbet.org/docs/tenum) instances. Instead, we provide "tagged symbols" instead, which is always a primitive at runtime:
+
+```ruby
+# :game_prop
+puts(SportsOddsAPI::Market::PropType::GAME_PROP)
+
+# Revealed type: `T.all(SportsOddsAPI::Market::PropType, Symbol)`
+T.reveal_type(SportsOddsAPI::Market::PropType::GAME_PROP)
+```
+
+Enum parameters have a "relaxed" type, so you can either pass in enum constants or their literal value:
+
+```ruby
+SportsOddsAPI::Market.new(
+  prop_type: SportsOddsAPI::Market::PropType::GAME_PROP,
+  # …
+)
+
+SportsOddsAPI::Market.new(
+  prop_type: :game_prop,
+  # …
+)
+```
+
 ## Versioning
 
 This package follows [SemVer](https://semver.org/spec/v2.0.0.html) conventions. As the library is in initial development and has a major version of `0`, APIs may change at any time.

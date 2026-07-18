@@ -1,0 +1,186 @@
+module SportsOddsAPI
+  module Models
+    type market =
+      {
+        active_events: Float,
+        bet_type_id: String,
+        is_main_derivative: bool,
+        is_main_market: bool,
+        is_prop: bool,
+        is_sub_period: bool,
+        is_supported: bool,
+        market_group_id: String,
+        market_group_name: String,
+        market_group_name_alias: String,
+        market_group_name_by_sport: ::Hash[Symbol, String],
+        odd_id: String,
+        period_id: String,
+        player_id: String,
+        prop_type: SportsOddsAPI::Models::Market::prop_type,
+        side_id: String,
+        stat_entity_id: String,
+        stat_id: String,
+        support: ::Hash[Symbol, ::Hash[Symbol, SportsOddsAPI::Market::Support]],
+        team_id: String
+      }
+
+    class Market < SportsOddsAPI::Internal::Type::BaseModel
+      attr_reader active_events: Float?
+
+      def active_events=: (Float) -> Float
+
+      attr_reader bet_type_id: String?
+
+      def bet_type_id=: (String) -> String
+
+      attr_reader is_main_derivative: bool?
+
+      def is_main_derivative=: (bool) -> bool
+
+      attr_reader is_main_market: bool?
+
+      def is_main_market=: (bool) -> bool
+
+      attr_reader is_prop: bool?
+
+      def is_prop=: (bool) -> bool
+
+      attr_reader is_sub_period: bool?
+
+      def is_sub_period=: (bool) -> bool
+
+      attr_reader is_supported: bool?
+
+      def is_supported=: (bool) -> bool
+
+      attr_reader market_group_id: String?
+
+      def market_group_id=: (String) -> String
+
+      attr_reader market_group_name: String?
+
+      def market_group_name=: (String) -> String
+
+      attr_reader market_group_name_alias: String?
+
+      def market_group_name_alias=: (String) -> String
+
+      attr_reader market_group_name_by_sport: ::Hash[Symbol, String]?
+
+      def market_group_name_by_sport=: (
+        ::Hash[Symbol, String]
+      ) -> ::Hash[Symbol, String]
+
+      attr_reader odd_id: String?
+
+      def odd_id=: (String) -> String
+
+      attr_reader period_id: String?
+
+      def period_id=: (String) -> String
+
+      attr_reader player_id: String?
+
+      def player_id=: (String) -> String
+
+      attr_reader prop_type: SportsOddsAPI::Models::Market::prop_type?
+
+      def prop_type=: (
+        SportsOddsAPI::Models::Market::prop_type
+      ) -> SportsOddsAPI::Models::Market::prop_type
+
+      attr_reader side_id: String?
+
+      def side_id=: (String) -> String
+
+      attr_reader stat_entity_id: String?
+
+      def stat_entity_id=: (String) -> String
+
+      attr_reader stat_id: String?
+
+      def stat_id=: (String) -> String
+
+      attr_reader support: ::Hash[Symbol, ::Hash[Symbol, SportsOddsAPI::Market::Support]]?
+
+      def support=: (
+        ::Hash[Symbol, ::Hash[Symbol, SportsOddsAPI::Market::Support]]
+      ) -> ::Hash[Symbol, ::Hash[Symbol, SportsOddsAPI::Market::Support]]
+
+      attr_reader team_id: String?
+
+      def team_id=: (String) -> String
+
+      def initialize: (
+        ?active_events: Float,
+        ?bet_type_id: String,
+        ?is_main_derivative: bool,
+        ?is_main_market: bool,
+        ?is_prop: bool,
+        ?is_sub_period: bool,
+        ?is_supported: bool,
+        ?market_group_id: String,
+        ?market_group_name: String,
+        ?market_group_name_alias: String,
+        ?market_group_name_by_sport: ::Hash[Symbol, String],
+        ?odd_id: String,
+        ?period_id: String,
+        ?player_id: String,
+        ?prop_type: SportsOddsAPI::Models::Market::prop_type,
+        ?side_id: String,
+        ?stat_entity_id: String,
+        ?stat_id: String,
+        ?support: ::Hash[Symbol, ::Hash[Symbol, SportsOddsAPI::Market::Support]],
+        ?team_id: String
+      ) -> void
+
+      def to_hash: -> {
+        active_events: Float,
+        bet_type_id: String,
+        is_main_derivative: bool,
+        is_main_market: bool,
+        is_prop: bool,
+        is_sub_period: bool,
+        is_supported: bool,
+        market_group_id: String,
+        market_group_name: String,
+        market_group_name_alias: String,
+        market_group_name_by_sport: ::Hash[Symbol, String],
+        odd_id: String,
+        period_id: String,
+        player_id: String,
+        prop_type: SportsOddsAPI::Models::Market::prop_type,
+        side_id: String,
+        stat_entity_id: String,
+        stat_id: String,
+        support: ::Hash[Symbol, ::Hash[Symbol, SportsOddsAPI::Market::Support]],
+        team_id: String
+      }
+
+      type prop_type = :game_prop | :team_prop | :player_prop | :other_prop
+
+      module PropType
+        extend SportsOddsAPI::Internal::Type::Enum
+
+        GAME_PROP: :game_prop
+        TEAM_PROP: :team_prop
+        PLAYER_PROP: :player_prop
+        OTHER_PROP: :other_prop
+
+        def self?.values: -> ::Array[SportsOddsAPI::Models::Market::prop_type]
+      end
+
+      type support = { supported: bool }
+
+      class Support < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader supported: bool?
+
+        def supported=: (bool) -> bool
+
+        def initialize: (?supported: bool) -> void
+
+        def to_hash: -> { supported: bool }
+      end
+    end
+  end
+end

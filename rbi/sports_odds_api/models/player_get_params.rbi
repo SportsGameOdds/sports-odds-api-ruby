@@ -14,8 +14,8 @@ module SportsOddsAPI
           )
         end
 
-      # The cursor for the request. Used to get the next group of Players. This should
-      # be the nextCursor from the prior response.
+      # The cursor for the request. Used to get the next group of Players. This is an
+      # opaque token — pass the nextCursor value from the prior response unchanged.
       sig { returns(T.nilable(String)) }
       attr_reader :cursor
 
@@ -61,8 +61,8 @@ module SportsOddsAPI
         ).returns(T.attached_class)
       end
       def self.new(
-        # The cursor for the request. Used to get the next group of Players. This should
-        # be the nextCursor from the prior response.
+        # The cursor for the request. Used to get the next group of Players. This is an
+        # opaque token — pass the nextCursor value from the prior response unchanged.
         cursor: nil,
         # EventID to get Players data for
         event_id: nil,

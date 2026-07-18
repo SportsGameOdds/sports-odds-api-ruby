@@ -11,8 +11,8 @@ module SportsOddsAPI
           T.any(SportsOddsAPI::TeamGetParams, SportsOddsAPI::Internal::AnyHash)
         end
 
-      # The cursor for the request. Used to get the next group of Teams. This should be
-      # the nextCursor from the prior response.
+      # The cursor for the request. Used to get the next group of Teams. This is an
+      # opaque token — pass the nextCursor value from the prior response unchanged.
       sig { returns(T.nilable(String)) }
       attr_reader :cursor
 
@@ -58,8 +58,8 @@ module SportsOddsAPI
         ).returns(T.attached_class)
       end
       def self.new(
-        # The cursor for the request. Used to get the next group of Teams. This should be
-        # the nextCursor from the prior response.
+        # The cursor for the request. Used to get the next group of Teams. This is an
+        # opaque token — pass the nextCursor value from the prior response unchanged.
         cursor: nil,
         # A single leagueID or comma-separated list of leagueIDs to get Teams for
         league_id: nil,

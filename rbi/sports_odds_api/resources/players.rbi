@@ -18,8 +18,8 @@ module SportsOddsAPI
         )
       end
       def get(
-        # The cursor for the request. Used to get the next group of Players. This should
-        # be the nextCursor from the prior response.
+        # The cursor for the request. Used to get the next group of Players. This is an
+        # opaque token — pass the nextCursor value from the prior response unchanged.
         cursor: nil,
         # EventID to get Players data for
         event_id: nil,

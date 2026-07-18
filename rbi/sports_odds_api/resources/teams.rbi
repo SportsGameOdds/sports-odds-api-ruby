@@ -16,8 +16,8 @@ module SportsOddsAPI
         ).returns(SportsOddsAPI::Internal::NextCursorPage[SportsOddsAPI::Team])
       end
       def get(
-        # The cursor for the request. Used to get the next group of Teams. This should be
-        # the nextCursor from the prior response.
+        # The cursor for the request. Used to get the next group of Teams. This is an
+        # opaque token — pass the nextCursor value from the prior response unchanged.
         cursor: nil,
         # A single leagueID or comma-separated list of leagueIDs to get Teams for
         league_id: nil,
