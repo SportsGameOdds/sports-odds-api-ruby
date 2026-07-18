@@ -56,6 +56,7 @@ module SportsOddsAPI
       end
       attr_writer :players
 
+      # Nested results in the format `{periodID}.{statEntityID}.{statID} → number`.
       sig do
         returns(
           T.nilable(T::Hash[Symbol, T::Hash[Symbol, T::Hash[Symbol, Float]]])
@@ -118,6 +119,7 @@ module SportsOddsAPI
         manual: nil,
         odds: nil,
         players: nil,
+        # Nested results in the format `{periodID}.{statEntityID}.{statID} → number`.
         results: nil,
         sport_id: nil,
         status: nil,
@@ -183,18 +185,289 @@ module SportsOddsAPI
             T.any(SportsOddsAPI::Event::Info, SportsOddsAPI::Internal::AnyHash)
           end
 
+        sig do
+          returns(T.nilable(T::Array[SportsOddsAPI::Event::Info::Broadcast]))
+        end
+        attr_reader :broadcasts
+
+        sig do
+          params(
+            broadcasts: T::Array[SportsOddsAPI::Event::Info::Broadcast::OrHash]
+          ).void
+        end
+        attr_writer :broadcasts
+
+        sig { returns(T.nilable(SportsOddsAPI::Event::Info::Referee)) }
+        attr_reader :referee
+
+        sig do
+          params(referee: SportsOddsAPI::Event::Info::Referee::OrHash).void
+        end
+        attr_writer :referee
+
         sig { returns(T.nilable(String)) }
         attr_reader :season_week
 
         sig { params(season_week: String).void }
         attr_writer :season_week
 
-        sig { params(season_week: String).returns(T.attached_class) }
-        def self.new(season_week: nil)
+        sig { returns(T.nilable(SportsOddsAPI::Event::Info::Venue)) }
+        attr_reader :venue
+
+        sig { params(venue: SportsOddsAPI::Event::Info::Venue::OrHash).void }
+        attr_writer :venue
+
+        sig do
+          params(
+            broadcasts: T::Array[SportsOddsAPI::Event::Info::Broadcast::OrHash],
+            referee: SportsOddsAPI::Event::Info::Referee::OrHash,
+            season_week: String,
+            venue: SportsOddsAPI::Event::Info::Venue::OrHash
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          broadcasts: nil,
+          referee: nil,
+          season_week: nil,
+          venue: nil
+        )
         end
 
-        sig { override.returns({ season_week: String }) }
+        sig do
+          override.returns(
+            {
+              broadcasts: T::Array[SportsOddsAPI::Event::Info::Broadcast],
+              referee: SportsOddsAPI::Event::Info::Referee,
+              season_week: String,
+              venue: SportsOddsAPI::Event::Info::Venue
+            }
+          )
+        end
         def to_hash
+        end
+
+        class Broadcast < SportsOddsAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                SportsOddsAPI::Event::Info::Broadcast,
+                SportsOddsAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(T.nilable(String)) }
+          attr_reader :broadcaster_id
+
+          sig { params(broadcaster_id: String).void }
+          attr_writer :broadcaster_id
+
+          sig { returns(T.nilable(String)) }
+          attr_reader :name
+
+          sig { params(name: String).void }
+          attr_writer :name
+
+          sig do
+            returns(
+              T.nilable(
+                SportsOddsAPI::Event::Info::Broadcast::Type::TaggedSymbol
+              )
+            )
+          end
+          attr_reader :type
+
+          sig do
+            params(
+              type: SportsOddsAPI::Event::Info::Broadcast::Type::OrSymbol
+            ).void
+          end
+          attr_writer :type
+
+          sig do
+            params(
+              broadcaster_id: String,
+              name: String,
+              type: SportsOddsAPI::Event::Info::Broadcast::Type::OrSymbol
+            ).returns(T.attached_class)
+          end
+          def self.new(broadcaster_id: nil, name: nil, type: nil)
+          end
+
+          sig do
+            override.returns(
+              {
+                broadcaster_id: String,
+                name: String,
+                type: SportsOddsAPI::Event::Info::Broadcast::Type::TaggedSymbol
+              }
+            )
+          end
+          def to_hash
+          end
+
+          module Type
+            extend SportsOddsAPI::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(Symbol, SportsOddsAPI::Event::Info::Broadcast::Type)
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            TV =
+              T.let(
+                :tv,
+                SportsOddsAPI::Event::Info::Broadcast::Type::TaggedSymbol
+              )
+            WEBSTREAM =
+              T.let(
+                :webstream,
+                SportsOddsAPI::Event::Info::Broadcast::Type::TaggedSymbol
+              )
+            SUBSCRIPTION =
+              T.let(
+                :subscription,
+                SportsOddsAPI::Event::Info::Broadcast::Type::TaggedSymbol
+              )
+            SPORTSBOOK =
+              T.let(
+                :sportsbook,
+                SportsOddsAPI::Event::Info::Broadcast::Type::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  SportsOddsAPI::Event::Info::Broadcast::Type::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+        end
+
+        class Referee < SportsOddsAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                SportsOddsAPI::Event::Info::Referee,
+                SportsOddsAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(T.nilable(String)) }
+          attr_reader :name
+
+          sig { params(name: String).void }
+          attr_writer :name
+
+          sig { params(name: String).returns(T.attached_class) }
+          def self.new(name: nil)
+          end
+
+          sig { override.returns({ name: String }) }
+          def to_hash
+          end
+        end
+
+        class Venue < SportsOddsAPI::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                SportsOddsAPI::Event::Info::Venue,
+                SportsOddsAPI::Internal::AnyHash
+              )
+            end
+
+          sig { returns(T.nilable(String)) }
+          attr_reader :address
+
+          sig { params(address: String).void }
+          attr_writer :address
+
+          sig { returns(T.nilable(Float)) }
+          attr_reader :capacity
+
+          sig { params(capacity: Float).void }
+          attr_writer :capacity
+
+          sig { returns(T.nilable(String)) }
+          attr_reader :city
+
+          sig { params(city: String).void }
+          attr_writer :city
+
+          sig { returns(T.nilable(String)) }
+          attr_reader :country_code
+
+          sig { params(country_code: String).void }
+          attr_writer :country_code
+
+          sig { returns(T.nilable(String)) }
+          attr_reader :country_name
+
+          sig { params(country_name: String).void }
+          attr_writer :country_name
+
+          sig { returns(T.nilable(String)) }
+          attr_reader :name
+
+          sig { params(name: String).void }
+          attr_writer :name
+
+          sig { returns(T.nilable(String)) }
+          attr_reader :region_code
+
+          sig { params(region_code: String).void }
+          attr_writer :region_code
+
+          sig { returns(T.nilable(String)) }
+          attr_reader :region_name
+
+          sig { params(region_name: String).void }
+          attr_writer :region_name
+
+          sig do
+            params(
+              address: String,
+              capacity: Float,
+              city: String,
+              country_code: String,
+              country_name: String,
+              name: String,
+              region_code: String,
+              region_name: String
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            address: nil,
+            capacity: nil,
+            city: nil,
+            country_code: nil,
+            country_name: nil,
+            name: nil,
+            region_code: nil,
+            region_name: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                address: String,
+                capacity: Float,
+                city: String,
+                country_code: String,
+                country_name: String,
+                name: String,
+                region_code: String,
+                region_name: String
+              }
+            )
+          end
+          def to_hash
+          end
         end
       end
 
@@ -460,6 +733,24 @@ module SportsOddsAPI
           sig { params(bookmaker_id: String).void }
           attr_writer :bookmaker_id
 
+          sig { returns(T.nilable(String)) }
+          attr_reader :close_odds
+
+          sig { params(close_odds: String).void }
+          attr_writer :close_odds
+
+          sig { returns(T.nilable(String)) }
+          attr_reader :close_over_under
+
+          sig { params(close_over_under: String).void }
+          attr_writer :close_over_under
+
+          sig { returns(T.nilable(String)) }
+          attr_reader :close_spread
+
+          sig { params(close_spread: String).void }
+          attr_writer :close_spread
+
           sig { returns(T.nilable(T::Boolean)) }
           attr_reader :is_main_line
 
@@ -479,6 +770,24 @@ module SportsOddsAPI
           attr_writer :odds
 
           sig { returns(T.nilable(String)) }
+          attr_reader :open_odds
+
+          sig { params(open_odds: String).void }
+          attr_writer :open_odds
+
+          sig { returns(T.nilable(String)) }
+          attr_reader :open_over_under
+
+          sig { params(open_over_under: String).void }
+          attr_writer :open_over_under
+
+          sig { returns(T.nilable(String)) }
+          attr_reader :open_spread
+
+          sig { params(open_spread: String).void }
+          attr_writer :open_spread
+
+          sig { returns(T.nilable(String)) }
           attr_reader :over_under
 
           sig { params(over_under: String).void }
@@ -494,9 +803,15 @@ module SportsOddsAPI
             params(
               available: T::Boolean,
               bookmaker_id: String,
+              close_odds: String,
+              close_over_under: String,
+              close_spread: String,
               is_main_line: T::Boolean,
               last_updated_at: Time,
               odds: String,
+              open_odds: String,
+              open_over_under: String,
+              open_spread: String,
               over_under: String,
               spread: String
             ).returns(T.attached_class)
@@ -504,9 +819,15 @@ module SportsOddsAPI
           def self.new(
             available: nil,
             bookmaker_id: nil,
+            close_odds: nil,
+            close_over_under: nil,
+            close_spread: nil,
             is_main_line: nil,
             last_updated_at: nil,
             odds: nil,
+            open_odds: nil,
+            open_over_under: nil,
+            open_spread: nil,
             over_under: nil,
             spread: nil
           )
@@ -517,9 +838,15 @@ module SportsOddsAPI
               {
                 available: T::Boolean,
                 bookmaker_id: String,
+                close_odds: String,
+                close_over_under: String,
+                close_spread: String,
                 is_main_line: T::Boolean,
                 last_updated_at: Time,
                 odds: String,
+                open_odds: String,
+                open_over_under: String,
+                open_spread: String,
                 over_under: String,
                 spread: String
               }
@@ -575,6 +902,22 @@ module SportsOddsAPI
         sig { params(player_id: String).void }
         attr_writer :player_id
 
+        sig do
+          returns(T.nilable(SportsOddsAPI::Event::Player::Status::TaggedSymbol))
+        end
+        attr_reader :status
+
+        sig do
+          params(status: SportsOddsAPI::Event::Player::Status::OrSymbol).void
+        end
+        attr_writer :status
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :status_details
+
+        sig { params(status_details: String).void }
+        attr_writer :status_details
+
         sig { returns(T.nilable(String)) }
         attr_reader :team_id
 
@@ -589,6 +932,8 @@ module SportsOddsAPI
             name: String,
             photo: String,
             player_id: String,
+            status: SportsOddsAPI::Event::Player::Status::OrSymbol,
+            status_details: String,
             team_id: String
           ).returns(T.attached_class)
         end
@@ -599,6 +944,8 @@ module SportsOddsAPI
           name: nil,
           photo: nil,
           player_id: nil,
+          status: nil,
+          status_details: nil,
           team_id: nil
         )
         end
@@ -612,11 +959,48 @@ module SportsOddsAPI
               name: String,
               photo: String,
               player_id: String,
+              status: SportsOddsAPI::Event::Player::Status::TaggedSymbol,
+              status_details: String,
               team_id: String
             }
           )
         end
         def to_hash
+        end
+
+        module Status
+          extend SportsOddsAPI::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias { T.all(Symbol, SportsOddsAPI::Event::Player::Status) }
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          IR = T.let(:ir, SportsOddsAPI::Event::Player::Status::TaggedSymbol)
+          ACTIVE =
+            T.let(:active, SportsOddsAPI::Event::Player::Status::TaggedSymbol)
+          OUT = T.let(:out, SportsOddsAPI::Event::Player::Status::TaggedSymbol)
+          SUSPENDED =
+            T.let(
+              :suspended,
+              SportsOddsAPI::Event::Player::Status::TaggedSymbol
+            )
+          QUESTIONABLE =
+            T.let(
+              :questionable,
+              SportsOddsAPI::Event::Player::Status::TaggedSymbol
+            )
+          DOUBTFUL =
+            T.let(:doubtful, SportsOddsAPI::Event::Player::Status::TaggedSymbol)
+          PROBABLE =
+            T.let(:probable, SportsOddsAPI::Event::Player::Status::TaggedSymbol)
+
+          sig do
+            override.returns(
+              T::Array[SportsOddsAPI::Event::Player::Status::TaggedSymbol]
+            )
+          end
+          def self.values
+          end
         end
       end
 

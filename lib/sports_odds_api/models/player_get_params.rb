@@ -8,8 +8,8 @@ module SportsOddsAPI
       include SportsOddsAPI::Internal::Type::RequestParameters
 
       # @!attribute cursor
-      #   The cursor for the request. Used to get the next group of Players. This should
-      #   be the nextCursor from the prior response.
+      #   The cursor for the request. Used to get the next group of Players. This is an
+      #   opaque token — pass the nextCursor value from the prior response unchanged.
       #
       #   @return [String, nil]
       optional :cursor, String
@@ -42,7 +42,7 @@ module SportsOddsAPI
       #   Some parameter documentations has been truncated, see
       #   {SportsOddsAPI::Models::PlayerGetParams} for more details.
       #
-      #   @param cursor [String] The cursor for the request. Used to get the next group of Players. This should b
+      #   @param cursor [String] The cursor for the request. Used to get the next group of Players. This is an op
       #
       #   @param event_id [String] EventID to get Players data for
       #

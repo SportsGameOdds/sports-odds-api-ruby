@@ -4,6 +4,11 @@ module SportsOddsAPI
   module Models
     # @see SportsOddsAPI::Resources::Teams#get
     class Team < SportsOddsAPI::Internal::Type::BaseModel
+      # @!attribute coach
+      #
+      #   @return [SportsOddsAPI::Models::Team::Coach, nil]
+      optional :coach, -> { SportsOddsAPI::Team::Coach }
+
       # @!attribute colors
       #
       #   @return [SportsOddsAPI::Models::Team::Colors, nil]
@@ -29,6 +34,11 @@ module SportsOddsAPI
       #   @return [SportsOddsAPI::Models::Team::Names, nil]
       optional :names, -> { SportsOddsAPI::Team::Names }
 
+      # @!attribute owner
+      #
+      #   @return [SportsOddsAPI::Models::Team::Owner, nil]
+      optional :owner, -> { SportsOddsAPI::Team::Owner }
+
       # @!attribute sport_id
       #
       #   @return [String, nil]
@@ -44,15 +54,34 @@ module SportsOddsAPI
       #   @return [String, nil]
       optional :team_id, String, api_name: :teamID
 
-      # @!method initialize(colors: nil, league_id: nil, logo: nil, lookups: nil, names: nil, sport_id: nil, standings: nil, team_id: nil)
+      # @!attribute venue
+      #
+      #   @return [SportsOddsAPI::Models::Team::Venue, nil]
+      optional :venue, -> { SportsOddsAPI::Team::Venue }
+
+      # @!method initialize(coach: nil, colors: nil, league_id: nil, logo: nil, lookups: nil, names: nil, owner: nil, sport_id: nil, standings: nil, team_id: nil, venue: nil)
+      #   @param coach [SportsOddsAPI::Models::Team::Coach]
       #   @param colors [SportsOddsAPI::Models::Team::Colors]
       #   @param league_id [String]
       #   @param logo [String]
       #   @param lookups [SportsOddsAPI::Models::Team::Lookups]
       #   @param names [SportsOddsAPI::Models::Team::Names]
+      #   @param owner [SportsOddsAPI::Models::Team::Owner]
       #   @param sport_id [String]
       #   @param standings [SportsOddsAPI::Models::Team::Standings]
       #   @param team_id [String]
+      #   @param venue [SportsOddsAPI::Models::Team::Venue]
+
+      # @see SportsOddsAPI::Models::Team#coach
+      class Coach < SportsOddsAPI::Internal::Type::BaseModel
+        # @!attribute name
+        #
+        #   @return [String, nil]
+        optional :name, String
+
+        # @!method initialize(name: nil)
+        #   @param name [String]
+      end
 
       # @see SportsOddsAPI::Models::Team#colors
       class Colors < SportsOddsAPI::Internal::Type::BaseModel
@@ -117,8 +146,24 @@ module SportsOddsAPI
         #   @param short [String]
       end
 
+      # @see SportsOddsAPI::Models::Team#owner
+      class Owner < SportsOddsAPI::Internal::Type::BaseModel
+        # @!attribute name
+        #
+        #   @return [String, nil]
+        optional :name, String
+
+        # @!method initialize(name: nil)
+        #   @param name [String]
+      end
+
       # @see SportsOddsAPI::Models::Team#standings
       class Standings < SportsOddsAPI::Internal::Type::BaseModel
+        # @!attribute last5
+        #
+        #   @return [String, nil]
+        optional :last5, String
+
         # @!attribute losses
         #
         #   @return [Float, nil]
@@ -139,6 +184,11 @@ module SportsOddsAPI
         #   @return [String, nil]
         optional :record, String
 
+        # @!attribute streak
+        #
+        #   @return [Float, nil]
+        optional :streak, Float
+
         # @!attribute ties
         #
         #   @return [Float, nil]
@@ -149,13 +199,68 @@ module SportsOddsAPI
         #   @return [Float, nil]
         optional :wins, Float
 
-        # @!method initialize(losses: nil, played: nil, position: nil, record: nil, ties: nil, wins: nil)
+        # @!method initialize(last5: nil, losses: nil, played: nil, position: nil, record: nil, streak: nil, ties: nil, wins: nil)
+        #   @param last5 [String]
         #   @param losses [Float]
         #   @param played [Float]
         #   @param position [String]
         #   @param record [String]
+        #   @param streak [Float]
         #   @param ties [Float]
         #   @param wins [Float]
+      end
+
+      # @see SportsOddsAPI::Models::Team#venue
+      class Venue < SportsOddsAPI::Internal::Type::BaseModel
+        # @!attribute address
+        #
+        #   @return [String, nil]
+        optional :address, String
+
+        # @!attribute capacity
+        #
+        #   @return [Float, nil]
+        optional :capacity, Float
+
+        # @!attribute city
+        #
+        #   @return [String, nil]
+        optional :city, String
+
+        # @!attribute country_code
+        #
+        #   @return [String, nil]
+        optional :country_code, String, api_name: :countryCode
+
+        # @!attribute country_name
+        #
+        #   @return [String, nil]
+        optional :country_name, String, api_name: :countryName
+
+        # @!attribute name
+        #
+        #   @return [String, nil]
+        optional :name, String
+
+        # @!attribute region_code
+        #
+        #   @return [String, nil]
+        optional :region_code, String, api_name: :regionCode
+
+        # @!attribute region_name
+        #
+        #   @return [String, nil]
+        optional :region_name, String, api_name: :regionName
+
+        # @!method initialize(address: nil, capacity: nil, city: nil, country_code: nil, country_name: nil, name: nil, region_code: nil, region_name: nil)
+        #   @param address [String]
+        #   @param capacity [Float]
+        #   @param city [String]
+        #   @param country_code [String]
+        #   @param country_name [String]
+        #   @param name [String]
+        #   @param region_code [String]
+        #   @param region_name [String]
       end
     end
   end

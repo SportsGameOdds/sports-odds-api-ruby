@@ -2,6 +2,7 @@
 
 module SportsOddsAPI
   module Resources
+    # Get League-related data
     class Leagues
       # Get a list of Leagues
       #
@@ -18,10 +19,11 @@ module SportsOddsAPI
       # @see SportsOddsAPI::Models::LeagueGetParams
       def get(params = {})
         parsed, options = SportsOddsAPI::LeagueGetParams.dump_request(params)
+        query = SportsOddsAPI::Internal::Util.encode_query_params(parsed)
         @client.request(
           method: :get,
           path: "leagues/",
-          query: parsed.transform_keys(league_id: "leagueID", sport_id: "sportID"),
+          query: query.transform_keys(league_id: "leagueID", sport_id: "sportID"),
           unwrap: :data,
           model: SportsOddsAPI::Internal::Type::ArrayOf[SportsOddsAPI::League],
           options: options

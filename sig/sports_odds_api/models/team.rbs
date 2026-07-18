@@ -2,17 +2,24 @@ module SportsOddsAPI
   module Models
     type team =
       {
+        coach: SportsOddsAPI::Team::Coach,
         colors: SportsOddsAPI::Team::Colors,
         league_id: String,
         logo: String,
         lookups: SportsOddsAPI::Team::Lookups,
         names: SportsOddsAPI::Team::Names,
+        owner: SportsOddsAPI::Team::Owner,
         sport_id: String,
         standings: SportsOddsAPI::Team::Standings,
-        team_id: String
+        team_id: String,
+        venue: SportsOddsAPI::Team::Venue
       }
 
     class Team < SportsOddsAPI::Internal::Type::BaseModel
+      attr_reader coach: SportsOddsAPI::Team::Coach?
+
+      def coach=: (SportsOddsAPI::Team::Coach) -> SportsOddsAPI::Team::Coach
+
       attr_reader colors: SportsOddsAPI::Team::Colors?
 
       def colors=: (SportsOddsAPI::Team::Colors) -> SportsOddsAPI::Team::Colors
@@ -35,6 +42,10 @@ module SportsOddsAPI
 
       def names=: (SportsOddsAPI::Team::Names) -> SportsOddsAPI::Team::Names
 
+      attr_reader owner: SportsOddsAPI::Team::Owner?
+
+      def owner=: (SportsOddsAPI::Team::Owner) -> SportsOddsAPI::Team::Owner
+
       attr_reader sport_id: String?
 
       def sport_id=: (String) -> String
@@ -49,27 +60,49 @@ module SportsOddsAPI
 
       def team_id=: (String) -> String
 
+      attr_reader venue: SportsOddsAPI::Team::Venue?
+
+      def venue=: (SportsOddsAPI::Team::Venue) -> SportsOddsAPI::Team::Venue
+
       def initialize: (
+        ?coach: SportsOddsAPI::Team::Coach,
         ?colors: SportsOddsAPI::Team::Colors,
         ?league_id: String,
         ?logo: String,
         ?lookups: SportsOddsAPI::Team::Lookups,
         ?names: SportsOddsAPI::Team::Names,
+        ?owner: SportsOddsAPI::Team::Owner,
         ?sport_id: String,
         ?standings: SportsOddsAPI::Team::Standings,
-        ?team_id: String
+        ?team_id: String,
+        ?venue: SportsOddsAPI::Team::Venue
       ) -> void
 
       def to_hash: -> {
+        coach: SportsOddsAPI::Team::Coach,
         colors: SportsOddsAPI::Team::Colors,
         league_id: String,
         logo: String,
         lookups: SportsOddsAPI::Team::Lookups,
         names: SportsOddsAPI::Team::Names,
+        owner: SportsOddsAPI::Team::Owner,
         sport_id: String,
         standings: SportsOddsAPI::Team::Standings,
-        team_id: String
+        team_id: String,
+        venue: SportsOddsAPI::Team::Venue
       }
+
+      type coach = { name: String }
+
+      class Coach < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        def initialize: (?name: String) -> void
+
+        def to_hash: -> { name: String }
+      end
 
       type colors =
         {
@@ -143,17 +176,35 @@ module SportsOddsAPI
         def to_hash: -> { long: String, medium: String, short: String }
       end
 
+      type owner = { name: String }
+
+      class Owner < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        def initialize: (?name: String) -> void
+
+        def to_hash: -> { name: String }
+      end
+
       type standings =
         {
+          :last5 => String,
           losses: Float,
           played: Float,
           position: String,
           record: String,
+          streak: Float,
           ties: Float,
           wins: Float
         }
 
       class Standings < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader last5: String?
+
+        def last5=: (String) -> String
+
         attr_reader losses: Float?
 
         def losses=: (Float) -> Float
@@ -170,6 +221,10 @@ module SportsOddsAPI
 
         def record=: (String) -> String
 
+        attr_reader streak: Float?
+
+        def streak=: (Float) -> Float
+
         attr_reader ties: Float?
 
         def ties=: (Float) -> Float
@@ -179,21 +234,93 @@ module SportsOddsAPI
         def wins=: (Float) -> Float
 
         def initialize: (
+          ?last5: String,
           ?losses: Float,
           ?played: Float,
           ?position: String,
           ?record: String,
+          ?streak: Float,
           ?ties: Float,
           ?wins: Float
         ) -> void
 
         def to_hash: -> {
+          :last5 => String,
           losses: Float,
           played: Float,
           position: String,
           record: String,
+          streak: Float,
           ties: Float,
           wins: Float
+        }
+      end
+
+      type venue =
+        {
+          address: String,
+          capacity: Float,
+          city: String,
+          country_code: String,
+          country_name: String,
+          name: String,
+          region_code: String,
+          region_name: String
+        }
+
+      class Venue < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader address: String?
+
+        def address=: (String) -> String
+
+        attr_reader capacity: Float?
+
+        def capacity=: (Float) -> Float
+
+        attr_reader city: String?
+
+        def city=: (String) -> String
+
+        attr_reader country_code: String?
+
+        def country_code=: (String) -> String
+
+        attr_reader country_name: String?
+
+        def country_name=: (String) -> String
+
+        attr_reader name: String?
+
+        def name=: (String) -> String
+
+        attr_reader region_code: String?
+
+        def region_code=: (String) -> String
+
+        attr_reader region_name: String?
+
+        def region_name=: (String) -> String
+
+        def initialize: (
+          ?address: String,
+          ?capacity: Float,
+          ?city: String,
+          ?country_code: String,
+          ?country_name: String,
+          ?name: String,
+          ?region_code: String,
+          ?region_name: String
+        ) -> void
+
+        def to_hash: -> {
+          address: String,
+          capacity: Float,
+          city: String,
+          country_code: String,
+          country_name: String,
+          name: String,
+          region_code: String,
+          region_name: String
         }
       end
     end
