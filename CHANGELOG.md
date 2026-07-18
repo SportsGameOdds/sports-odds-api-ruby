@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.3.0 (2026-07-18)
+
+Full Changelog: [v1.2.3...v1.3.0](https://github.com/SportsGameOdds/sports-odds-api-ruby/compare/v1.2.3...v1.3.0)
+
+### Features
+
+* add support for the /markets endpoint ([ce01d75](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/ce01d759933fc8c79d15ae84720da6d0b94eccf3))
+* initial stlc build ([51bb9f0](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/51bb9f0ae4bb9e49d056c0cedebaddb6db207f98))
+
+
+### Bug Fixes
+
+* declare base64 dependency for Ruby 3.4+ compatibility ([b238e6a](https://github.com/SportsGameOdds/sports-odds-api-ruby/commit/b238e6a09ddbbbb7f06e5317a296ad2b8bca5779))
+
 ## 1.2.3 (2026-07-08)
 
 Full Changelog: [v1.2.2...v1.2.3](https://github.com/SportsGameOdds/sports-odds-api-ruby/compare/v1.2.2...v1.2.3)
