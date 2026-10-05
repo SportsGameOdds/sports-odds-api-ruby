@@ -14,7 +14,8 @@ module SportsOddsAPI
           )
         end
 
-      # An eventID to stream events for
+      # An eventID to stream events for. If the eventID has since changed, the Event
+      # which lists it in its aliases is streamed
       sig { returns(T.nilable(String)) }
       attr_reader :event_id
 
@@ -44,7 +45,8 @@ module SportsOddsAPI
         ).returns(T.attached_class)
       end
       def self.new(
-        # An eventID to stream events for
+        # An eventID to stream events for. If the eventID has since changed, the Event
+        # which lists it in its aliases is streamed
         event_id: nil,
         # The feed you would like to subscribe to
         feed: nil,

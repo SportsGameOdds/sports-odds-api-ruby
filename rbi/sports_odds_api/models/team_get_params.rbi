@@ -40,7 +40,8 @@ module SportsOddsAPI
       sig { params(sport_id: String).void }
       attr_writer :sport_id
 
-      # A single teamID or comma-separated list of teamIDs to get data for
+      # A single teamID or comma-separated list of teamIDs to get data for. If a teamID
+      # has since changed, the Team which lists it in its aliases is returned
       sig { returns(T.nilable(String)) }
       attr_reader :team_id
 
@@ -67,7 +68,8 @@ module SportsOddsAPI
         limit: nil,
         # A single sportID or comma-separated list of sportIDs to get Teams for
         sport_id: nil,
-        # A single teamID or comma-separated list of teamIDs to get data for
+        # A single teamID or comma-separated list of teamIDs to get data for. If a teamID
+        # has since changed, the Team which lists it in its aliases is returned
         team_id: nil,
         request_options: {}
       )

@@ -42,14 +42,16 @@ module SportsOddsAPI
       sig { params(ended: T::Boolean).void }
       attr_writer :ended
 
-      # An eventID to get Event data for
+      # An eventID to get Event data for. If an eventID has since changed, the Event
+      # which lists it in its aliases is returned
       sig { returns(T.nilable(String)) }
       attr_reader :event_id
 
       sig { params(event_id: String).void }
       attr_writer :event_id
 
-      # A comma separated list of eventIDs to get Event data for
+      # A comma separated list of eventIDs to get Event data for. If an eventID has
+      # since changed, the Event which lists it in its aliases is returned
       sig { returns(T.nilable(String)) }
       attr_reader :event_ids
 
@@ -232,9 +234,11 @@ module SportsOddsAPI
         # Only include Events which have have ended (true), only Events which have not
         # ended (false) or all Events (omit)
         ended: nil,
-        # An eventID to get Event data for
+        # An eventID to get Event data for. If an eventID has since changed, the Event
+        # which lists it in its aliases is returned
         event_id: nil,
-        # A comma separated list of eventIDs to get Event data for
+        # A comma separated list of eventIDs to get Event data for. If an eventID has
+        # since changed, the Event which lists it in its aliases is returned
         event_ids: nil,
         # Whether to expand the results object to include all stat values rather than just
         # the base set

@@ -35,13 +35,15 @@ module SportsOddsAPI
       optional :ended, SportsOddsAPI::Internal::Type::Boolean
 
       # @!attribute event_id
-      #   An eventID to get Event data for
+      #   An eventID to get Event data for. If an eventID has since changed, the Event
+      #   which lists it in its aliases is returned
       #
       #   @return [String, nil]
       optional :event_id, String
 
       # @!attribute event_ids
-      #   A comma separated list of eventIDs to get Event data for
+      #   A comma separated list of eventIDs to get Event data for. If an eventID has
+      #   since changed, the Event which lists it in its aliases is returned
       #
       #   @return [String, nil]
       optional :event_ids, String
@@ -175,9 +177,9 @@ module SportsOddsAPI
       #
       #   @param ended [Boolean] Only include Events which have have ended (true), only Events which have not end
       #
-      #   @param event_id [String] An eventID to get Event data for
+      #   @param event_id [String] An eventID to get Event data for. If an eventID has since changed, the Event whi
       #
-      #   @param event_ids [String] A comma separated list of eventIDs to get Event data for
+      #   @param event_ids [String] A comma separated list of eventIDs to get Event data for. If an eventID has sinc
       #
       #   @param expand_results [Boolean] Whether to expand the results object to include all stat values rather than just
       #

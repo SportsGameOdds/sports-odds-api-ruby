@@ -27,7 +27,8 @@ module SportsOddsAPI
       optional :limit, Float
 
       # @!attribute player_id
-      #   PlayerID to get data for
+      #   PlayerID to get data for. If a playerID has since changed, the Player which
+      #   lists it in its aliases is returned
       #
       #   @return [String, nil]
       optional :player_id, String
@@ -48,7 +49,7 @@ module SportsOddsAPI
       #
       #   @param limit [Float] The maximum number of Players to return
       #
-      #   @param player_id [String] PlayerID to get data for
+      #   @param player_id [String] PlayerID to get data for. If a playerID has since changed, the Player which list
       #
       #   @param team_id [String] TeamID to get Players data for
       #
