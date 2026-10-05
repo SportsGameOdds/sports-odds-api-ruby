@@ -8,7 +8,8 @@ module SportsOddsAPI
       include SportsOddsAPI::Internal::Type::RequestParameters
 
       # @!attribute event_id
-      #   An eventID to stream events for
+      #   An eventID to stream events for. If the eventID has since changed, the Event
+      #   which lists it in its aliases is streamed
       #
       #   @return [String, nil]
       optional :event_id, String
@@ -26,7 +27,10 @@ module SportsOddsAPI
       optional :league_id, String
 
       # @!method initialize(event_id: nil, feed: nil, league_id: nil, request_options: {})
-      #   @param event_id [String] An eventID to stream events for
+      #   Some parameter documentations has been truncated, see
+      #   {SportsOddsAPI::Models::StreamEventsParams} for more details.
+      #
+      #   @param event_id [String] An eventID to stream events for. If the eventID has since changed, the Event whi
       #
       #   @param feed [String] The feed you would like to subscribe to
       #

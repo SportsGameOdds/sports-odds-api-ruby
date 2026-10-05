@@ -444,8 +444,8 @@ module SportsOddsAPI
         #   # `event` is a `SportsOddsAPI::Event`
         #   event => {
         #     activity: activity,
-        #     event_id: event_id,
-        #     info: info
+        #     aliases: aliases,
+        #     event_id: event_id
         #   }
         def deconstruct_keys(keys)
           (keys || self.class.known_fields.keys)
