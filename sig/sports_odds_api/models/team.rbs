@@ -2,6 +2,7 @@ module SportsOddsAPI
   module Models
     type team =
       {
+        aliases: ::Array[String],
         coach: SportsOddsAPI::Team::Coach,
         colors: SportsOddsAPI::Team::Colors,
         league_id: String,
@@ -16,6 +17,10 @@ module SportsOddsAPI
       }
 
     class Team < SportsOddsAPI::Internal::Type::BaseModel
+      attr_reader aliases: ::Array[String]?
+
+      def aliases=: (::Array[String]) -> ::Array[String]
+
       attr_reader coach: SportsOddsAPI::Team::Coach?
 
       def coach=: (SportsOddsAPI::Team::Coach) -> SportsOddsAPI::Team::Coach
@@ -65,6 +70,7 @@ module SportsOddsAPI
       def venue=: (SportsOddsAPI::Team::Venue) -> SportsOddsAPI::Team::Venue
 
       def initialize: (
+        ?aliases: ::Array[String],
         ?coach: SportsOddsAPI::Team::Coach,
         ?colors: SportsOddsAPI::Team::Colors,
         ?league_id: String,
@@ -79,6 +85,7 @@ module SportsOddsAPI
       ) -> void
 
       def to_hash: -> {
+        aliases: ::Array[String],
         coach: SportsOddsAPI::Team::Coach,
         colors: SportsOddsAPI::Team::Colors,
         league_id: String,

@@ -4,11 +4,14 @@ module SportsOddsAPI
   module Resources
     # Get info about Events (includes odds, results, teams, and other metadata)
     class Stream
+      # Some parameter documentations has been truncated, see
+      # {SportsOddsAPI::Models::StreamEventsParams} for more details.
+      #
       # Setup streamed (WebSocket) connection
       #
       # @overload events(event_id: nil, feed: nil, league_id: nil, request_options: {})
       #
-      # @param event_id [String] An eventID to stream events for
+      # @param event_id [String] An eventID to stream events for. If the eventID has since changed, the Event whi
       #
       # @param feed [String] The feed you would like to subscribe to
       #

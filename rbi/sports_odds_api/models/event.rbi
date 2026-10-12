@@ -14,6 +14,12 @@ module SportsOddsAPI
       sig { params(activity: SportsOddsAPI::Event::Activity::OrHash).void }
       attr_writer :activity
 
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_reader :aliases
+
+      sig { params(aliases: T::Array[String]).void }
+      attr_writer :aliases
+
       sig { returns(T.nilable(String)) }
       attr_reader :event_id
 
@@ -98,6 +104,7 @@ module SportsOddsAPI
       sig do
         params(
           activity: SportsOddsAPI::Event::Activity::OrHash,
+          aliases: T::Array[String],
           event_id: String,
           info: SportsOddsAPI::Event::Info::OrHash,
           league_id: String,
@@ -113,6 +120,7 @@ module SportsOddsAPI
       end
       def self.new(
         activity: nil,
+        aliases: nil,
         event_id: nil,
         info: nil,
         league_id: nil,
@@ -132,6 +140,7 @@ module SportsOddsAPI
         override.returns(
           {
             activity: SportsOddsAPI::Event::Activity,
+            aliases: T::Array[String],
             event_id: String,
             info: SportsOddsAPI::Event::Info,
             league_id: String,

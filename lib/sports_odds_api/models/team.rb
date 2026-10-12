@@ -4,6 +4,11 @@ module SportsOddsAPI
   module Models
     # @see SportsOddsAPI::Resources::Teams#get
     class Team < SportsOddsAPI::Internal::Type::BaseModel
+      # @!attribute aliases
+      #
+      #   @return [Array<String>, nil]
+      optional :aliases, SportsOddsAPI::Internal::Type::ArrayOf[String]
+
       # @!attribute coach
       #
       #   @return [SportsOddsAPI::Models::Team::Coach, nil]
@@ -59,7 +64,8 @@ module SportsOddsAPI
       #   @return [SportsOddsAPI::Models::Team::Venue, nil]
       optional :venue, -> { SportsOddsAPI::Team::Venue }
 
-      # @!method initialize(coach: nil, colors: nil, league_id: nil, logo: nil, lookups: nil, names: nil, owner: nil, sport_id: nil, standings: nil, team_id: nil, venue: nil)
+      # @!method initialize(aliases: nil, coach: nil, colors: nil, league_id: nil, logo: nil, lookups: nil, names: nil, owner: nil, sport_id: nil, standings: nil, team_id: nil, venue: nil)
+      #   @param aliases [Array<String>]
       #   @param coach [SportsOddsAPI::Models::Team::Coach]
       #   @param colors [SportsOddsAPI::Models::Team::Colors]
       #   @param league_id [String]

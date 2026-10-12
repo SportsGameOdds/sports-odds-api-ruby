@@ -20,6 +20,7 @@ class SportsOddsAPI::Test::Resources::EventsTest < SportsOddsAPI::Test::Resource
     assert_pattern do
       row => {
         activity: SportsOddsAPI::Event::Activity | nil,
+        aliases: ^(SportsOddsAPI::Internal::Type::ArrayOf[String]) | nil,
         event_id: String | nil,
         info: SportsOddsAPI::Event::Info | nil,
         league_id: String | nil,

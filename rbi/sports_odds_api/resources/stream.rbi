@@ -14,7 +14,8 @@ module SportsOddsAPI
         ).returns(SportsOddsAPI::Models::StreamEventsResponse)
       end
       def events(
-        # An eventID to stream events for
+        # An eventID to stream events for. If the eventID has since changed, the Event
+        # which lists it in its aliases is streamed
         event_id: nil,
         # The feed you would like to subscribe to
         feed: nil,

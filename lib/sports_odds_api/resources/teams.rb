@@ -19,7 +19,7 @@ module SportsOddsAPI
       #
       # @param sport_id [String] A single sportID or comma-separated list of sportIDs to get Teams for
       #
-      # @param team_id [String] A single teamID or comma-separated list of teamIDs to get data for
+      # @param team_id [String] A single teamID or comma-separated list of teamIDs to get data for. If a teamID
       #
       # @param request_options [SportsOddsAPI::RequestOptions, Hash{Symbol=>Object}, nil]
       #

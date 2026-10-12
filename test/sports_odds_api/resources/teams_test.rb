@@ -19,6 +19,7 @@ class SportsOddsAPI::Test::Resources::TeamsTest < SportsOddsAPI::Test::ResourceT
 
     assert_pattern do
       row => {
+        aliases: ^(SportsOddsAPI::Internal::Type::ArrayOf[String]) | nil,
         coach: SportsOddsAPI::Team::Coach | nil,
         colors: SportsOddsAPI::Team::Colors | nil,
         league_id: String | nil,

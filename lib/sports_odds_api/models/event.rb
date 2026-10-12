@@ -9,6 +9,11 @@ module SportsOddsAPI
       #   @return [SportsOddsAPI::Models::Event::Activity, nil]
       optional :activity, -> { SportsOddsAPI::Event::Activity }
 
+      # @!attribute aliases
+      #
+      #   @return [Array<String>, nil]
+      optional :aliases, SportsOddsAPI::Internal::Type::ArrayOf[String]
+
       # @!attribute event_id
       #
       #   @return [String, nil]
@@ -66,8 +71,10 @@ module SportsOddsAPI
       #   @return [String, nil]
       optional :type, String
 
-      # @!method initialize(activity: nil, event_id: nil, info: nil, league_id: nil, manual: nil, odds: nil, players: nil, results: nil, sport_id: nil, status: nil, teams: nil, type: nil)
+      # @!method initialize(activity: nil, aliases: nil, event_id: nil, info: nil, league_id: nil, manual: nil, odds: nil, players: nil, results: nil, sport_id: nil, status: nil, teams: nil, type: nil)
       #   @param activity [SportsOddsAPI::Models::Event::Activity]
+      #
+      #   @param aliases [Array<String>]
       #
       #   @param event_id [String]
       #

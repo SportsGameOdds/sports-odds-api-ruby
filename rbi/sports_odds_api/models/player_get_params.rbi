@@ -36,7 +36,8 @@ module SportsOddsAPI
       sig { params(limit: Float).void }
       attr_writer :limit
 
-      # PlayerID to get data for
+      # PlayerID to get data for. If a playerID has since changed, the Player which
+      # lists it in its aliases is returned
       sig { returns(T.nilable(String)) }
       attr_reader :player_id
 
@@ -68,7 +69,8 @@ module SportsOddsAPI
         event_id: nil,
         # The maximum number of Players to return
         limit: nil,
-        # PlayerID to get data for
+        # PlayerID to get data for. If a playerID has since changed, the Player which
+        # lists it in its aliases is returned
         player_id: nil,
         # TeamID to get Players data for
         team_id: nil,

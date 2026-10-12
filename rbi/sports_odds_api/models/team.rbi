@@ -8,6 +8,12 @@ module SportsOddsAPI
           T.any(SportsOddsAPI::Team, SportsOddsAPI::Internal::AnyHash)
         end
 
+      sig { returns(T.nilable(T::Array[String])) }
+      attr_reader :aliases
+
+      sig { params(aliases: T::Array[String]).void }
+      attr_writer :aliases
+
       sig { returns(T.nilable(SportsOddsAPI::Team::Coach)) }
       attr_reader :coach
 
@@ -76,6 +82,7 @@ module SportsOddsAPI
 
       sig do
         params(
+          aliases: T::Array[String],
           coach: SportsOddsAPI::Team::Coach::OrHash,
           colors: SportsOddsAPI::Team::Colors::OrHash,
           league_id: String,
@@ -90,6 +97,7 @@ module SportsOddsAPI
         ).returns(T.attached_class)
       end
       def self.new(
+        aliases: nil,
         coach: nil,
         colors: nil,
         league_id: nil,
@@ -107,6 +115,7 @@ module SportsOddsAPI
       sig do
         override.returns(
           {
+            aliases: T::Array[String],
             coach: SportsOddsAPI::Team::Coach,
             colors: SportsOddsAPI::Team::Colors,
             league_id: String,

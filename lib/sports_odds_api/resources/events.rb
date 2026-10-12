@@ -19,9 +19,9 @@ module SportsOddsAPI
       #
       # @param ended [Boolean] Only include Events which have have ended (true), only Events which have not end
       #
-      # @param event_id [String] An eventID to get Event data for
+      # @param event_id [String] An eventID to get Event data for. If an eventID has since changed, the Event whi
       #
-      # @param event_ids [String] A comma separated list of eventIDs to get Event data for
+      # @param event_ids [String] A comma separated list of eventIDs to get Event data for. If an eventID has sinc
       #
       # @param expand_results [Boolean] Whether to expand the results object to include all stat values rather than just
       #

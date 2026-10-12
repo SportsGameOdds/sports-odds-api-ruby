@@ -3,6 +3,7 @@ module SportsOddsAPI
     type event =
       {
         activity: SportsOddsAPI::Event::Activity,
+        aliases: ::Array[String],
         event_id: String,
         info: SportsOddsAPI::Event::Info,
         league_id: String,
@@ -22,6 +23,10 @@ module SportsOddsAPI
       def activity=: (
         SportsOddsAPI::Event::Activity
       ) -> SportsOddsAPI::Event::Activity
+
+      attr_reader aliases: ::Array[String]?
+
+      def aliases=: (::Array[String]) -> ::Array[String]
 
       attr_reader event_id: String?
 
@@ -77,6 +82,7 @@ module SportsOddsAPI
 
       def initialize: (
         ?activity: SportsOddsAPI::Event::Activity,
+        ?aliases: ::Array[String],
         ?event_id: String,
         ?info: SportsOddsAPI::Event::Info,
         ?league_id: String,
@@ -92,6 +98,7 @@ module SportsOddsAPI
 
       def to_hash: -> {
         activity: SportsOddsAPI::Event::Activity,
+        aliases: ::Array[String],
         event_id: String,
         info: SportsOddsAPI::Event::Info,
         league_id: String,
