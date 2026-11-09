@@ -11,8 +11,8 @@ module SportsOddsAPI
 
       # @!attribute jersey_number
       #
-      #   @return [Float, nil]
-      optional :jersey_number, Float, api_name: :jerseyNumber
+      #   @return [String, nil]
+      optional :jersey_number, String, api_name: :jerseyNumber
 
       # @!attribute league_id
       #
@@ -58,7 +58,7 @@ module SportsOddsAPI
 
       # @!method initialize(aliases: nil, jersey_number: nil, league_id: nil, lookups: nil, names: nil, player_id: nil, player_teams: nil, position: nil, sport_id: nil, team_id: nil)
       #   @param aliases [Array<String>]
-      #   @param jersey_number [Float]
+      #   @param jersey_number [String]
       #   @param league_id [String]
       #   @param lookups [SportsOddsAPI::Models::Player::Lookups]
       #   @param names [SportsOddsAPI::Models::Player::Names]
@@ -108,10 +108,22 @@ module SportsOddsAPI
         #   @return [String, nil]
         optional :last_name, String, api_name: :lastName
 
-        # @!method initialize(display_: nil, first_name: nil, last_name: nil)
+        # @!attribute nickname
+        #
+        #   @return [String, nil]
+        optional :nickname, String
+
+        # @!attribute suffix
+        #
+        #   @return [String, nil]
+        optional :suffix, String
+
+        # @!method initialize(display_: nil, first_name: nil, last_name: nil, nickname: nil, suffix: nil)
         #   @param display_ [String]
         #   @param first_name [String]
         #   @param last_name [String]
+        #   @param nickname [String]
+        #   @param suffix [String]
       end
 
       class PlayerTeam < SportsOddsAPI::Internal::Type::BaseModel

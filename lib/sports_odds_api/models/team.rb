@@ -131,6 +131,21 @@ module SportsOddsAPI
 
       # @see SportsOddsAPI::Models::Team#names
       class Names < SportsOddsAPI::Internal::Type::BaseModel
+        # @!attribute first_name
+        #
+        #   @return [String, nil]
+        optional :first_name, String, api_name: :firstName
+
+        # @!attribute last_name
+        #
+        #   @return [String, nil]
+        optional :last_name, String, api_name: :lastName
+
+        # @!attribute location
+        #
+        #   @return [String, nil]
+        optional :location, String
+
         # @!attribute long
         #
         #   @return [String, nil]
@@ -141,15 +156,30 @@ module SportsOddsAPI
         #   @return [String, nil]
         optional :medium, String
 
+        # @!attribute nickname
+        #
+        #   @return [String, nil]
+        optional :nickname, String
+
         # @!attribute short
         #
         #   @return [String, nil]
         optional :short, String
 
-        # @!method initialize(long: nil, medium: nil, short: nil)
+        # @!attribute suffix
+        #
+        #   @return [String, nil]
+        optional :suffix, String
+
+        # @!method initialize(first_name: nil, last_name: nil, location: nil, long: nil, medium: nil, nickname: nil, short: nil, suffix: nil)
+        #   @param first_name [String]
+        #   @param last_name [String]
+        #   @param location [String]
         #   @param long [String]
         #   @param medium [String]
+        #   @param nickname [String]
         #   @param short [String]
+        #   @param suffix [String]
       end
 
       # @see SportsOddsAPI::Models::Team#owner
@@ -258,7 +288,12 @@ module SportsOddsAPI
         #   @return [String, nil]
         optional :region_name, String, api_name: :regionName
 
-        # @!method initialize(address: nil, capacity: nil, city: nil, country_code: nil, country_name: nil, name: nil, region_code: nil, region_name: nil)
+        # @!attribute venue_id
+        #
+        #   @return [String, nil]
+        optional :venue_id, String, api_name: :venueID
+
+        # @!method initialize(address: nil, capacity: nil, city: nil, country_code: nil, country_name: nil, name: nil, region_code: nil, region_name: nil, venue_id: nil)
         #   @param address [String]
         #   @param capacity [Float]
         #   @param city [String]
@@ -267,6 +302,7 @@ module SportsOddsAPI
         #   @param name [String]
         #   @param region_code [String]
         #   @param region_name [String]
+        #   @param venue_id [String]
       end
     end
   end

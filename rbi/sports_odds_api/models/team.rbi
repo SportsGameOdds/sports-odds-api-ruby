@@ -245,6 +245,24 @@ module SportsOddsAPI
           end
 
         sig { returns(T.nilable(String)) }
+        attr_reader :first_name
+
+        sig { params(first_name: String).void }
+        attr_writer :first_name
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :last_name
+
+        sig { params(last_name: String).void }
+        attr_writer :last_name
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :location
+
+        sig { params(location: String).void }
+        attr_writer :location
+
+        sig { returns(T.nilable(String)) }
         attr_reader :long
 
         sig { params(long: String).void }
@@ -257,21 +275,60 @@ module SportsOddsAPI
         attr_writer :medium
 
         sig { returns(T.nilable(String)) }
+        attr_reader :nickname
+
+        sig { params(nickname: String).void }
+        attr_writer :nickname
+
+        sig { returns(T.nilable(String)) }
         attr_reader :short
 
         sig { params(short: String).void }
         attr_writer :short
 
+        sig { returns(T.nilable(String)) }
+        attr_reader :suffix
+
+        sig { params(suffix: String).void }
+        attr_writer :suffix
+
         sig do
-          params(long: String, medium: String, short: String).returns(
-            T.attached_class
-          )
+          params(
+            first_name: String,
+            last_name: String,
+            location: String,
+            long: String,
+            medium: String,
+            nickname: String,
+            short: String,
+            suffix: String
+          ).returns(T.attached_class)
         end
-        def self.new(long: nil, medium: nil, short: nil)
+        def self.new(
+          first_name: nil,
+          last_name: nil,
+          location: nil,
+          long: nil,
+          medium: nil,
+          nickname: nil,
+          short: nil,
+          suffix: nil
+        )
         end
 
         sig do
-          override.returns({ long: String, medium: String, short: String })
+          override.returns(
+            {
+              first_name: String,
+              last_name: String,
+              location: String,
+              long: String,
+              medium: String,
+              nickname: String,
+              short: String,
+              suffix: String
+            }
+          )
         end
         def to_hash
         end
@@ -451,6 +508,12 @@ module SportsOddsAPI
         sig { params(region_name: String).void }
         attr_writer :region_name
 
+        sig { returns(T.nilable(String)) }
+        attr_reader :venue_id
+
+        sig { params(venue_id: String).void }
+        attr_writer :venue_id
+
         sig do
           params(
             address: String,
@@ -460,7 +523,8 @@ module SportsOddsAPI
             country_name: String,
             name: String,
             region_code: String,
-            region_name: String
+            region_name: String,
+            venue_id: String
           ).returns(T.attached_class)
         end
         def self.new(
@@ -471,7 +535,8 @@ module SportsOddsAPI
           country_name: nil,
           name: nil,
           region_code: nil,
-          region_name: nil
+          region_name: nil,
+          venue_id: nil
         )
         end
 
@@ -485,7 +550,8 @@ module SportsOddsAPI
               country_name: String,
               name: String,
               region_code: String,
-              region_name: String
+              region_name: String,
+              venue_id: String
             }
           )
         end

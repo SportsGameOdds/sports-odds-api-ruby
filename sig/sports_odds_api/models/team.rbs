@@ -163,9 +163,31 @@ module SportsOddsAPI
         def to_hash: -> { team_name: ::Array[String] }
       end
 
-      type names = { long: String, medium: String, short: String }
+      type names =
+        {
+          first_name: String,
+          last_name: String,
+          location: String,
+          long: String,
+          medium: String,
+          nickname: String,
+          short: String,
+          suffix: String
+        }
 
       class Names < SportsOddsAPI::Internal::Type::BaseModel
+        attr_reader first_name: String?
+
+        def first_name=: (String) -> String
+
+        attr_reader last_name: String?
+
+        def last_name=: (String) -> String
+
+        attr_reader location: String?
+
+        def location=: (String) -> String
+
         attr_reader long: String?
 
         def long=: (String) -> String
@@ -174,13 +196,39 @@ module SportsOddsAPI
 
         def medium=: (String) -> String
 
+        attr_reader nickname: String?
+
+        def nickname=: (String) -> String
+
         attr_reader short: String?
 
         def short=: (String) -> String
 
-        def initialize: (?long: String, ?medium: String, ?short: String) -> void
+        attr_reader suffix: String?
 
-        def to_hash: -> { long: String, medium: String, short: String }
+        def suffix=: (String) -> String
+
+        def initialize: (
+          ?first_name: String,
+          ?last_name: String,
+          ?location: String,
+          ?long: String,
+          ?medium: String,
+          ?nickname: String,
+          ?short: String,
+          ?suffix: String
+        ) -> void
+
+        def to_hash: -> {
+          first_name: String,
+          last_name: String,
+          location: String,
+          long: String,
+          medium: String,
+          nickname: String,
+          short: String,
+          suffix: String
+        }
       end
 
       type owner = { name: String }
@@ -272,7 +320,8 @@ module SportsOddsAPI
           country_name: String,
           name: String,
           region_code: String,
-          region_name: String
+          region_name: String,
+          venue_id: String
         }
 
       class Venue < SportsOddsAPI::Internal::Type::BaseModel
@@ -308,6 +357,10 @@ module SportsOddsAPI
 
         def region_name=: (String) -> String
 
+        attr_reader venue_id: String?
+
+        def venue_id=: (String) -> String
+
         def initialize: (
           ?address: String,
           ?capacity: Float,
@@ -316,7 +369,8 @@ module SportsOddsAPI
           ?country_name: String,
           ?name: String,
           ?region_code: String,
-          ?region_name: String
+          ?region_name: String,
+          ?venue_id: String
         ) -> void
 
         def to_hash: -> {
@@ -327,7 +381,8 @@ module SportsOddsAPI
           country_name: String,
           name: String,
           region_code: String,
-          region_name: String
+          region_name: String,
+          venue_id: String
         }
       end
     end
