@@ -14,10 +14,10 @@ module SportsOddsAPI
       sig { params(aliases: T::Array[String]).void }
       attr_writer :aliases
 
-      sig { returns(T.nilable(Float)) }
+      sig { returns(T.nilable(String)) }
       attr_reader :jersey_number
 
-      sig { params(jersey_number: Float).void }
+      sig { params(jersey_number: String).void }
       attr_writer :jersey_number
 
       sig { returns(T.nilable(String)) }
@@ -78,7 +78,7 @@ module SportsOddsAPI
       sig do
         params(
           aliases: T::Array[String],
-          jersey_number: Float,
+          jersey_number: String,
           league_id: String,
           lookups: SportsOddsAPI::Player::Lookups::OrHash,
           names: SportsOddsAPI::Player::Names::OrHash,
@@ -108,7 +108,7 @@ module SportsOddsAPI
         override.returns(
           {
             aliases: T::Array[String],
-            jersey_number: Float,
+            jersey_number: String,
             league_id: String,
             lookups: SportsOddsAPI::Player::Lookups,
             names: SportsOddsAPI::Player::Names,
@@ -200,19 +200,45 @@ module SportsOddsAPI
         sig { params(last_name: String).void }
         attr_writer :last_name
 
+        sig { returns(T.nilable(String)) }
+        attr_reader :nickname
+
+        sig { params(nickname: String).void }
+        attr_writer :nickname
+
+        sig { returns(T.nilable(String)) }
+        attr_reader :suffix
+
+        sig { params(suffix: String).void }
+        attr_writer :suffix
+
         sig do
           params(
             display_: String,
             first_name: String,
-            last_name: String
+            last_name: String,
+            nickname: String,
+            suffix: String
           ).returns(T.attached_class)
         end
-        def self.new(display_: nil, first_name: nil, last_name: nil)
+        def self.new(
+          display_: nil,
+          first_name: nil,
+          last_name: nil,
+          nickname: nil,
+          suffix: nil
+        )
         end
 
         sig do
           override.returns(
-            { display_: String, first_name: String, last_name: String }
+            {
+              display_: String,
+              first_name: String,
+              last_name: String,
+              nickname: String,
+              suffix: String
+            }
           )
         end
         def to_hash
