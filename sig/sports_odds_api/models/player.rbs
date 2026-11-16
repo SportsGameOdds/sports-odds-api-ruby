@@ -3,7 +3,7 @@ module SportsOddsAPI
     type player =
       {
         aliases: ::Array[String],
-        jersey_number: Float,
+        jersey_number: String,
         league_id: String,
         lookups: SportsOddsAPI::Player::Lookups,
         names: SportsOddsAPI::Player::Names,
@@ -19,9 +19,9 @@ module SportsOddsAPI
 
       def aliases=: (::Array[String]) -> ::Array[String]
 
-      attr_reader jersey_number: Float?
+      attr_reader jersey_number: String?
 
-      def jersey_number=: (Float) -> Float
+      def jersey_number=: (String) -> String
 
       attr_reader league_id: String?
 
@@ -61,7 +61,7 @@ module SportsOddsAPI
 
       def initialize: (
         ?aliases: ::Array[String],
-        ?jersey_number: Float,
+        ?jersey_number: String,
         ?league_id: String,
         ?lookups: SportsOddsAPI::Player::Lookups,
         ?names: SportsOddsAPI::Player::Names,
@@ -74,7 +74,7 @@ module SportsOddsAPI
 
       def to_hash: -> {
         aliases: ::Array[String],
-        jersey_number: Float,
+        jersey_number: String,
         league_id: String,
         lookups: SportsOddsAPI::Player::Lookups,
         names: SportsOddsAPI::Player::Names,
@@ -118,7 +118,14 @@ module SportsOddsAPI
         }
       end
 
-      type names = { display_: String, first_name: String, last_name: String }
+      type names =
+        {
+          display_: String,
+          first_name: String,
+          last_name: String,
+          nickname: String,
+          suffix: String
+        }
 
       class Names < SportsOddsAPI::Internal::Type::BaseModel
         attr_reader display_: String?
@@ -133,16 +140,28 @@ module SportsOddsAPI
 
         def last_name=: (String) -> String
 
+        attr_reader nickname: String?
+
+        def nickname=: (String) -> String
+
+        attr_reader suffix: String?
+
+        def suffix=: (String) -> String
+
         def initialize: (
           ?display_: String,
           ?first_name: String,
-          ?last_name: String
+          ?last_name: String,
+          ?nickname: String,
+          ?suffix: String
         ) -> void
 
         def to_hash: -> {
           display_: String,
           first_name: String,
-          last_name: String
+          last_name: String,
+          nickname: String,
+          suffix: String
         }
       end
 

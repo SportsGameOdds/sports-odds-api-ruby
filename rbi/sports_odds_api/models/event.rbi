@@ -437,6 +437,12 @@ module SportsOddsAPI
           sig { params(region_name: String).void }
           attr_writer :region_name
 
+          sig { returns(T.nilable(String)) }
+          attr_reader :venue_id
+
+          sig { params(venue_id: String).void }
+          attr_writer :venue_id
+
           sig do
             params(
               address: String,
@@ -446,7 +452,8 @@ module SportsOddsAPI
               country_name: String,
               name: String,
               region_code: String,
-              region_name: String
+              region_name: String,
+              venue_id: String
             ).returns(T.attached_class)
           end
           def self.new(
@@ -457,7 +464,8 @@ module SportsOddsAPI
             country_name: nil,
             name: nil,
             region_code: nil,
-            region_name: nil
+            region_name: nil,
+            venue_id: nil
           )
           end
 
@@ -471,7 +479,8 @@ module SportsOddsAPI
                 country_name: String,
                 name: String,
                 region_code: String,
-                region_name: String
+                region_name: String,
+                venue_id: String
               }
             )
           end

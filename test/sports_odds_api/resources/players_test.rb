@@ -20,7 +20,7 @@ class SportsOddsAPI::Test::Resources::PlayersTest < SportsOddsAPI::Test::Resourc
     assert_pattern do
       row => {
         aliases: ^(SportsOddsAPI::Internal::Type::ArrayOf[String]) | nil,
-        jersey_number: Float | nil,
+        jersey_number: String | nil,
         league_id: String | nil,
         lookups: SportsOddsAPI::Player::Lookups | nil,
         names: SportsOddsAPI::Player::Names | nil,
