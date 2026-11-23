@@ -398,11 +398,6 @@ module SportsOddsAPI
           #   @return [Boolean, nil]
           optional :available, SportsOddsAPI::Internal::Type::Boolean
 
-          # @!attribute bookmaker_id
-          #
-          #   @return [String, nil]
-          optional :bookmaker_id, String, api_name: :bookmakerID
-
           # @!attribute close_odds
           #
           #   @return [String, nil]
@@ -417,11 +412,6 @@ module SportsOddsAPI
           #
           #   @return [String, nil]
           optional :close_spread, String, api_name: :closeSpread
-
-          # @!attribute is_main_line
-          #
-          #   @return [Boolean, nil]
-          optional :is_main_line, SportsOddsAPI::Internal::Type::Boolean, api_name: :isMainLine
 
           # @!attribute last_updated_at
           #
@@ -458,13 +448,11 @@ module SportsOddsAPI
           #   @return [String, nil]
           optional :spread, String
 
-          # @!method initialize(available: nil, bookmaker_id: nil, close_odds: nil, close_over_under: nil, close_spread: nil, is_main_line: nil, last_updated_at: nil, odds: nil, open_odds: nil, open_over_under: nil, open_spread: nil, over_under: nil, spread: nil)
+          # @!method initialize(available: nil, close_odds: nil, close_over_under: nil, close_spread: nil, last_updated_at: nil, odds: nil, open_odds: nil, open_over_under: nil, open_spread: nil, over_under: nil, spread: nil)
           #   @param available [Boolean]
-          #   @param bookmaker_id [String]
           #   @param close_odds [String]
           #   @param close_over_under [String]
           #   @param close_spread [String]
-          #   @param is_main_line [Boolean]
           #   @param last_updated_at [Time]
           #   @param odds [String]
           #   @param open_odds [String]

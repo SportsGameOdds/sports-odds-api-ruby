@@ -486,11 +486,9 @@ module SportsOddsAPI
         type by_bookmaker =
           {
             available: bool,
-            bookmaker_id: String,
             close_odds: String,
             close_over_under: String,
             close_spread: String,
-            is_main_line: bool,
             last_updated_at: Time,
             odds: String,
             open_odds: String,
@@ -505,10 +503,6 @@ module SportsOddsAPI
 
           def available=: (bool) -> bool
 
-          attr_reader bookmaker_id: String?
-
-          def bookmaker_id=: (String) -> String
-
           attr_reader close_odds: String?
 
           def close_odds=: (String) -> String
@@ -520,10 +514,6 @@ module SportsOddsAPI
           attr_reader close_spread: String?
 
           def close_spread=: (String) -> String
-
-          attr_reader is_main_line: bool?
-
-          def is_main_line=: (bool) -> bool
 
           attr_reader last_updated_at: Time?
 
@@ -555,11 +545,9 @@ module SportsOddsAPI
 
           def initialize: (
             ?available: bool,
-            ?bookmaker_id: String,
             ?close_odds: String,
             ?close_over_under: String,
             ?close_spread: String,
-            ?is_main_line: bool,
             ?last_updated_at: Time,
             ?odds: String,
             ?open_odds: String,
@@ -571,11 +559,9 @@ module SportsOddsAPI
 
           def to_hash: -> {
             available: bool,
-            bookmaker_id: String,
             close_odds: String,
             close_over_under: String,
             close_spread: String,
-            is_main_line: bool,
             last_updated_at: Time,
             odds: String,
             open_odds: String,
