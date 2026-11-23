@@ -746,12 +746,6 @@ module SportsOddsAPI
           attr_writer :available
 
           sig { returns(T.nilable(String)) }
-          attr_reader :bookmaker_id
-
-          sig { params(bookmaker_id: String).void }
-          attr_writer :bookmaker_id
-
-          sig { returns(T.nilable(String)) }
           attr_reader :close_odds
 
           sig { params(close_odds: String).void }
@@ -768,12 +762,6 @@ module SportsOddsAPI
 
           sig { params(close_spread: String).void }
           attr_writer :close_spread
-
-          sig { returns(T.nilable(T::Boolean)) }
-          attr_reader :is_main_line
-
-          sig { params(is_main_line: T::Boolean).void }
-          attr_writer :is_main_line
 
           sig { returns(T.nilable(Time)) }
           attr_reader :last_updated_at
@@ -820,11 +808,9 @@ module SportsOddsAPI
           sig do
             params(
               available: T::Boolean,
-              bookmaker_id: String,
               close_odds: String,
               close_over_under: String,
               close_spread: String,
-              is_main_line: T::Boolean,
               last_updated_at: Time,
               odds: String,
               open_odds: String,
@@ -836,11 +822,9 @@ module SportsOddsAPI
           end
           def self.new(
             available: nil,
-            bookmaker_id: nil,
             close_odds: nil,
             close_over_under: nil,
             close_spread: nil,
-            is_main_line: nil,
             last_updated_at: nil,
             odds: nil,
             open_odds: nil,
@@ -855,11 +839,9 @@ module SportsOddsAPI
             override.returns(
               {
                 available: T::Boolean,
-                bookmaker_id: String,
                 close_odds: String,
                 close_over_under: String,
                 close_spread: String,
-                is_main_line: T::Boolean,
                 last_updated_at: Time,
                 odds: String,
                 open_odds: String,
